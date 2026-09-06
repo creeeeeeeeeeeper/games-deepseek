@@ -1,0 +1,37 @@
+/* 极简赛车专属样式（叠加 assets/game.css） */
+
+.game-card { max-width: 440px; margin: 0 auto; text-align: center; }
+.hud { justify-content: center; gap: 8px 28px; margin-bottom: 10px; }
+.hud-item strong { font-size: 20px; color: var(--accent); }
+.hud-item strong.bump { animation: bump 0.3s ease; display: inline-block; }
+@keyframes bump { 40% { transform: scale(1.4); } }
+#speed { color: var(--warn); }
+
+.board-wrap canvas {
+  display: block;
+  width: min(100%, 360px);
+  margin: 0 auto;
+  background: #0e1626;
+  border-radius: 12px;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: pointer;
+}
+.board-wrap {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.45);
+}
+.board-wrap.bad { animation: badShake 0.4s ease; }
+@keyframes badShake {
+  0%,100% { transform: none; }
+  25% { transform: translateX(-7px); }
+  75% { transform: translateX(7px); }
+}
+
+.hint { margin-top: 10px; }
+@media (max-width: 480px) {
+  .game-card { padding: 14px; }
+}

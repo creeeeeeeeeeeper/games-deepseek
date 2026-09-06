@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>时钟接龙 · 小游戏大全</title>
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">🕐 时钟接龙</h1>
+      <p class="game-desc">经典 Clock Solitaire：从中央抽一张牌放到它点数对应的钟点位置，翻出那张牌继续；翻出第四张 K 牌即失败。</p>
+    </div>
+
+    <div class="game-card center">
+      <div class="hud">
+        <div class="hud-item">翻开 <strong id="revealed">0</strong></div>
+        <div class="hud-item">剩余 <strong id="left">0</strong></div>
+      </div>
+      <div class="board-wrap">
+        <div class="clock" id="clock"></div>
+      </div>
+      <div class="msg" id="msg" aria-live="polite">点击中央牌翻开，再自动放到对应钟点。</div>
+      <div class="hint">时钟 1-12，中央 13 张为堆。抽到的牌放到对应的钟点位置，点那堆继续翻。第4张 K 出现即失败；翻开全部 52 张则成功。</div>
+    </div>
+  </div>
+
+  <div class="modal" id="endModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <h2 class="modal-title" id="endTitle">🎉 成功！</h2>
+      <p class="modal-sub" id="endMsg"></p>
+      <button class="btn" id="againBtn" type="button">再来一局</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

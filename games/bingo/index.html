@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>宾果 · 小游戏大全</title>
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">🔢 宾果</h1>
+      <p class="game-desc">你有一张 5×5 数字卡，轮流报数并自动圈掉；你先凑够一条直线（横/竖/斜）就赢。AI 也在同时圈它自己的卡。</p>
+    </div>
+
+    <div class="game-card center">
+      <div class="hud">
+        <div class="hud-item">你连线 <strong id="myLines">0</strong></div>
+        <div class="hud-item">AI 连线 <strong id="aiLines">0</strong></div>
+        <div class="hud-item">当前数字 <strong id="called">—</strong></div>
+      </div>
+      <div class="board-wrap">
+        <div class="bingo-area">
+          <div class="bingo-card" id="myCard"></div>
+        </div>
+      </div>
+      <div class="controls">
+        <button class="btn" id="drawBtn" type="button">🎱 报数</button>
+      </div>
+      <div class="msg" id="msg" aria-live="polite">轮到你时点「报数」，叫出的数字请手动在你卡上点掉。</div>
+      <div class="hint">先连成横/竖/斜任一一条线的获胜。你和 AI 先后行动。</div>
+    </div>
+  </div>
+
+  <div class="modal" id="endModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <h2 class="modal-title" id="endTitle"></h2>
+      <p class="modal-sub" id="endMsg"></p>
+      <button class="btn" id="againBtn" type="button">再来一局</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

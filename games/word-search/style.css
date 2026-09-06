@@ -1,0 +1,100 @@
+/* ============================================================
+   找单词 专属样式（依赖上方 assets/game.css 的主题变量）
+   布局：左侧字母棋盘（Canvas）+ 右侧目标单词列表，窄屏时上下堆叠。
+   ============================================================ */
+
+/* 左右分栏：棋盘 + 单词列表 */
+.word-search-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 230px;
+  gap: 18px;
+  align-items: start;
+}
+
+/* 棋盘容器：居中画布 */
+.board-wrap {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Canvas 尺寸由 JS 按容器宽度设置，这里只负责上限与圆角 */
+#board {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  max-width: 100%;
+  height: auto;
+  cursor: crosshair;
+  touch-action: none; /* 让触屏拖拽不被页面滚动吞掉 */
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* 右侧单词列表 */
+.word-side {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+  min-height: 100%;
+}
+.word-side-title {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 0 0 12px;
+  letter-spacing: 1px;
+}
+.word-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.word {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: var(--text);
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  transition: background 0.15s, border-color 0.15s, color 0.15s, transform 0.12s;
+}
+/* 已找到的单词：变黑、加绿边、划线 */
+.word.found {
+  color: var(--accent-2);
+  border-color: var(--accent-2);
+  background: rgba(52, 211, 153, 0.12);
+  text-decoration: line-through;
+  transform: scale(0.98);
+}
+
+/* 反馈消息 */
+.msg {
+  margin-top: 12px;
+  min-height: 18px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* 反馈消息的局部主题色 */
+hud,
+.msg { --accent-2: #34d399; }
+
+/* 小屏：上下堆叠 */
+@media (max-width: 720px) {
+  .word-search-layout { grid-template-columns: 1fr; gap: 12px; }
+}
+
+/* 超窄屏：收窄卡片内边距、稍微缩小单词胶囊 */
+@media (max-width: 480px) {
+  .game-card { padding: 14px; }
+  .hud { gap: 10px; }
+  .word { font-size: 12px; padding: 5px 9px; letter-spacing: 1px; }
+}

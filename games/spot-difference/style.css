@@ -1,0 +1,49 @@
+/* 找不同专属样式（叠加 assets/game.css） */
+
+.game-card { max-width: 980px; margin: 0 auto; }
+.hud { justify-content: center; flex-wrap: wrap; gap: 8px 26px; margin-bottom: 12px; }
+.hud-item strong.bump { animation: bump 0.3s ease; display: inline-block; }
+@keyframes bump { 40% { transform: scale(1.35); } }
+
+.pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.side { margin: 0; text-align: center; }
+.side figcaption {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+.side canvas {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #101a2c;
+  display: block;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: crosshair;
+}
+.side canvas.found-ring { box-shadow: 0 0 0 2px var(--accent-2); }
+.side canvas.bad { animation: badRing 0.32s ease; }
+@keyframes badRing {
+  0%,100% { box-shadow: 0 0 0 0 transparent; }
+  45% { box-shadow: 0 0 0 4px rgba(255,93,108,0.75); }
+}
+
+.msg { min-height: 24px; text-align: center; margin-top: 12px; font-weight: 700; }
+.msg.win { color: var(--accent-2); animation: msgWin 0.5s ease; }
+@keyframes msgWin { 50% { transform: scale(1.1); } }
+
+.hint { margin-top: 12px; }
+
+@media (max-width: 720px) {
+  .pair { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+  .game-card { padding: 14px; }
+}

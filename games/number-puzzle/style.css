@@ -1,0 +1,67 @@
+/* ============================================================
+   数字拼图（4x4 · 数字华容道）专属样式
+   静态槽位 + 绝对定位数字块；left/top 过渡 = 平滑滑动
+   ============================================================ */
+.game-card.center { text-align: center; }
+
+.board {
+  --t: 90px;
+  --g: 8px;
+  --pd: 8px;
+  position: relative;
+  display: inline-grid;
+  grid-template-columns: repeat(4, var(--t));
+  grid-template-rows: repeat(4, var(--t));
+  gap: var(--g);
+  background: rgba(20, 16, 10, 0.7);
+  border: 1px solid #51432c;
+  padding: var(--pd);
+  border-radius: 8px;
+  touch-action: none;
+  user-select: none;
+}
+
+.slot {
+  background: rgba(236, 224, 200, 0.07);
+  border-radius: 10px;
+}
+
+.tile {
+  position: absolute;
+  z-index: 2;
+  width: var(--t);
+  height: var(--t);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  font-size: 30px;
+  font-weight: 800;
+  background: #37445b;
+  color: #eef2f8;
+  cursor: pointer;
+  transition: left 0.08s cubic-bezier(0.3, 1.2, 0.4, 1), top 0.08s cubic-bezier(0.3, 1.2, 0.4, 1);
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.35);
+  touch-action: none;
+}
+.tile.dragging {
+  z-index: 6;
+  box-shadow: 0 0 0 3px #fff, 0 0 18px rgba(58, 168, 173, 0.8);
+}
+.tile.big { font-size: 25px; }
+
+/* 空格指示：空洞即空位，无需实体 */
+.tile.movable { box-shadow: inset 0 0 0 2px rgba(58, 168, 173, 0.55), 2px 2px 0 rgba(0,0,0,0.35); }
+.tile:hover { filter: brightness(1.15); }
+
+.msg { margin-top: 10px; min-height: 20px; font-size: 15px; font-weight: 600; }
+
+@media (max-width: 560px) {
+  .board { --t: 72px; --g: 6px; }
+  .tile { font-size: 24px; border-radius: 8px; }
+}
+@media (max-width: 420px) {
+  .board { --t: 64px; --g: 5px; --pd: 6px; }
+  .tile { font-size: 21px; }
+  .tile.big { font-size: 18px; }
+}

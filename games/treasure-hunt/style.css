@@ -1,0 +1,68 @@
+/* 寻宝探险专属样式（叠加 assets/game.css） */
+
+.game-card { max-width: 560px; margin: 0 auto; }
+.hud { justify-content: center; flex-wrap: wrap; gap: 8px 24px; margin-bottom: 12px; }
+.hud-item strong.bump { animation: bump 0.3s ease; display: inline-block; }
+@keyframes bump { 40% { transform: scale(1.4); } }
+#lives { color: var(--danger); letter-spacing: 2px; }
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 6px;
+  max-width: 480px;
+  margin: 0 auto;
+}
+.tile {
+  aspect-ratio: 1;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background:
+    linear-gradient(145deg, #2b3850, #1a2334);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(16px, 4.6vw, 24px);
+  font-weight: 800;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.12s, border-color 0.12s, background 0.15s;
+}
+.tile:hover { border-color: var(--accent); transform: translateY(-2px); }
+.tile:active { transform: scale(0.94); }
+.tile.open { cursor: default; transform: none; }
+.tile.open:hover { border-color: var(--border); }
+.tile.plain.open {
+  background: #141d2d;
+  color: var(--muted);
+}
+.tile.gem.open { background: #17313a; border-color: #ffd166; animation: gemPop 0.5s ease; }
+@keyframes gemPop {
+  0% { transform: scale(0.4) rotate(-20deg); }
+  55% { transform: scale(1.35); }
+}
+.tile.bomb.open { background: #3a151c; border-color: var(--danger); animation: bombShake 0.4s ease; }
+@keyframes bombShake {
+  0%,100% { transform: none; }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+.tile.num-1 { color: #7ecbff; }
+.tile.num-2 { color: #67e6a0; }
+.tile.num-3 { color: #ffd166; }
+.tile.num-4 { color: #ff8a97; }
+
+.board.bad { animation: boardBad 0.4s ease; }
+@keyframes boardBad {
+  0%,100% { filter: none; }
+  40% { filter: drop-shadow(0 0 14px rgba(255,93,108,0.8)); }
+}
+
+.msg { min-height: 22px; text-align: center; margin-top: 14px; font-weight: 700; }
+.msg.win { color: var(--accent-2); }
+
+.hint { margin-top: 10px; }
+@media (max-width: 420px) {
+  .board { gap: 4px; }
+  .game-card { padding: 14px; }
+}

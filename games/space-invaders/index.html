@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+<title>🎮 太空入侵者 · 小游戏大全</title>
+<link rel="stylesheet" href="../../assets/game.css" />
+<link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+</head>
+<body>
+<div class="game-shell">
+  <header class="game-topbar">
+    <a class="back-btn" href="../../index.html">← 返回列表</a>
+  </header>
+
+  <h1 class="game-title">🎮 太空入侵者 · 小游戏大全</h1>
+  <p class="game-desc">外星舰队一波接一波来袭：清光阵列进入下一关，阵列更满、攻势更快。偶尔飞过的 UFO 藏着大额赏金，守住地球战线！</p>
+
+  <div class="game-card">
+    <div class="hud">
+      <div class="hud-item"><strong id="hud-score">0</strong><span>得分</span></div>
+      <div class="hud-item"><strong id="hud-best">0</strong><span>最高</span></div>
+      <div class="hud-item"><strong id="hud-level">1</strong><span>关卡</span></div>
+      <div class="hud-item"><strong id="hud-lives">3</strong><span>生命</span></div>
+    </div>
+
+    <div class="board-wrap">
+      <div class="stage" id="stage">
+        <canvas id="game" width="640" height="700" aria-label="太空入侵者游戏画面"></canvas>
+
+        <div class="overlay show" id="ov-menu">
+          <div class="ov-box">
+            <div class="ov-emoji">👾</div>
+            <h2 class="ov-title">太空入侵者</h2>
+            <ul class="ov-lines">
+              <li><span class="chip">👾 上排 · 30 分</span><span class="chip">👽 中排 · 20 分</span><span class="chip">🦑 底排 · 10 分</span><span class="chip">🛸 UFO · 50~300 分</span></li>
+              <li>共 3 条命，被击中会闪红重生并获得短暂无敌；连闯多关，冲击最高分！</li>
+            </ul>
+            <button class="btn" id="btn-start" type="button">🚀 开始游戏</button>
+            <p class="hint"><kbd>←</kbd><kbd>→</kbd> 或 <kbd>A</kbd><kbd>D</kbd> 移动　<kbd>空格</kbd> 射击　<kbd>R</kbd> 重开</p>
+          </div>
+        </div>
+
+        <div class="overlay" id="ov-ready">
+          <div class="ov-box ov-ready-box">
+            <div class="ready-big pop" id="ready-big">3</div>
+            <p class="ready-sub" id="ready-sub"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="touch-controls" id="touch-controls">
+      <button class="tc-btn" id="tc-left" type="button" aria-label="左移">◀</button>
+      <button class="tc-btn tc-fire" id="tc-fire" type="button" aria-label="射击">◉ 射击</button>
+      <button class="tc-btn" id="tc-right" type="button" aria-label="右移">▶</button>
+    </div>
+
+    <p class="hint hint-bottom">触屏：在画面左右拖动控制飞船，点按开火；清空一关进入下一关（阵列更满、更快），UFO 价值 50~300 分随机。</p>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <div class="modal-title" id="modal-title"></div>
+    <div class="modal-sub" id="modal-sub"></div>
+    <div class="modal-actions" id="modal-actions"></div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+
+
+</body>
+</html>

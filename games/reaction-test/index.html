@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🎮 反应测试 · 小游戏大全</title>
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <main class="game-shell">
+    <header class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">🎮 反应测试</h1>
+      <p class="game-desc">红灯等待，变绿瞬间点击！5 轮测出你的平均反应速度，红色阶段千万别出手。</p>
+    </header>
+
+    <section class="game-card">
+      <div class="hud">
+        <div class="hud-item">轮次 <strong id="hudRound">0/5</strong></div>
+        <div class="hud-item">平均 <strong id="hudAvg">--</strong></div>
+        <div class="hud-item">历史最佳 <strong id="hudBest">--</strong></div>
+        <button class="btn secondary" id="btnRestart" type="button">重新开始 (R)</button>
+      </div>
+
+      <div class="board-wrap">
+        <div class="pad" id="pad" data-state="idle" role="button" aria-label="反应测试点击区">
+          <div class="pad-inner">
+            <div class="pad-icon" id="padIcon">🖱️</div>
+            <div class="pad-text" id="padText">点击这里开始</div>
+            <div class="pad-sub" id="padSub">或按下 空格 键</div>
+            <div class="live-time" id="liveTime"></div>
+          </div>
+        </div>
+      </div>
+
+      <p class="hint">变绿后尽快点击或按 <kbd>空格</kbd>；红色阶段点击会「太早了」并重测该轮。按 <kbd>R</kbd> 随时重开。</p>
+
+      <div class="rounds" id="rounds"></div>
+    </section>
+
+    <div class="modal" id="modal">
+      <div class="modal-box">
+        <h2 class="modal-title" id="modalTitle">🏁 测试完成！</h2>
+        <p class="modal-sub" id="modalSub"></p>
+        <div class="result-grid">
+          <div class="result-item"><span>平均反应</span><strong id="resAvg">--</strong></div>
+          <div class="result-item"><span>评级</span><strong id="resRank">--</strong></div>
+          <div class="result-item"><span>历史最佳</span><strong id="resBest">--</strong></div>
+        </div>
+        <button class="btn" id="btnAgain" type="button">再测一次</button>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+
+
+</body>
+</html>

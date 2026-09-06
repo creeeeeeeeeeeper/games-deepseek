@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>打字游戏 · 小游戏大全</title>
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">⌨️ 打字游戏</h1>
+      <p class="game-desc">字母不断下落，在它们落地前敲出对应按键消灭它们！</p>
+    </div>
+
+    <div class="game-card">
+      <div class="hud">
+        <div class="hud-item">得分 <strong id="score">0</strong></div>
+        <div class="hud-item">生命 <strong id="lives">❤❤❤</strong></div>
+        <div class="hud-item">速度 <strong id="speed">1</strong></div>
+        <div class="hud-item">最高 <strong id="best">0</strong></div>
+      </div>
+
+      <div class="sky" id="sky">
+        <div class="ground-line" aria-hidden="true"></div>
+        <div class="overlay" id="overlay">准备…</div>
+        <div class="fx-layer" id="fx"></div>
+      </div>
+
+      <div class="hint">
+        直接按键盘上对应字母即可消灭它（谁最接近底线先消灭谁）。
+        字母落底会扣 1 条命。按 <kbd>Delete</kbd> 可重新开始。
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="endModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <h2 class="modal-title" id="endTitle">💥 字母入侵了！</h2>
+      <p class="modal-sub" id="endMsg"></p>
+      <button class="btn" id="againBtn" type="button">再来一局</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+
+</body>
+</html>

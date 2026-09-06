@@ -1,0 +1,185 @@
+/* ===== 反应测试 · 专属样式 ===== */
+
+/* ---- 大点击区 ---- */
+.board-wrap { padding: 2px; }
+
+.pad {
+  position: relative;
+  height: clamp(280px, 48vh, 460px);
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  background: var(--panel-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  transition: background-color .35s ease, border-color .35s ease, box-shadow .35s ease;
+}
+
+.pad-inner {
+  text-align: center;
+  z-index: 1;
+  pointer-events: none;
+  padding: 0 16px;
+}
+
+.pad-icon {
+  font-size: 54px;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.pad-text {
+  font-size: clamp(26px, 5vw, 42px);
+  font-weight: 800;
+  letter-spacing: .06em;
+  color: var(--text);
+}
+
+.pad-sub {
+  margin-top: 10px;
+  min-height: 1.5em;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.live-time {
+  margin-top: 10px;
+  min-height: 1.3em;
+  font-size: clamp(18px, 3vw, 26px);
+  font-weight: 700;
+  color: var(--accent-2);
+  font-variant-numeric: tabular-nums;
+}
+.live-time:empty { display: none; }
+
+/* ---- 状态配色与过渡 ---- */
+.pad[data-state="idle"] .pad-text { color: var(--accent); }
+
+.pad[data-state="ready"] { border-color: var(--accent); }
+.pad[data-state="ready"] .pad-inner { animation: breathe .9s ease-in-out infinite; }
+
+.pad[data-state="wait"] {
+  background: rgba(255, 93, 108, .14);
+  border-color: var(--danger);
+  box-shadow: inset 0 0 90px rgba(255, 93, 108, .14);
+}
+.pad[data-state="wait"] .pad-text { color: var(--danger); }
+.pad[data-state="wait"] .pad-icon { animation: breathe 1.2s ease-in-out infinite; }
+
+.pad[data-state="go"] {
+  background: rgba(52, 211, 153, .18);
+  border-color: var(--accent-2);
+  box-shadow: inset 0 0 110px rgba(52, 211, 153, .18), 0 0 34px rgba(52, 211, 153, .22);
+}
+.pad[data-state="go"] .pad-text { color: var(--accent-2); animation: popIn .18s ease-out; }
+
+.pad[data-state="early"] {
+  background: rgba(255, 178, 62, .14);
+  border-color: var(--warn);
+}
+.pad[data-state="early"] .pad-text { color: var(--warn); }
+.pad[data-state="early"] .pad-inner { animation: shake .45s ease; }
+
+.pad[data-state="show"] { border-color: var(--accent); }
+.pad[data-state="show"] .pad-text { color: var(--accent); animation: popIn .25s ease-out; }
+
+/* ---- 点击波纹 ---- */
+.ripple {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  margin: -13px 0 0 -13px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, .55);
+  background: radial-gradient(circle, rgba(255, 255, 255, .28) 0%, rgba(255, 255, 255, 0) 70%);
+  pointer-events: none;
+  animation: rippleOut .6s ease-out forwards;
+}
+
+/* ---- 每轮成绩卡片 ---- */
+.rounds {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.round-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  animation: cardPop .45s cubic-bezier(.2, .9, .3, 1.4) both;
+}
+.round-card .round-no { color: var(--muted); font-size: 13px; }
+.round-card strong { color: var(--accent); font-variant-numeric: tabular-nums; }
+.round-card.record { border-color: var(--warn); }
+.round-card .tag { color: var(--warn); font-size: 12px; font-weight: 700; }
+
+/* ---- 结果模态框 ---- */
+.result-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 10px;
+  margin: 18px 0;
+}
+
+.result-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+.result-item span { color: var(--muted); font-size: 13px; }
+.result-item strong { font-size: 20px; color: var(--accent); }
+#resRank { color: var(--accent-2); }
+
+.modal.show .modal-box { animation: boxIn .35s cubic-bezier(.2, .9, .3, 1.3); }
+
+/* HUD 中重开按钮推到右侧 */
+#btnRestart { margin-left: auto; }
+
+/* ---- keyframes ---- */
+@keyframes breathe {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: .55; transform: scale(.95); }
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: scale(.7); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-12px); }
+  40% { transform: translateX(10px); }
+  60% { transform: translateX(-7px); }
+  80% { transform: translateX(5px); }
+}
+
+@keyframes rippleOut {
+  from { transform: scale(.3); opacity: .95; }
+  to { transform: scale(13); opacity: 0; }
+}
+
+@keyframes cardPop {
+  from { opacity: 0; transform: translateY(16px) scale(.85); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes boxIn {
+  from { opacity: 0; transform: translateY(18px) scale(.94); }
+  to { opacity: 1; transform: none; }
+}

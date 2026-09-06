@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>塔防 · 小游戏大全</title>
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">🏰 塔防</h1>
+      <p class="game-desc">在道路两侧建造炮塔，阻挡怪物抵达城堡！坚持 10 波即可获胜。</p>
+    </div>
+
+    <div class="game-card">
+      <div class="hud">
+        <div class="hud-item">金币 <strong id="gold">160</strong></div>
+        <div class="hud-item">生命 <strong id="lives">❤❤❤❤❤❤❤❤❤❤</strong></div>
+        <div class="hud-item">波次 <strong id="wave">0/10</strong></div>
+      </div>
+
+      <div class="toolbar">
+        <button class="tower-btn active" data-t="gun" type="button">⚡ 单体塔 <em>50 金</em></button>
+        <button class="tower-btn" data-t="splash" type="button">💥 溅射塔 <em>100 金</em></button>
+        <button class="btn secondary" id="nextBtn" type="button">立即开波</button>
+      </div>
+
+      <div class="board-wrap">
+        <canvas id="game" width="640" height="520" aria-label="塔防游戏画面"></canvas>
+      </div>
+
+      <div class="hint">
+        点击空地建造当前炮塔；点击已有炮塔可拆除返还一半金币。
+        鼠标悬停可查看射程。按 <kbd>R</kbd> 重新开始。
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="endModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <h2 class="modal-title" id="endTitle">🏆 防守成功！</h2>
+      <p class="modal-sub" id="endMsg"></p>
+      <button class="btn" id="againBtn" type="button">再来一局</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+
+</body>
+</html>

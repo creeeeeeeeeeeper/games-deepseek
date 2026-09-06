@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>接金币 · 小游戏大全</title>
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">🪙 接金币</h1>
+      <p class="game-desc">用篮子接金币，躲开炸弹！金币袋 +5，被炸弹砸到扣命。</p>
+    </div>
+
+    <div class="game-card">
+      <div class="hud">
+        <div class="hud-item">得分 <strong id="score">0</strong></div>
+        <div class="hud-item">生命 <strong id="lives">❤❤❤</strong></div>
+        <div class="hud-item">最高 <strong id="best">0</strong></div>
+      </div>
+
+      <div class="area" id="area">
+        <div class="basket" id="basket"><span>🧺</span></div>
+        <div class="overlay" id="overlay"></div>
+      </div>
+
+      <div class="hint">
+        <kbd>←</kbd><kbd>→</kbd> / <kbd>A</kbd><kbd>D</kbd> 或拖动移动篮子接金币（🪙+1 / 💰+5），
+        千万别接 💣 炸弹。按 <kbd>R</kbd> 重新开始。
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="endModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <h2 class="modal-title" id="endTitle">💥 接住炸弹了！</h2>
+      <p class="modal-sub" id="endMsg"></p>
+      <button class="btn" id="againBtn" type="button">再来一局</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+
+</body>
+</html>

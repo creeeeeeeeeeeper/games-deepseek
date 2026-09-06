@@ -1,0 +1,120 @@
+/* ============================================================
+   贪吃蛇 · 专属样式（与共享外壳 assets/game.css 协调）
+   ============================================================ */
+
+.game-card {
+  max-width: 600px;
+  margin-inline: auto;
+}
+
+/* ---------- HUD ---------- */
+.hud {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  width: 100%;
+}
+
+.hud-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 9px 4px 8px;
+  border-radius: 12px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+}
+
+.hud-item strong {
+  font-size: 22px;
+  line-height: 1.1;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+  transition: color 0.25s ease;
+}
+
+.hud-item span {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* 得分跳动反馈 */
+@keyframes score-pop {
+  0%   { transform: scale(1.55); color: #ffd86b; }
+  60%  { transform: scale(1.18); color: #ffe9a8; }
+  100% { transform: scale(1);    color: var(--text); }
+}
+
+.hud-item .pop {
+  animation: score-pop 0.32s ease-out;
+}
+
+/* ---------- 棋盘 ---------- */
+.board-wrap {
+  position: relative;
+  width: min(480px, 100%);
+  aspect-ratio: 1 / 1;
+  margin: 16px auto 6px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: #0a101f;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35), inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+}
+
+.board-wrap canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: none;      /* 保证滑动手势归游戏处理 */
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 碰撞 / 失败震动 */
+@keyframes board-shake {
+  10%, 90% { transform: translate(-2px, 1px); }
+  20%, 80% { transform: translate(4px, -2px); }
+  30%, 50%, 70% { transform: translate(-6px, 3px); }
+  40%, 60% { transform: translate(6px, -3px); }
+}
+
+.board-wrap.shake {
+  animation: board-shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+/* ---------- 操作区 ---------- */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin: 12px 0 2px;
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.snake-hint {
+  margin-top: 12px;
+  text-align: center;
+}
+
+/* ---------- 结算弹窗 ---------- */
+.modal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 18px;
+}
+
+@media (max-width: 480px) {
+  .hud { gap: 6px; }
+  .hud-item { padding: 7px 2px 6px; }
+  .hud-item strong { font-size: 18px; }
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>喂宠物 · 小游戏大全</title>
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">🐹 喂宠物</h1>
+      <p class="game-desc">小仓鼠会越来越饿，注意喂它食物保持心情；喂错时机它会吃饱发脾气。撑得越久越好。</p>
+    </div>
+
+    <div class="game-card center">
+      <div class="hud">
+        <div class="hud-item">心情 <strong id="mood">100</strong></div>
+        <div class="hud-item">饱食 <strong id="full">100</strong></div>
+        <div class="hud-item">存活 <strong id="days">0</strong></div>
+      </div>
+      <div class="board-wrap">
+        <div class="pet" id="pet">🐹</div>
+      </div>
+      <div class="controls">
+        <button class="btn" id="feedBtn" type="button">🥕 喂食</button>
+        <button class="btn secondary" id="playBtn" type="button">🎾 玩耍</button>
+      </div>
+      <div class="msg" id="msg" aria-live="polite">让宠物保持吃饱、心情好。</div>
+      <div class="hint">饱食随时间下降；饿了就喂，喂太饱会发脾气掉心情。玩耍提升心情但减饱食。按 <kbd>R</kbd> 重开。</div>
+    </div>
+  </div>
+
+  <div class="modal" id="endModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <h2 class="modal-title" id="endTitle">✖️ 宠物离你而去</h2>
+      <p class="modal-sub" id="endMsg"></p>
+      <button class="btn" id="againBtn" type="button">再来一局</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

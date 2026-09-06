@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>扎气球 · 小游戏大全</title>
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">🎈 扎气球</h1>
+      <p class="game-desc">限时 30 秒，点破气球得分！金色 +5，黑色炸弹可别点！</p>
+    </div>
+
+    <div class="game-card">
+      <div class="hud">
+        <div class="hud-item">得分 <strong id="score">0</strong></div>
+        <div class="hud-item">连击 <strong id="combo">0</strong></div>
+        <div class="hud-item">时间 <strong id="time">30</strong></div>
+        <div class="hud-item">最高 <strong id="best">0</strong></div>
+      </div>
+
+      <div class="play-area" id="area">
+        <div class="overlay" id="overlay"></div>
+      </div>
+
+      <div class="hint">
+        点击 / 点按升起的气球将其扎破；普通 🎈 +1、金色 ✨ +5、
+        炸弹 💣 -3。按 <kbd>R</kbd> 重新开始。
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="endModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <h2 class="modal-title" id="endTitle">⏰ 时间到！</h2>
+      <p class="modal-sub" id="endMsg"></p>
+      <button class="btn" id="againBtn" type="button">再来一局</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+
+</body>
+</html>

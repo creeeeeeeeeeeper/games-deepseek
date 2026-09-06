@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>摩托飞跃 · 小游戏大全</title>
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">🏍️ 摩托飞跃</h1>
+      <p class="game-desc">骑摩托冲过一个个坡台，在腾空瞬间压住油门完成高难度飞跃。飞得越远分数越高。</p>
+    </div>
+
+    <div class="game-card center">
+      <div class="hud">
+        <div class="hud-item">分数 <strong id="score">0</strong></div>
+        <div class="hud-item">最高 <strong id="best">0</strong></div>
+      </div>
+      <div class="board-wrap">
+        <canvas id="canvas" width="420" height="300"></canvas>
+      </div>
+      <div class="msg" id="msg" aria-live="polite">按空格 / 点击让摩托加速冲坡。</div>
+      <div class="hint">按住加速，坡顶腾空后松手压头，落回地面继续冲下一个坡。空翻越精彩分越高。</div>
+    </div>
+  </div>
+
+  <div class="modal" id="endModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <h2 class="modal-title" id="endTitle">💥 翻车了</h2>
+      <p class="modal-sub" id="endMsg"></p>
+      <button class="btn" id="againBtn" type="button">再来一局</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

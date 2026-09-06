@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>数独 · 小游戏大全</title>
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">9️⃣ 数独</h1>
+    </div>
+
+    <div class="game-card">
+      <div class="hud">
+        <div class="hud-item">难度 <strong id="difficulty">填数</strong></div>
+        <div class="hud-item">错误 <strong id="errors">0</strong></div>
+        <div class="hud-item">
+          <select id="level" aria-label="选择难度">
+            <option value="easy">简单</option>
+            <option value="medium" selected>中等</option>
+            <option value="hard">困难</option>
+          </select>
+        </div>
+        <button class="btn secondary" id="newGame">新题</button>
+      </div>
+
+      <div class="board-wrap">
+        <div id="board" class="sudoku-board"></div>
+      </div>
+
+      <div id="numPad" class="num-pad"></div>
+
+      <div class="hint">
+        点击格子选中，用上方数字或键盘输入 1-9。每行每列每宫内数字不重复。
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+
+</body>
+</html>

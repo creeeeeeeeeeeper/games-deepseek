@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2048 · 小游戏大全</title>
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">🧮 2048</h1>
+    </div>
+
+    <div class="game-card center">
+      <div class="hud">
+        <div class="hud-item">得分 <strong id="score">0</strong></div>
+        <div class="hud-item">最高 <strong id="best">0</strong></div>
+        <button class="btn secondary" id="newGame">新游戏</button>
+      </div>
+
+      <div class="board-wrap">
+        <div id="board" class="board"></div>
+      </div>
+
+      <div class="hint">
+        使用 <kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd> 方向键移动方块，
+        相同数字合并，凑到 <strong>2048</strong> 即可获胜。
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+
+</body>
+</html>

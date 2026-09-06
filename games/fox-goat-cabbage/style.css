@@ -1,0 +1,157 @@
+/* ============================================================
+   农夫过河 · 专属样式
+   深色主题（继承共享 game.css 变量），响应式河岸 + 小船布局
+   ============================================================ */
+
+/* 消息提示默认占位，避免布局跳动 */
+.msg {
+  min-height: 18px;
+  margin: 10px 0 0;
+  text-align: center;
+}
+
+/* 主板区域：三列（起点 / 河流 / 对岸） */
+.board-wrap {
+  margin-top: 6px;
+  width: 100%;
+}
+.river-board {
+  display: grid;
+  grid-template-columns: 1fr minmax(170px, 220px) 1fr;
+  gap: 14px;
+  align-items: stretch;
+  width: 100%;
+}
+
+/* ---- 河岸 ---- */
+.bank {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 240px;
+}
+.bank-label {
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  text-align: center;
+}
+.bank-items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-start;
+  flex: 1;
+}
+
+/* ---- 河流 ---- */
+.river {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 14px 8px;
+  min-height: 240px;
+  background: linear-gradient(180deg, transparent 0%, rgba(58, 160, 255, 0.06) 100%);
+  border-left: 2px dashed var(--border);
+  border-right: 2px dashed var(--border);
+  border-radius: 12px;
+}
+
+/* ---- 小船（靠左/靠右做横向微移以体现方位） ---- */
+.boat {
+  width: 100%;
+  max-width: 180px;
+  min-height: 96px;
+  padding: 10px 8px;
+  background: linear-gradient(180deg, #7a5230, #5c3d22);
+  border: 2px solid #8a6a45;
+  border-radius: 44px 44px 14px 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+  transition: transform 0.3s ease;
+  position: relative;
+}
+.boat.boat-left  { transform: translateX(-28px); }
+.boat.boat-right { transform: translateX(28px); }
+.boat-label { font-size: 13px; font-weight: 700; color: #ffe7c7; }
+.boat-items {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  min-height: 24px;
+}
+
+/* ---- 开船按钮 ---- */
+.sail-btn { margin-top: 2px; }
+.boat-status { font-size: 12px; color: var(--muted); min-height: 16px; }
+
+/* ---- 物品棋子 ---- */
+.item-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: 2px solid var(--border);
+  background: var(--panel);
+  color: var(--text);
+  font-size: 14px;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.1s, border-color 0.15s, box-shadow 0.15s;
+  font-family: inherit;
+}
+.item-chip:hover {
+  border-color: var(--item-color, var(--accent));
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+.item-chip:active { transform: translateY(0); }
+.item-chip .emoji { font-size: 22px; line-height: 1; }
+.item-chip .name { font-weight: 600; }
+
+/* 不可交互的对岸棋子：变暗、禁止点击 */
+.item-chip.dim { opacity: 0.4; cursor: not-allowed; }
+.item-chip.dim:hover { transform: none; box-shadow: none; }
+
+/* 船上的物品用突出边框 */
+.boat .item-chip { border-color: #8a6a45; background: #332616; }
+
+/* 农夫棋子专属强调色 */
+.item-chip[data-key="farmer"] { border-color: var(--item-color, #ffb23e); }
+
+/* ---- 响应式：窄屏改为纵向堆叠（起点在上、船中间、对岸在下） ---- */
+@media (max-width: 560px) {
+  .river-board {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .river {
+    min-height: 150px;
+    border-left: none;
+    border-right: none;
+  }
+  .bank { min-height: 90px; }
+  .bank-items {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .boat { max-width: 150px; }
+  .boat.boat-left,
+  .boat.boat-right { transform: none; }
+}

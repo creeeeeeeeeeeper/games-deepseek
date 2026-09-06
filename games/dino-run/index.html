@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🎮 恐龙跑酷 · 小游戏大全</title>
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="game-shell">
+    <header class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">🎮 恐龙跑酷</h1>
+    </header>
+    <p class="game-desc">小恐龙不停向前奔跑！跳过仙人掌、下蹲躲开翼龙，速度会越来越快——看看你能跑多远！</p>
+
+    <div class="game-card">
+      <div class="hud">
+        <div class="hud-item">得分 <strong id="score">0</strong></div>
+        <div class="hud-item">最高 <strong id="best">0</strong></div>
+        <div class="hud-item">速度 <strong id="speed">×1.0</strong></div>
+      </div>
+
+      <div class="board-wrap dino-board">
+        <canvas id="game" width="800" height="300" aria-label="恐龙跑酷游戏画面"></canvas>
+        <div class="milestone-toast" id="toast">✦ 100 分！</div>
+      </div>
+
+      <div class="touch-controls">
+        <button class="btn" id="jumpBtn" type="button">⬆ 跳跃</button>
+        <button class="btn secondary" id="duckBtn" type="button">⬇ 下蹲（按住）</button>
+        <button class="btn danger" id="restartBtn" type="button">↻ 重开</button>
+      </div>
+
+      <p class="hint">
+        跳跃：<kbd>空格</kbd> / <kbd>↑</kbd> / 点击画面 · 下蹲：<kbd>↓</kbd> / 下滑手势 · 重开：<kbd>R</kbd>
+        · 长按跳得更高，空中按 <kbd>↓</kbd> 快速下落
+      </p>
+    </div>
+
+    <div class="modal" id="modal">
+      <div class="modal-box">
+        <div class="modal-title" id="modalTitle">🦖 撞上了！</div>
+        <div class="result-score"><span id="resultScore">0</span><small>分</small></div>
+        <div class="modal-sub" id="modalSub">最高分 0</div>
+        <div class="record-badge" id="recordBadge">🏆 新纪录！</div>
+        <button class="btn" id="againBtn" type="button">再来一局</button>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+
+
+</body>
+</html>

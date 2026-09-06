@@ -1,0 +1,7 @@
+/* 锦鲤池专属样式 */
+.game-card.center { text-align: center; }
+.board-wrap { display: flex; justify-content: center; }
+canvas { background: radial-gradient(120% 100% at 50% 0%, #1c5a8a 0%, #0d2a44 70%); border-radius: 14px; border: 1px solid var(--border); }
+.controls { display: flex; justify-content: center; }
+.msg { min-height: 22px; margin-top: 12px; font-weight: 700; }
+.msg.win { color: var(--accent-2); }

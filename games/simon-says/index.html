@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>西蒙记忆 · 小游戏大全</title>
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">🎵 西蒙记忆</h1>
+      <p class="game-desc">记住并复现灯光序列，看你能闯到第几关！</p>
+    </div>
+
+    <div class="game-card">
+      <div class="hud">
+        <div class="hud-item">关卡 <strong id="level">1</strong></div>
+        <div class="hud-item">最高关卡 <strong id="best">0</strong></div>
+        <div class="hud-item">状态 <strong id="state">就绪</strong></div>
+      </div>
+
+      <div class="simon" id="simon">
+        <button class="pad pad-0" data-i="0" type="button"></button>
+        <button class="pad pad-1" data-i="1" type="button"></button>
+        <button class="pad pad-2" data-i="2" type="button"></button>
+        <button class="pad pad-3" data-i="3" type="button"></button>
+        <div class="center"><span id="count">1</span></div>
+      </div>
+
+      <div class="msg" id="msg" aria-live="polite"></div>
+
+      <div class="hint">
+        先观察中央圆点，按亮起顺序依次点击四个色块复现序列。
+        序列会越来越长，按 <kbd>R</kbd> 重新开始。
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="endModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <h2 class="modal-title" id="endTitle">🎵 记错了！</h2>
+      <p class="modal-sub" id="endMsg"></p>
+      <button class="btn" id="againBtn" type="button">再来一局</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+
+</body>
+</html>

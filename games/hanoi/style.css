@@ -1,0 +1,47 @@
+/* ============================================================
+   汉诺塔（Tower of Hanoi）专属样式
+   深色主题，复用 assets/game.css 里的共享外壳样式
+   ============================================================ */
+
+/* 状态栏里的下拉选择框，与深色面板统一 */
+.hud select {
+  background: var(--panel-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 13px;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.hud select:hover, .hud select:focus { border-color: var(--accent); }
+
+/* 画布容器：居中且允许画布自适应宽度 */
+.board-wrap {
+  touch-action: none; /* 触屏时避免页面滚动，交给画布处理点击 */
+}
+
+#board {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 640px;
+  height: auto;            /* 保持画布长宽比 */
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* 为了更好点按，触屏上稍微放大点击热区（利用画布本身即可） */
+@media (max-width: 480px) {
+  #board { max-width: 96vw; }
+}
+
+/* 胜利 / 提示消息 */
+.msg { min-height: 18px; margin-top: 10px; text-align: center; }
+.msg.good { color: var(--accent-2); }
+.msg.bad  { color: var(--danger); }

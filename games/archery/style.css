@@ -1,0 +1,7 @@
+/* 神射手专属样式 */
+.game-card.center { text-align: center; }
+.board-wrap { display: flex; justify-content: center; }
+canvas { background: radial-gradient(120% 100% at 50% 0%, #2f4a5a 0%, #1a2733 70%); border-radius: 14px; border: 1px solid var(--border); }
+.msg { min-height: 22px; margin-top: 12px; font-weight: 700; }
+.msg.win { color: var(--accent-2); }
+.msg.lose { color: var(--danger); }

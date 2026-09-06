@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>猜数字 · 小游戏大全</title>
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">❓ 猜数字</h1>
+    </div>
+
+    <div class="game-card">
+      <!-- 游戏状态栏 -->
+      <div class="hud">
+        <div class="hud-item">❓ 目标 <strong id="targetRange">1-100</strong></div>
+        <div class="hud-item">🎯 尝试 <strong id="attempts">0</strong></div>
+        <div class="hud-item">🧮 剩余 <strong id="remaining">∞</strong></div>
+        <button class="btn secondary" id="restart">重新开始</button>
+      </div>
+
+      <!-- 游戏主体 -->
+      <div class="board-wrap">
+        <div class="guess-panel">
+          <div class="prompt">请猜一个数字：</div>
+
+          <!-- 输入框 + 提交按钮 -->
+          <div class="input-row">
+            <input
+              id="guessInput"
+              class="guess-input"
+              type="number"
+              inputmode="numeric"
+              min="1"
+              max="100"
+              placeholder="1 ~ 100"
+              aria-label="输入你的猜测"
+            />
+            <button class="btn" id="guessBtn">猜！</button>
+          </div>
+
+          <!-- 提示反馈 -->
+          <div id="feedback" class="feedback" aria-live="polite">输入数字并回车，我会告诉你“大了/小了”。</div>
+
+          <!-- 范围刻度条 -->
+          <div class="range-track">
+            <span id="lowMark" class="range-mark">1</span>
+            <div class="range-bar" title="当前可行范围">
+              <div id="rangeFill" class="range-fill"></div>
+            </div>
+            <span id="highMark" class="range-mark">100</span>
+          </div>
+
+          <!-- 猜测历史 -->
+          <div class="history">
+            <div class="history-title">记录</div>
+            <div id="historyList" class="history-list">
+              <div class="history-empty">还没有猜测记录</div>
+            </div>
+          </div>
+
+          <div id="resultMsg" class="msg"></div>
+        </div>
+      </div>
+
+      <!-- 玩法说明 -->
+      <div class="hint">
+        电脑已在 1 ~ 100 之间随机选了一个整数。输入你的猜测，
+        按 <kbd>Enter</kbd> 或点击 <strong>猜！</strong> 提交，
+        系统会提示 <strong>“太大了”</strong> 或 <strong>“太小了”</strong>，
+        并动态收窄范围。用最少的次数猜中即可获胜。
+        想重来就点右上角的 <strong>重新开始</strong>。
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+
+</body>
+</html>

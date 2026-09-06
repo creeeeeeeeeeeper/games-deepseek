@@ -1,0 +1,310 @@
+/* ============================================================
+   俄罗斯方块 · 专属样式（games/tetris）
+   深色主题：复用全局 CSS 变量，本文件负责游戏全部专属布局与动画
+   ============================================================ */
+
+/* ---------- 顶部 HUD ---------- */
+.hud {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 22px;
+  margin: 0 auto 6px;
+}
+
+.hud-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  min-width: 74px;
+  padding: 6px 12px;
+  border: 1px solid var(--border, #26314a);
+  border-radius: 12px;
+  background: var(--panel-2, #0f1728);
+}
+
+.hud-item span {
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: var(--muted, #8b96ad);
+}
+
+.hud-item strong {
+  font-size: 20px;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+  color: var(--text, #e8ecf6);
+}
+
+.hud-item strong.pop {
+  animation: tet-pop 0.28s ease;
+}
+
+.hud-item:nth-child(1) strong { color: var(--text, #e8ecf6); }
+.hud-item:nth-child(2) strong { color: var(--warn, #ffb23e); }
+.hud-item:nth-child(3) strong { color: var(--accent-2, #34d399); }
+.hud-item:nth-child(4) strong { color: var(--accent, #3aa0ff); }
+
+.hud-item:nth-child(4) strong.new-best { color: #ffd23e; text-shadow: 0 0 10px rgba(255, 210, 62, 0.55); }
+
+@keyframes tet-pop {
+  0% { transform: scale(1); }
+  45% { transform: scale(1.32); }
+  100% { transform: scale(1); }
+}
+
+/* ---------- 三区布局：暂存 / 主棋盘 / 下一个 ---------- */
+.tetris-area {
+  display: grid;
+  grid-template-areas: "hold board next";
+  grid-template-columns: auto auto auto;
+  align-items: start;
+  justify-content: center;
+  gap: 16px;
+  margin: 16px auto 0;
+}
+
+.panel-hold { grid-area: hold; }
+.panel-board { grid-area: board; justify-self: center; }
+.panel-next { grid-area: next; }
+
+.panel {
+  background: var(--panel-2, #0f1728);
+  border: 1px solid var(--border, #26314a);
+  border-radius: 16px;
+  padding: 10px 12px 12px;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
+  text-align: center;
+}
+
+.panel-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 9px;
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: var(--muted, #8b96ad);
+}
+
+.panel-hold.blocked { opacity: 0.55; }
+
+.panel-hold.shake { animation: tet-shake 0.32s ease; }
+
+@keyframes tet-shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  55% { transform: translateX(5px); }
+  80% { transform: translateX(-3px); }
+}
+
+.panel-board {
+  width: min(300px, calc(100vw - 52px));
+  padding: 10px;
+  background: linear-gradient(180deg, #131c30, #0b1122);
+  border-color: var(--border, #2b3958);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4), inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+#cv-board {
+  display: block;
+  width: 100%;
+  height: auto;           /* 等比缩放，不破坏 300:600 比例 */
+  max-width: 300px;
+  aspect-ratio: 1 / 2;
+  border-radius: 6px;
+}
+
+#cv-hold,
+#cv-next {
+  display: block;
+  width: 120px;
+  max-width: 100%;
+  height: auto;           /* 保持 1:1 */
+  margin: 0 auto;
+  border: 1px dashed var(--border, #33415e);
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.28);
+}
+
+/* ---------- 工具按钮行 ---------- */
+.tool-row {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.tool-row .btn { min-width: 96px; cursor: pointer; }
+
+/* ---------- 触屏按键区（默认隐藏，触屏/窄屏显示） ---------- */
+.touch-pad {
+  display: none;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 9px;
+  max-width: 420px;
+  margin: 16px auto 0;
+}
+
+.pad-btn {
+  appearance: none;
+  border: 1px solid var(--border, #2c3a55);
+  border-radius: 12px;
+  padding: 11px 4px;
+  background: var(--panel-2, #131c30);
+  color: var(--text, #e8ecf6);
+  font-size: 14px;
+  font-family: inherit;
+  line-height: 1;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  cursor: pointer;
+  transition: transform 0.06s ease, background 0.15s ease, box-shadow 0.15s ease;
+}
+
+.pad-btn:active {
+  transform: scale(0.92);
+  background: #1e2a45;
+  box-shadow: 0 0 0 1px var(--accent, #3aa0ff), 0 0 12px rgba(58, 160, 255, 0.35);
+}
+
+@media (pointer: coarse), (max-width: 820px) {
+  .touch-pad { display: grid; }
+  .desk-hint { display: none; }
+}
+
+/* ---------- 键位提示 ---------- */
+.hint {
+  max-width: 680px;
+  margin: 16px auto 4px;
+  text-align: center;
+  line-height: 2.1;
+}
+
+/* ---------- 模态框（与全局 .modal / .show 协调） ---------- */
+.modal {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  padding: 20px;
+  background: rgba(5, 9, 18, 0.72);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+
+.modal.show {
+  display: flex;
+  animation: tet-modal-in 0.18s ease both;
+}
+
+@keyframes tet-modal-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-box {
+  background: var(--panel, #141c30);
+  border: 1px solid var(--border, #2b3958);
+  border-radius: 18px;
+  padding: 26px 30px 24px;
+  min-width: min(330px, 88vw);
+  max-width: 420px;
+  text-align: center;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+  animation: tet-box-in 0.22s cubic-bezier(0.2, 1.4, 0.4, 1) both;
+}
+
+@keyframes tet-box-in {
+  from { transform: translateY(16px) scale(0.94); opacity: 0; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.modal-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--text, #e8ecf6);
+}
+
+.modal-sub {
+  margin: 0 0 16px;
+  color: var(--muted, #8b96ad);
+  font-size: 13px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 18px;
+  flex-wrap: wrap;
+}
+
+.modal-actions .btn {
+  min-width: 108px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* 新纪录彩条（默认隐藏，出现时闪烁） */
+.new-record {
+  display: none;
+  margin: 2px 0 8px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffd23e;
+  animation: tet-blink 0.7s ease-in-out infinite;
+}
+
+.new-record.show { display: block; }
+
+@keyframes tet-blink {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.55; transform: scale(1.06); }
+}
+
+/* 结算数据行 */
+.end-stats {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px 18px;
+  width: min(270px, 100%);
+  margin: 6px auto 2px;
+  text-align: left;
+  font-variant-numeric: tabular-nums;
+}
+
+.end-stats span {
+  color: var(--muted, #8b96ad);
+  font-size: 13px;
+}
+
+.end-stats strong {
+  color: var(--text, #e8ecf6);
+  font-size: 16px;
+}
+
+.end-stats strong:last-child { color: var(--accent, #3aa0ff); }
+
+/* ---------- 画布内视觉不依赖 CSS；下列 class 供 canvas 逻辑触发 ---------- */
+canvas { -webkit-tap-highlight-color: transparent; }
+
+/* 手机窄屏微调 */
+@media (max-width: 560px) {
+  .tetris-area {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas:
+      "hold next"
+      "board board";
+    gap: 12px;
+  }
+  .panel { padding: 8px 8px 10px; }
+  .panel-label { letter-spacing: 1px; }
+}

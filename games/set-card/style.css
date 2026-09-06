@@ -1,0 +1,14 @@
+/* 找集合专属样式 */
+.game-card.center { text-align: center; }
+.cards { display: grid; grid-template-columns: repeat(4, 90px); gap: 10px; justify-content: center; padding: 12px; border: 1px solid var(--border);
+  border-radius: 14px; background: radial-gradient(120% 100% at 50% 0%, #1b2433 0%, #0c1018 70%); margin: 4px auto 12px; overflow: auto; }
+.scard { width: 90px; height: 72px; border-radius: 10px; background: #f4f6f8; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.35); border: 3px solid transparent; }
+.scard.selected { border-color: var(--accent); transform: scale(1.05); }
+.scard.found { opacity: 0.15; pointer-events: none; }
+.scard:hover { transform: translateY(-3px); }
+.shape-wrap { display: flex; flex-direction: column; align-items: center; }
+.msghint { min-height: 22px; margin-top: 12px; font-weight: 700; }
+.msg { min-height: 22px; margin-top: 8px; font-weight: 700; }
+.msg.win { color: var(--accent-2); }
+.msg.lose { color: var(--danger); }

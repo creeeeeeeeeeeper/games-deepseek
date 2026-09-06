@@ -1,0 +1,411 @@
+/* ============================================================
+   钢琴块（piano-tiles）游戏专属样式
+   棋盘固定逻辑尺寸 480×640，由 JS 控制等比缩放，不破坏比例
+   ============================================================ */
+
+/* ---------- 棋盘外容器 ---------- */
+.pt-board-outer {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  height: 640px;
+  margin: 16px auto 0;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.42);
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.pt-board-scaler {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 480px;
+  height: 640px;
+  transform-origin: top center;
+  transform: translateX(-50%) scale(1);
+}
+.pt-board {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 16px;
+  background: linear-gradient(180deg, #fbfcfe 0%, #edf0f5 100%);
+}
+
+/* ---------- 四条轨道 ---------- */
+.pt-col {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 25%;
+  border-right: 1px solid rgba(18, 24, 40, 0.08);
+  pointer-events: none;
+}
+.pt-col[data-col="0"] { left: 0; }
+.pt-col[data-col="1"] { left: 25%; }
+.pt-col[data-col="2"] { left: 50%; }
+.pt-col[data-col="3"] { left: 75%; border-right: none; }
+.pt-col.goodflash { animation: pt-col-good 0.3s ease-out; }
+.pt-col.badflash { animation: pt-col-bad 0.5s ease-out; }
+@keyframes pt-col-good {
+  0% { background: rgba(58, 160, 255, 0.18); }
+  100% { background: rgba(58, 160, 255, 0); }
+}
+@keyframes pt-col-bad {
+  0% { background: rgba(255, 93, 108, 0.32); }
+  100% { background: rgba(255, 93, 108, 0); }
+}
+
+/* ---------- 底部判定区 ---------- */
+.pt-hitzone {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 150px;
+  z-index: 3;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(58, 160, 255, 0.07), rgba(58, 160, 255, 0.17));
+  border-top: 2px dashed rgba(58, 160, 255, 0.6);
+  animation: pt-zone-pulse 2.2s ease-in-out infinite;
+}
+@keyframes pt-zone-pulse {
+  0%, 100% { border-top-color: rgba(58, 160, 255, 0.4); }
+  50% { border-top-color: rgba(58, 160, 255, 0.9); }
+}
+.pt-zone-label {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--accent, #3aa0ff);
+  background: #edf0f5;
+  border: 1px solid rgba(58, 160, 255, 0.5);
+  padding: 1px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+/* ---------- 下落的黑色琴键块 ---------- */
+.pt-track { position: absolute; inset: 0; z-index: 2; }
+.pt-row { position: absolute; top: 0; will-change: transform; }
+.pt-tile {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  background: linear-gradient(180deg, #2b303b 0%, #15181f 55%, #0d0f14 100%);
+  box-shadow: 0 6px 16px rgba(10, 14, 24, 0.35), inset 0 2px 0 rgba(255, 255, 255, 0.09);
+}
+/* 消除：变亮 + 按压回弹 + 淡出 */
+.pt-row.hit .pt-tile { animation: pt-tile-hit 0.42s cubic-bezier(0.2, 0.7, 0.3, 1) forwards; }
+@keyframes pt-tile-hit {
+  0% {
+    background: #34d399;
+    box-shadow: 0 0 0 4px rgba(52, 211, 153, 0.45), 0 0 34px rgba(52, 211, 153, 0.65);
+    transform: scale(1);
+    opacity: 1;
+  }
+  35% {
+    background: #6ee7b7;
+    transform: scale(1.07);
+    opacity: 1;
+  }
+  100% {
+    background: #34d399;
+    box-shadow: 0 0 0 4px rgba(52, 211, 153, 0), 0 0 34px rgba(52, 211, 153, 0);
+    transform: scale(0.82);
+    opacity: 0;
+  }
+}
+/* 失败：失误块红色闪烁 */
+.pt-row.fail .pt-tile { animation: pt-tile-fail 0.3s linear 3; }
+@keyframes pt-tile-fail {
+  0%, 49% { background: #ff5d6c; box-shadow: 0 0 26px rgba(255, 93, 108, 0.75); }
+  50%, 100% { background: #5c1520; box-shadow: none; }
+}
+
+/* ---------- 底部琴键前板与按键字母 ---------- */
+.pt-frontboard {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 46px;
+  z-index: 4;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0), rgba(150, 164, 184, 0.16) 45%, rgba(132, 148, 172, 0.28));
+  border-top: 1px solid rgba(18, 24, 40, 0.07);
+}
+.pt-keyhint {
+  position: absolute;
+  bottom: 7px;
+  width: 120px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1;
+  color: rgba(23, 27, 36, 0.28);
+}
+.pt-keyhint[data-col="0"] { left: 0; }
+.pt-keyhint[data-col="1"] { left: 120px; }
+.pt-keyhint[data-col="2"] { left: 240px; }
+.pt-keyhint[data-col="3"] { left: 360px; }
+.pt-keyhint.active { animation: pt-keyhint-pop 0.26s ease-out; }
+@keyframes pt-keyhint-pop {
+  0% { transform: scale(1); color: rgba(23, 27, 36, 0.28); }
+  40% { transform: scale(1.55); color: var(--accent, #3aa0ff); }
+  100% { transform: scale(1); color: rgba(23, 27, 36, 0.28); }
+}
+
+/* ---------- 特效层（飘分 / 粒子） ---------- */
+.pt-fx { position: absolute; inset: 0; z-index: 6; pointer-events: none; }
+.pt-float {
+  position: absolute;
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--accent-2, #34d399);
+  text-shadow: 0 1px 8px rgba(52, 211, 153, 0.45);
+  animation: pt-float 0.75s ease-out forwards;
+}
+@keyframes pt-float {
+  0% { opacity: 0; transform: translate(-50%, -30%) scale(0.6); }
+  20% { opacity: 1; }
+  100% { opacity: 0; transform: translate(-50%, -150%) scale(1.15); }
+}
+.pt-p {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  border-radius: 2.5px;
+  opacity: 0;
+  animation: pt-burst 0.65s ease-out forwards;
+}
+@keyframes pt-burst {
+  0% { opacity: 1; transform: translate(-50%, -50%) scale(1) rotate(0deg); }
+  100% { opacity: 0; transform: translate(calc(-50% + var(--dx, 0px)), calc(-50% + var(--dy, -40px))) scale(0.2) rotate(120deg); }
+}
+
+/* ---------- 连击里程碑提示 ---------- */
+.pt-milestone {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 37%;
+  z-index: 7;
+  text-align: center;
+  font-size: 32px;
+  font-weight: 900;
+  color: var(--accent-2, #34d399);
+  text-shadow: 0 3px 16px rgba(52, 211, 153, 0.5);
+  opacity: 0;
+  pointer-events: none;
+}
+.pt-milestone.show { animation: pt-milestone 0.95s cubic-bezier(0.2, 0.8, 0.3, 1) forwards; }
+@keyframes pt-milestone {
+  0% { opacity: 0; transform: scale(0.4) rotate(-5deg); }
+  25% { opacity: 1; transform: scale(1.15) rotate(2deg); }
+  45% { transform: scale(1) rotate(0deg); }
+  75% { opacity: 1; }
+  100% { opacity: 0; transform: scale(1.06) translateY(-20px); }
+}
+
+/* ---------- 3-2-1 倒计时 ---------- */
+.pt-countdown {
+  position: absolute;
+  inset: 0;
+  z-index: 8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.pt-countdown.on { opacity: 1; }
+.pt-cd-num {
+  font-size: 112px;
+  font-weight: 900;
+  line-height: 1;
+  color: var(--accent, #3aa0ff);
+  text-shadow: 0 8px 28px rgba(58, 160, 255, 0.4);
+}
+.pt-cd-num.go {
+  color: var(--accent-2, #34d399);
+  text-shadow: 0 8px 28px rgba(52, 211, 153, 0.45);
+}
+.pt-cd-num.pop { animation: pt-cd-pop 0.5s cubic-bezier(0.2, 0.8, 0.3, 1); }
+@keyframes pt-cd-pop {
+  0% { transform: scale(2.4); opacity: 0; }
+  45% { transform: scale(0.95); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* ---------- 开始遮罩 ---------- */
+.pt-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 20px;
+  background: rgba(250, 251, 252, 0.84);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s;
+}
+.pt-overlay.on { opacity: 1; pointer-events: auto; }
+.pt-eq { display: flex; gap: 7px; align-items: flex-end; height: 46px; }
+.pt-eq i {
+  width: 10px;
+  border-radius: 4px;
+  background: linear-gradient(180deg, var(--accent-2, #34d399), var(--accent, #3aa0ff));
+  animation: pt-eq 1s ease-in-out infinite;
+}
+.pt-eq i:nth-child(1) { animation-delay: 0s; }
+.pt-eq i:nth-child(2) { animation-delay: 0.15s; }
+.pt-eq i:nth-child(3) { animation-delay: 0.3s; }
+.pt-eq i:nth-child(4) { animation-delay: 0.45s; }
+@keyframes pt-eq {
+  0%, 100% { height: 12px; }
+  50% { height: 46px; }
+}
+.pt-overlay-title { margin: 0; font-size: 26px; font-weight: 800; color: #171b23; }
+.pt-overlay-text { margin: 0; font-size: 14px; line-height: 1.9; color: #57606e; text-align: center; }
+.pt-overlay-text b { color: var(--accent, #3aa0ff); }
+.pt-start-btn { margin-top: 6px; font-size: 17px; padding: 12px 34px; }
+
+/* ---------- 失败时棋盘抖动 ---------- */
+.pt-board.shake { animation: pt-shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97); }
+@keyframes pt-shake {
+  10%, 90% { transform: translate(-2px, 0); }
+  20%, 80% { transform: translate(4px, 0); }
+  30%, 50%, 70% { transform: translate(-7px, 0); }
+  40%, 60% { transform: translate(7px, 0); }
+}
+
+/* ---------- 屏幕按键（触屏 / 鼠标备用） ---------- */
+.pt-keys { display: flex; gap: 10px; margin-top: 14px; }
+.pt-key {
+  flex: 1;
+  height: 54px;
+  border-radius: 12px;
+  cursor: pointer;
+  border: 1px solid var(--border, #2a3142);
+  background: var(--panel-2, #1a2030);
+  color: var(--text, #e8ecf3);
+  font-size: 19px;
+  font-weight: 800;
+  font-family: inherit;
+  transition: border-color 0.15s, background 0.15s;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.pt-key:hover { border-color: var(--accent, #3aa0ff); }
+.pt-key.pressed { animation: pt-key-press 0.18s ease-out; }
+@keyframes pt-key-press {
+  0% { transform: translateY(0); }
+  40% {
+    transform: translateY(4px) scale(0.96);
+    border-color: var(--accent, #3aa0ff);
+    background: rgba(58, 160, 255, 0.16);
+    box-shadow: 0 0 16px rgba(58, 160, 255, 0.35);
+  }
+  100% { transform: translateY(0); }
+}
+
+/* ---------- 速度档进度条 ---------- */
+.pt-speed { display: flex; align-items: center; gap: 12px; margin: 12px 0 0; }
+.pt-speed-label { font-size: 13px; color: var(--muted, #9aa4b5); white-space: nowrap; }
+.pt-speed-label strong { color: var(--accent, #3aa0ff); font-size: 15px; margin-left: 4px; }
+.pt-speedbar {
+  flex: 1;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid var(--border, #2a3142);
+  overflow: hidden;
+}
+.pt-speedbar-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent, #3aa0ff), var(--accent-2, #34d399));
+  transition: width 0.25s ease;
+}
+.pt-speedbar-fill.bump { animation: pt-bar-bump 0.45s ease-out; }
+@keyframes pt-bar-bump {
+  0% { filter: brightness(1); }
+  40% { filter: brightness(2.2); }
+  100% { filter: brightness(1); }
+}
+.pt-speedbar-fill.maxed {
+  background: linear-gradient(90deg, var(--warn, #ffb23e), var(--danger, #ff5d6c));
+  animation: pt-bar-glow 1.2s ease-in-out infinite;
+}
+@keyframes pt-bar-glow {
+  0%, 100% { box-shadow: 0 0 4px rgba(255, 178, 62, 0.5); }
+  50% { box-shadow: 0 0 14px rgba(255, 93, 108, 0.9); }
+}
+
+/* ---------- 按钮行 ---------- */
+.pt-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 14px; }
+
+/* ---------- HUD 实时刷新最高分 ---------- */
+#hudBest.beating { color: var(--accent-2, #34d399); }
+
+/* ---------- 消息提示 ---------- */
+#msg { margin-top: 12px; text-align: center; font-size: 14px; }
+#msg.pt-pop { animation: pt-msg-pop 0.45s ease-out; }
+@keyframes pt-msg-pop {
+  0% { transform: scale(0.92); opacity: 0.35; }
+  60% { transform: scale(1.03); opacity: 1; }
+  100% { transform: scale(1); }
+}
+#msg.win { color: var(--accent-2, #34d399); }
+#msg.lose { color: var(--danger, #ff5d6c); }
+
+/* ---------- 结算模态框 ---------- */
+.pt-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 16px 0 4px; }
+.pt-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 10px 4px;
+  border-radius: 12px;
+  background: var(--panel-2, #1a2030);
+  border: 1px solid var(--border, #2a3142);
+}
+.pt-stat strong { font-size: 24px; color: var(--accent, #3aa0ff); }
+.pt-stat span { font-size: 12px; color: var(--muted, #9aa4b5); }
+.pt-stat.newrec strong { color: var(--warn, #ffb23e); animation: pt-newrec 1s ease-in-out infinite; }
+@keyframes pt-newrec {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.14); }
+}
+.pt-modal-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 16px; }
+
+/* ---------- 响应式与无障碍 ---------- */
+@media (max-width: 430px) {
+  .pt-stats { grid-template-columns: repeat(2, 1fr); }
+  .pt-cd-num { font-size: 88px; }
+  .pt-milestone { font-size: 26px; }
+  .pt-overlay-text { font-size: 13px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pt-board.shake,
+  .pt-eq i,
+  .pt-hitzone,
+  .pt-speedbar-fill.maxed { animation: none !important; }
+}

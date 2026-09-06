@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🎮 小行星 · 小游戏大全</title>
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">🎮 小行星</h1>
+    </div>
+    <p class="game-desc">2D 惯性太空射击：旋转、推进、开火！大行星会分裂成中、中再裂成小，小心别撞上——惯性飞行可不会轻易停下。</p>
+
+    <div class="game-card">
+      <div class="hud">
+        <div class="hud-item">得分 <strong id="score">0</strong></div>
+        <div class="hud-item">最高 <strong id="best">0</strong></div>
+        <div class="hud-item">生命 <strong id="lives">3</strong></div>
+        <div class="hud-item">波次 <strong id="wave">1</strong></div>
+      </div>
+
+      <div class="board-wrap">
+        <canvas id="game" width="640" height="640"></canvas>
+        <div class="msg" id="msg">准备…</div>
+      </div>
+
+      <div class="touch-controls" id="touch">
+        <button class="btn tbtn" id="btn-left" type="button">⟲ 左转</button>
+        <button class="btn tbtn" id="btn-right" type="button">右转 ⟳</button>
+        <span class="tspacer" aria-hidden="true"></span>
+        <button class="btn tbtn" id="btn-brake" type="button">减速</button>
+        <button class="btn tbtn" id="btn-thrust" type="button">▲ 推进</button>
+        <button class="btn tbtn fire" id="btn-fire" type="button">🔥 射击</button>
+      </div>
+
+      <div class="hint">
+        <kbd>←</kbd><kbd>→</kbd> / <kbd>A</kbd><kbd>D</kbd> 旋转 ·
+        <kbd>↑</kbd> / <kbd>W</kbd> 推进 ·
+        <kbd>空格</kbd> 射击 ·
+        <kbd>S</kbd> 减速 ·
+        <kbd>R</kbd> 重开
+      </div>
+
+      <div class="btn-row">
+        <button class="btn secondary" id="btn-restart" type="button">🔄 重新开始</button>
+      </div>
+    </div>
+
+    <div class="modal" id="modal">
+      <div class="modal-box">
+        <div class="modal-title" id="modal-title">游戏结束</div>
+        <div class="modal-sub" id="modal-sub"></div>
+        <button class="btn" id="btn-again" type="button">🔁 再来一局</button>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+
+
+</body>
+</html>

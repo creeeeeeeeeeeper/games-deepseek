@@ -1,0 +1,90 @@
+/* ===== 涂鸦跳跃 · 专属样式（与深色外壳协调） ===== */
+
+/* 画布容器：固定 4:7 比例，等比缩放 */
+#boardWrap {
+  position: relative;
+  width: min(100%, 400px);
+  margin: 0 auto;
+  padding: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow:
+    0 12px 32px rgba(0, 0, 0, 0.45),
+    0 0 0 1px var(--border);
+}
+
+#game {
+  display: block;
+  width: 100%;
+  height: auto; /* 只按属性宽高等比缩放，不破坏 400×700 比例 */
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: pointer;
+}
+
+/* ===== 开局倒计时覆盖层 ===== */
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 46px;
+  font-weight: 800;
+  letter-spacing: 4px;
+  color: #fff;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.65);
+  background: rgba(10, 12, 20, 0.35);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.overlay.show { opacity: 1; }
+
+.overlay.count {
+  animation: dj-pop 0.45s cubic-bezier(0.2, 1.6, 0.4, 1) both;
+}
+
+@keyframes dj-pop {
+  from { transform: scale(0.35); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+/* ===== HUD 分数跳动 ===== */
+.hud-item strong {
+  display: inline-block;
+  min-width: 2ch;
+}
+
+.hud-item strong.bump {
+  animation: dj-bump 0.32s ease;
+}
+
+@keyframes dj-bump {
+  0%   { transform: scale(1); }
+  45%  { transform: scale(1.45); color: var(--accent-2); }
+  100% { transform: scale(1); }
+}
+
+/* ===== 结算模态框弹入 ===== */
+.modal.show .modal-box {
+  animation: dj-modal-in 0.35s cubic-bezier(0.2, 1.4, 0.4, 1) both;
+}
+
+@keyframes dj-modal-in {
+  from { transform: translateY(26px) scale(0.9); opacity: 0; }
+  to   { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+/* ===== 新纪录标记 ===== */
+.new-best {
+  color: var(--warn);
+  font-weight: 700;
+}
+
+/* ===== 窄屏适配 ===== */
+@media (max-width: 480px) {
+  .overlay { font-size: 34px; letter-spacing: 2px; }
+}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>宝石消消乐 · 小游戏大全</title>
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">💎 宝石消消乐</h1>
+      <p class="game-desc">交换相邻两颗宝石，凑齐三个或以上同色即可消除；连锁越多得分越高。在限定步数内冲高分。</p>
+    </div>
+
+    <div class="game-card center">
+      <div class="hud">
+        <div class="hud-item">得分 <strong id="score">0</strong></div>
+        <div class="hud-item">剩余步数 <strong id="moves">30</strong></div>
+        <div class="hud-item">高亮标记 <strong id="combo">0</strong></div>
+      </div>
+      <div class="board-wrap">
+        <div class="gem-board" id="board"></div>
+      </div>
+      <div class="msg" id="msg" aria-live="polite">点击一颗宝石，再点它相邻的宝石交换。</div>
+      <div class="hint">凑齐 3+ 同色连锁消除，连锁越多得分越高；30 步内尽可能拿高分。</div>
+    </div>
+  </div>
+
+  <div class="modal" id="endModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <h2 class="modal-title" id="endTitle">⏰ 步数用尽</h2>
+      <p class="modal-sub" id="endMsg"></p>
+      <button class="btn" id="againBtn" type="button">再来一局</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

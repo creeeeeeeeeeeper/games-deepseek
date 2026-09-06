@@ -1,0 +1,22 @@
+/* 抽乌龟专属样式 */
+.game-card.center { text-align: center; }
+.hand-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+.hand-col { flex: 1 1 160px; min-width: 160px; }
+.hand-label { display: block; font-weight: 700; color: var(--muted); margin-bottom: 8px; }
+.hand { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; min-height: 92px; padding: 8px;
+  border: 1px solid var(--border); border-radius: 12px; background: radial-gradient(120% 100% at 50% 0%, #1b2433 0%, #0c1018 70%); }
+.hand.fan { opacity: 0.75; }
+.card { width: 42px; height: 60px; border-radius: 6px; background: #f4f6f8; color: #1a1a1a; font-weight: 800;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 2px 5px rgba(0,0,0,0.35);
+  user-select: none; }
+.card .suit { font-size: 14px; }
+.card .rank { font-size: 18px; }
+.card.back { background: linear-gradient(145deg, #d94b3a, #9a2f22); color: #fff; }
+.card.back::after { content: "?"; font-size: 24px; font-weight: 800; }
+.card.done { opacity: 0.2; }
+.faceup:hover { cursor: pointer; transform: translateY(-4px); }
+.pair-pop { animation: pair 0.3s ease; }
+@keyframes pair { 40% { transform: scale(1.3); } }
+.msg { min-height: 22px; margin-top: 12px; font-weight: 700; }
+.msg.win { color: var(--accent-2); }
+.msg.lose { color: var(--danger); }

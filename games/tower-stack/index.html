@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>叠塔 · 小游戏大全</title>
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">🏗️ 叠塔</h1>
+      <p class="game-desc">稳准放置方块叠起高塔，对得越齐塔越稳！</p>
+    </div>
+
+    <div class="game-card">
+      <div class="hud">
+        <div class="hud-item">层数 <strong id="score">0</strong></div>
+        <div class="hud-item">最高 <strong id="best">0</strong></div>
+      </div>
+      <div class="board-wrap">
+        <canvas id="game" width="400" height="600" aria-label="叠塔游戏画面"></canvas>
+      </div>
+      <div class="hint">
+        点击 / 空格 / 触屏在方块对准塔身时落下；未对齐的部分会被切掉，
+        方块宽度耗尽即失败。按 <kbd>R</kbd> 重新开始。
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="endModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <h2 class="modal-title" id="endTitle">🧱 塔倒了！</h2>
+      <p class="modal-sub" id="endMsg"></p>
+      <button class="btn" id="againBtn" type="button">再来一局</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+
+</body>
+</html>

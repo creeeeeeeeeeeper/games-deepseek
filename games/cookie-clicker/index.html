@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>点饼干 · 小游戏大全</title>
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">🍪 点饼干</h1>
+      <p class="game-desc">点一下大饼干得 1 块，攒饼干买"点一下更值钱"和"自动产饼干"的升级；目标是攒够一万块。</p>
+    </div>
+
+    <div class="game-card center">
+      <div class="hud">
+        <div class="hud-item">饼干 <strong id="cookies">0</strong></div>
+        <div class="hud-item">每秒 <strong id="rate">0</strong></div>
+      </div>
+      <div class="board-wrap">
+        <div class="cookie" id="cookie">🍪</div>
+      </div>
+      <div class="shop" id="shop"></div>
+      <div class="msg" id="msg" aria-live="polite">点大饼干赚钱。</div>
+      <div class="hint">点击大饼干 +"每次"；升级提高每次点击和每秒产量。目标：10000 块饼干。</div>
+    </div>
+  </div>
+
+  <div class="modal" id="endModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <h2 class="modal-title" id="endTitle">🎉 一万块达成！</h2>
+      <p class="modal-sub" id="endMsg"></p>
+      <button class="btn" id="againBtn" type="button">再来一局</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+/* ===== 小行星（asteroids）专属样式 ===== */
+
+/* 画布：固定 640×640 逻辑尺寸，CSS 仅等比缩放 */
+.board-wrap {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+#game {
+  display: block;
+  width: 100%;
+  max-width: 640px;
+  aspect-ratio: 1 / 1;
+  height: auto;
+  background: #05070d;
+  border: 1px solid var(--border, #26304a);
+  border-radius: 12px;
+  box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.55), 0 0 24px rgba(58, 160, 255, 0.08);
+  touch-action: none;
+  cursor: crosshair;
+}
+
+/* ---- 中央提示（准备… / 波次播报） ---- */
+#msg {
+  display: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  padding: 12px 30px;
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: 6px;
+  color: #f2f7ff;
+  background: rgba(6, 10, 20, 0.78);
+  border: 1px solid var(--accent, #3aa0ff);
+  border-radius: 14px;
+  pointer-events: none;
+  white-space: nowrap;
+  animation: msg-pulse 0.9s ease-in-out infinite;
+}
+
+#msg.show {
+  display: block;
+}
+
+@keyframes msg-pulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    box-shadow: 0 0 0 0 rgba(58, 160, 255, 0.35);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.07);
+    box-shadow: 0 0 26px 6px rgba(58, 160, 255, 0.35);
+  }
+}
+
+/* ---- HUD 数字反馈 ---- */
+.hud-item strong {
+  display: inline-block;
+  min-width: 2ch;
+  text-align: center;
+}
+
+.hud-item strong.pop {
+  animation: hud-pop 0.35s ease;
+}
+
+.hud-item strong.low {
+  color: var(--danger, #ff5d6c);
+}
+
+@keyframes hud-pop {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.5); color: var(--accent-2, #34d399); }
+  100% { transform: scale(1); }
+}
+
+/* ---- 触屏 / 屏上控制 ---- */
+.touch-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 14px;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.tspacer {
+  flex: 1 1 auto;
+  min-width: 6px;
+  max-width: 40px;
+}
+
+.tbtn {
+  min-width: 92px;
+  padding: 12px 16px;
+  font-size: 16px;
+  touch-action: none;
+  transition: transform 0.08s ease, background-color 0.12s ease,
+              border-color 0.12s ease, box-shadow 0.12s ease;
+}
+
+.tbtn.fire {
+  font-weight: 700;
+  border-color: var(--warn, #ffb23e);
+}
+
+.tbtn.active {
+  transform: scale(0.93);
+  border-color: var(--accent, #3aa0ff);
+  background: rgba(58, 160, 255, 0.22);
+  box-shadow: 0 0 14px rgba(58, 160, 255, 0.35);
+}
+
+/* ---- 底部按钮行 ---- */
+.btn-row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+/* ---- 模态框微调 ---- */
+.modal-box .btn {
+  margin-top: 16px;
+  min-width: 180px;
+}
+
+/* 小屏时触屏按钮更易点 */
+@media (max-width: 480px) {
+  .tbtn {
+    min-width: 78px;
+    padding: 13px 12px;
+    font-size: 15px;
+  }
+
+  #msg {
+    font-size: 26px;
+    letter-spacing: 4px;
+    padding: 10px 20px;
+  }
+}

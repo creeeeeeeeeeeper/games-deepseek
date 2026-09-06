@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>老虎机 · 小游戏大全</title>
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">🎰 老虎机</h1>
+      <p class="game-desc">拉动拉杆碰运气！三个图案相同即中奖，最高可赢 200 倍！</p>
+    </div>
+
+    <div class="game-card">
+      <div class="hud">
+        <div class="hud-item">金币 <strong id="coins">50</strong></div>
+        <div class="hud-item">本轮赢 <strong id="win">0</strong></div>
+        <div class="hud-item">历史最高 <strong id="best">0</strong></div>
+      </div>
+
+      <div class="machine">
+        <div class="reel" id="reel0">🍒</div>
+        <div class="reel" id="reel1">🍒</div>
+        <div class="reel" id="reel2">🍒</div>
+      </div>
+
+      <div class="msg" id="msg" aria-live="polite"></div>
+
+      <div class="controls">
+        <button class="btn big" id="lever" type="button">🎰 拉杆（花费 1 金币）</button>
+        <button class="btn secondary" id="resetCoins" type="button">重置金币</button>
+      </div>
+
+      <div class="hint">
+        三条相同图案即中奖：🍒×5 · 🍋×10 · 🍇×15 · ⭐×25 · 💎×50 · 7️⃣×100 · 🎰×200（头奖）。
+        按 <kbd>R</kbd> 重新拉杆。
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+
+</body>
+</html>

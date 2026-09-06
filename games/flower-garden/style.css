@@ -1,0 +1,12 @@
+/* 种花专属样式 */
+.game-card.center { text-align: center; }
+.garden { display: grid; grid-template-columns: repeat(5, 68px); grid-template-rows: repeat(4, 68px); gap: 6px; margin: 8px auto 12px; width: max-content;
+  background: rgba(47,158,79,0.15); border-radius: 14px; padding: 6px; border: 1px solid var(--border); }
+.tile { width: 68px; height: 68px; border-radius: 10px; background: #1b2433; border: 1px solid var(--border); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 34px; position: relative; }
+.tile:hover { border-color: var(--accent); }
+.tile.sel { border-color: var(--accent); box-shadow: 0 0 8px rgba(226,194,102,0.6); }
+.tile.ripe { box-shadow: 0 0 10px rgba(111,217,138,0.7); }
+.tile .stage { position: absolute; bottom: 2px; right: 4px; color: var(--muted); font-size: 10px; }
+.controls { display: flex; gap: 12px; justify-content: center; }
+.msg { min-height: 22px; margin-top: 12px; font-weight: 700; }
+.msg.win { color: var(--accent-2); }

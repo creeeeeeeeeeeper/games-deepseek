@@ -1,0 +1,14 @@
+/* 尼姆博弈专属样式 */
+.game-card.center { text-align: center; }
+.nim-wrap { display: flex; flex-direction: column; gap: 12px; align-items: center; padding: 14px; border: 1px solid var(--border);
+  border-radius: 14px; background: radial-gradient(120% 100% at 50% 0%, #1b2433 0%, #0c1018 70%); margin: 4px auto 12px; min-height: 220px; }
+.pile { display: flex; align-items: center; gap: 8px; }
+.pile-label { width: 52px; text-align: left; color: var(--muted); font-weight: 700; }
+.matches { display: flex; flex-wrap: wrap; gap: 5px; max-width: 280px; }
+.match { width: 12px; height: 42px; border-radius: 3px; background: linear-gradient(180deg, #e8a24a 0%, #b06a2a 100%); cursor: pointer; }
+.match:hover { transform: translateY(-3px); }
+.match.taken { opacity: 0.18; pointer-events: none; }
+.controls { display: flex; gap: 12px; justify-content: center; }
+.msg { min-height: 22px; margin-top: 12px; font-weight: 700; }
+.msg.win { color: var(--accent-2); }
+.msg.lose { color: var(--danger); }

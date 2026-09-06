@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>青蛙过河 · 小游戏大全</title>
+<link rel="stylesheet" href="../../assets/game.css">
+<link rel="stylesheet" href="style.css">
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+</head>
+<body>
+<div class="game-shell">
+  <div class="game-topbar">
+    <a class="back-btn" href="../../index.html">← 返回列表</a>
+    <h1 class="game-title">🎮 青蛙过河 · 小游戏大全</h1>
+  </div>
+  <p class="game-desc">从下方起点出发，先跳过滚滚车流，再踩着顺流漂移的原木与荷叶渡过河面，把 5 只小青蛙全部安全送进顶部的家穴即获胜！</p>
+
+  <div class="game-card">
+    <div class="hud">
+      <div class="hud-item"><span class="lbl">分数</span><strong id="scoreVal">0</strong></div>
+      <div class="hud-item"><span class="lbl">最高分</span><strong id="bestVal">0</strong></div>
+      <div class="hud-item"><span class="lbl">关卡</span><strong id="lvlVal">1/5</strong></div>
+      <div class="hud-item"><span class="lbl">生命</span><strong id="livesVal">3</strong></div>
+      <div class="hud-item"><span class="lbl">时间</span><strong id="timeVal">40</strong></div>
+    </div>
+
+    <div class="board-wrap">
+      <canvas id="stage" width="480" height="540" aria-label="青蛙过河游戏画面"></canvas>
+      <button class="btn secondary restart-fab" id="btnRestart" type="button" title="重新开始（R）">↻</button>
+    </div>
+
+    <div class="dpad" id="dpad">
+      <button class="dbtn b-up" data-dir="0" type="button" aria-label="向上">▲</button>
+      <button class="dbtn b-left" data-dir="2" type="button" aria-label="向左">◀</button>
+      <button class="dbtn b-right" data-dir="3" type="button" aria-label="向右">▶</button>
+      <button class="dbtn b-down" data-dir="1" type="button" aria-label="向下">▼</button>
+    </div>
+  </div>
+
+  <p class="hint">方向键 / <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> 逐格移动 · <kbd>R</kbd> 重开 · 触屏可滑动画面或点按方向键。原木会带着青蛙漂移，脱离即落水；撞车或落水扣 1 条命（共 3 条）。每只青蛙限时 40 秒，进家 +50，全部占满奖励 +100。</p>
+
+  <div class="modal" id="modal">
+    <div class="modal-box">
+      <div class="modal-title" id="modalTitle"></div>
+      <div class="modal-sub" id="modalSub"></div>
+      <button class="btn" id="btnAgain" type="button">再来一局</button>
+    </div>
+  </div>
+</div>
+<script src="script.js"></script>
+
+
+</body>
+</html>

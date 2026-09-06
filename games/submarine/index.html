@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>深海潜艇 · 小游戏大全</title>
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">🛥️ 深海潜艇</h1>
+      <p class="game-desc">驾驶潜艇下潜，躲开水雷和浅滩；收集氧气瓶补氧。浮到水面会超压，潜入太深也会缺氧——保持平衡向前开。</p>
+    </div>
+
+    <div class="game-card center">
+      <div class="hud">
+        <div class="hud-item">距离 <strong id="dist">0</strong></div>
+        <div class="hud-item">氧气 <strong id="o2">100</strong></div>
+        <div class="hud-item">最高 <strong id="best">0</strong></div>
+      </div>
+      <div class="board-wrap">
+        <canvas id="canvas" width="360" height="520"></canvas>
+      </div>
+      <div class="msg" id="msg" aria-live="polite">↑ / ↓ 或按住上下控制深度。</div>
+      <div class="hint">向前自动行驶；↑ 上浮、↓ 下潜。躲水雷，吃氧气瓶；缺氧/撞雷/撞底都结束。</div>
+    </div>
+  </div>
+
+  <div class="modal" id="endModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <h2 class="modal-title" id="endTitle">💥 潜艇受损</h2>
+      <p class="modal-sub" id="endMsg"></p>
+      <button class="btn" id="againBtn" type="button">再来一局</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+/* 水果忍者专属样式（叠加 assets/game.css） */
+
+.game-card { max-width: 720px; margin: 0 auto; }
+.hud { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px 34px; margin-bottom: 10px; }
+.hud-item strong { font-size: 20px; min-width: 40px; text-align: center; }
+.hud-item strong.bump { animation: bump 0.3s ease; display: inline-block; }
+@keyframes bump { 40% { transform: scale(1.4); } }
+#lives { color: var(--danger); letter-spacing: 2px; }
+
+.board-wrap canvas {
+  display: block;
+  width: min(100%, 640px);
+  aspect-ratio: 4 / 3;
+  margin: 0 auto;
+  background: #120b24;
+  border-radius: 12px;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: crosshair;
+}
+.board-wrap {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.45);
+}
+
+/* 受击红闪 */
+.board-wrap.bad { animation: badFlash 0.45s ease; }
+@keyframes badFlash {
+  0%, 100% { box-shadow: 0 0 0 0 transparent; }
+  35% { box-shadow: 0 0 0 5px rgba(255, 93, 108, 0.65), 0 0 34px rgba(255, 93, 108, 0.55); }
+}
+
+.hint { margin-top: 10px; }
+
+@media (max-width: 480px) {
+  .game-card { padding: 14px; }
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>翻转棋 · 小游戏大全</title>
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">⚫ 翻转棋</h1>
+      <p class="game-desc">6×6 黑白棋：你下黑棋，夹住对手的棋子就能翻转，棋盘填满后子多者胜。</p>
+    </div>
+
+    <div class="game-card center">
+      <div class="hud">
+        <div class="hud-item">你（黑） <strong id="you">2</strong></div>
+        <div class="hud-item">AI（白） <strong id="ai">2</strong></div>
+        <div class="hud-item">回合 <strong id="turn">你</strong></div>
+      </div>
+      <div class="board" id="board"></div>
+      <div class="msg" id="msg" aria-live="polite"></div>
+      <div class="hint">点击空格落子，需夹住 ≥1 枚对手棋子才合法。按 <kbd>R</kbd> 重开。</div>
+    </div>
+  </div>
+
+  <div class="modal" id="endModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <h2 class="modal-title" id="endTitle">🏆 你赢了！</h2>
+      <p class="modal-sub" id="endMsg"></p>
+      <button class="btn" id="againBtn" type="button">再来一局</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

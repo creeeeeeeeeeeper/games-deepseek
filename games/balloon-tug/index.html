@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>拔河气球 · 小游戏大全</title>
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">🎈 拔河气球</h1>
+      <p class="game-desc">按住给气球打气把它们往自己这边拉——谁先把中线抢到谁赢！</p>
+    </div>
+
+    <div class="game-card center">
+      <div class="hud">
+        <div class="hud-item">你 <strong id="you">0</strong></div>
+        <div class="hud-item">局 <strong id="round">1/5</strong></div>
+        <div class="hud-item">AI <strong id="ai">0</strong></div>
+      </div>
+
+      <div class="board-wrap">
+        <canvas id="game" width="480" height="520" aria-label="拔河气球游戏画面"></canvas>
+      </div>
+
+      <div class="hint">
+        按住（鼠标 / 手指 / <kbd>空格</kbd>）给<b>你的</b>气球充气把它拉向左侧；松开就停。
+        先过左侧中线得 1 分，五局三胜。AI 也在用力，胜负就差一点点。按 <kbd>R</kbd> 重开。
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="endModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <h2 class="modal-title" id="endTitle">🏆 你赢啦！</h2>
+      <p class="modal-sub" id="endMsg"></p>
+      <button class="btn" id="againBtn" type="button">再来一轮</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

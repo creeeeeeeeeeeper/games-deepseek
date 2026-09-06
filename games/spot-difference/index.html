@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>找不同 · 小游戏大全</title>
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">🔎 找不同</h1>
+      <p class="game-desc">两幅图看似相同，找出右图中的 5 处不同！</p>
+    </div>
+
+    <div class="game-card">
+      <div class="hud">
+        <div class="hud-item">已找到 <strong id="found">0/5</strong></div>
+        <div class="hud-item">用时 <strong id="time">0:00</strong></div>
+        <div class="hud-item">最快 <strong id="best">--</strong></div>
+        <button class="btn secondary" id="newBtn" type="button">换一张</button>
+      </div>
+
+      <div class="pair">
+        <figure class="side">
+          <figcaption>图 A</figcaption>
+          <canvas id="canvasA" width="420" height="330"></canvas>
+        </figure>
+        <figure class="side">
+          <figcaption>图 B（点击不同处）</figcaption>
+          <canvas id="canvasB" width="420" height="330"></canvas>
+        </figure>
+      </div>
+
+      <div class="msg" id="msg" aria-live="polite"></div>
+
+      <div class="hint">
+        对比两幅图，在<b>右图</b>上点击不一样的地方：花的颜色、苹果、蝴蝶、云朵……
+        全部找出即可获胜。按 <kbd>R</kbd> 换一张新图。
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="endModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <h2 class="modal-title" id="endTitle">🎉 全找到了！</h2>
+      <p class="modal-sub" id="endMsg"></p>
+      <button class="btn" id="againBtn" type="button">再来一张</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+
+</body>
+</html>

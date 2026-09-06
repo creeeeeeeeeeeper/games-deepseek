@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>神射手 · 小游戏大全</title>
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">🏹 神射手</h1>
+      <p class="game-desc">按住拉弓，松手射箭。射中靶心得分最高；风会漂移箭矢，读数越准得分越高。</p>
+    </div>
+
+    <div class="game-card center">
+      <div class="hud">
+        <div class="hud-item">本轮得分 <strong id="score">0</strong></div>
+        <div class="hud-item">总得分 <strong id="total">0</strong></div>
+        <div class="hud-item">箭数 <strong id="arrows">0</strong></div>
+      </div>
+      <div class="board-wrap">
+        <canvas id="canvas" width="440" height="320"></canvas>
+      </div>
+      <div class="msg" id="msg" aria-live="polite">按住蓄力，松手射箭。</div>
+      <div class="hint">风向右吹箭头偏右，往左瞄准即可。射中同心靶：正中 5 环，外圈递减。共 3 支箭。</div>
+    </div>
+  </div>
+
+  <div class="modal" id="endModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <h2 class="modal-title" id="endTitle">🎉 射完了</h2>
+      <p class="modal-sub" id="endMsg"></p>
+      <button class="btn" id="againBtn" type="button">再来一局</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+/* 五子棋专属样式（叠加 assets/game.css） */
+
+.game-card { max-width: 680px; margin: 0 auto; }
+
+.mode-switch {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 4px;
+  margin-bottom: 12px;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+}
+.mode-btn {
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s;
+}
+.mode-btn:hover { color: var(--text); }
+.mode-btn.is-on { color: #fff; background: linear-gradient(140deg, var(--accent), #7a5cff); }
+
+.hud { justify-content: center; flex-wrap: wrap; gap: 6px 24px; margin-bottom: 12px; }
+.hud-item strong { display: inline-block; min-width: 20px; }
+#turn.b { color: #e8ecf5; }
+#turn.w { color: #f6b93b; }
+
+.board-wrap { display: flex; justify-content: center; }
+.board-wrap canvas {
+  width: min(100%, 600px);
+  aspect-ratio: 1;
+  border-radius: 12px;
+  background: #e8c276;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+  touch-action: manipulation;
+  cursor: pointer;
+}
+
+.msg { min-height: 22px; text-align: center; font-weight: 700; margin-top: 10px; }
+.msg.win { color: var(--accent-2); }
+
+@media (max-width: 480px) {
+  .game-card { padding: 12px; }
+}

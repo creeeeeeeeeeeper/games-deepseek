@@ -1,0 +1,35 @@
+/* 泡泡射手专属样式（叠加 assets/game.css） */
+
+.game-card { max-width: 480px; margin: 0 auto; text-align: center; }
+.hud { justify-content: center; gap: 8px 30px; margin-bottom: 10px; }
+.hud-item strong.bump { animation: bump 0.3s ease; display: inline-block; }
+@keyframes bump { 40% { transform: scale(1.4); } }
+
+.board-wrap canvas {
+  display: block;
+  width: min(100%, 420px);
+  margin: 0 auto;
+  background: #0c1424;
+  border-radius: 12px;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: crosshair;
+}
+.board-wrap {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.45);
+}
+.board-wrap.bad { animation: badShake 0.4s ease; }
+@keyframes badShake {
+  0%,100% { transform: none; }
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}
+
+.hint { margin-top: 10px; }
+@media (max-width: 480px) {
+  .game-card { padding: 14px; }
+}

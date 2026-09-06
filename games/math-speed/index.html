@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>数学速算 · 小游戏大全</title>
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">🧮 数学速算</h1>
+      <p class="game-desc">限时 60 秒口算挑战，越答越难，答对越多得分越高！</p>
+    </div>
+
+    <div class="game-card">
+      <div class="hud">
+        <div class="hud-item">得分 <strong id="score">0</strong></div>
+        <div class="hud-item">连击 <strong id="combo">0</strong></div>
+        <div class="hud-item">正确率 <strong id="rate">--</strong></div>
+        <div class="hud-item">最高 <strong id="best">0</strong></div>
+      </div>
+
+      <div class="timebar-wrap" aria-hidden="true">
+        <div class="timebar" id="timebar"></div>
+      </div>
+      <div class="time-text" id="timeText">60</div>
+
+      <div class="quiz">
+        <div class="question" id="question">准备…</div>
+        <div class="answer-row">
+          <input id="answer" class="answer-input" type="text" inputmode="numeric" maxlength="4" autocomplete="off" placeholder="?" disabled />
+          <button class="btn" id="submitBtn" type="button" disabled>提交</button>
+        </div>
+        <div class="feedback" id="feedback" aria-live="polite"></div>
+
+        <div class="keypad" id="keypad">
+          <button type="button" data-k="1">1</button>
+          <button type="button" data-k="2">2</button>
+          <button type="button" data-k="3">3</button>
+          <button type="button" data-k="4">4</button>
+          <button type="button" data-k="5">5</button>
+          <button type="button" data-k="6">6</button>
+          <button type="button" data-k="7">7</button>
+          <button type="button" data-k="8">8</button>
+          <button type="button" data-k="9">9</button>
+          <button type="button" data-k="0">0</button>
+          <button type="button" data-k="back" class="wide">⌫ 退格</button>
+          <button type="button" data-k="enter" class="wide ok">↵ 提交</button>
+        </div>
+      </div>
+
+      <div class="hint">
+        直接输入答案按 <kbd>Enter</kbd> 提交（也可点屏上数字键）。
+        答对 <kbd>+10</kbd>、连击每 5 题额外 <kbd>+5</kbd>；答错 <kbd>-5</kbd>。
+        按 <kbd>R</kbd> 重新开始。
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="endModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <h2 class="modal-title" id="endTitle">⏰ 时间到！</h2>
+      <p class="modal-sub" id="endMsg"></p>
+      <button class="btn" id="againBtn" type="button">再来一局</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>珠玑猜色 · 小游戏大全</title>
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">🎨 珠玑猜色</h1>
+    </div>
+
+    <div class="game-card">
+      <!-- 游戏状态栏 -->
+      <div class="hud">
+        <div class="hud-item">🎯 猜次 <strong id="attempt">0/10</strong></div>
+        <div class="hud-item">🧮 剩余 <strong id="remaining">10</strong></div>
+        <div class="hud-item">🌈 颜色 <strong>6</strong> · 位置 <strong>4</strong></div>
+        <button class="btn secondary" id="restart">重新开始</button>
+      </div>
+
+      <!-- 游戏主体：10 行猜测网格 -->
+      <div class="board-wrap">
+        <div id="board" class="mm-board"></div>
+      </div>
+
+      <!-- 调色盘：6 种可选颜色 -->
+      <div class="palette" id="palette"></div>
+
+      <!-- 操作按钮 -->
+      <div class="mm-actions">
+        <button class="btn" id="submit">提交</button>
+        <button class="btn secondary" id="clear">清空</button>
+      </div>
+
+      <!-- 状态消息 -->
+      <div id="message" class="msg" aria-live="polite"></div>
+
+      <!-- 玩法说明 -->
+      <div class="hint">
+        系统用 <strong>6 种颜色</strong> 生成 <strong>4 个位置</strong> 的秘密组合（颜色可重复）。
+        从下方调色盘选中颜色（再点一次可取消），再点击当前行的槽位涂色；点击已涂色的槽位可擦除。
+        凑满 4 格后点 <strong>提交</strong>，系统会给出反馈：
+        <strong>黑钉</strong>=颜色与位置都对，<strong>白钉</strong>=颜色对但位置不对。
+        共 <strong>10</strong> 次机会，猜中即胜；用完则败，并揭示答案。
+        键盘操作：<kbd>1</kbd>-<kbd>6</kbd> 选色，<kbd>Backspace</kbd> 擦除，<kbd>Enter</kbd> 提交。
+      </div>
+    </div>
+  </div>
+
+  <!-- 胜利/失败弹窗 -->
+  <div class="modal" id="modal">
+    <div class="modal-box">
+      <div class="modal-title" id="modalTitle"></div>
+      <div class="modal-sub" id="modalSub"></div>
+      <div class="modal-answer" id="modalAnswer"></div>
+      <button class="btn" id="modalBtn">再来一局</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+
+</body>
+</html>

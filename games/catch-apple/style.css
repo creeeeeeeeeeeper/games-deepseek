@@ -1,0 +1,128 @@
+/* 接苹果专属样式（叠加 assets/game.css） */
+
+.game-card { max-width: 520px; margin: 0 auto; }
+.hud { display: flex; justify-content: center; flex-wrap: wrap; gap: 6px 22px; margin-bottom: 12px; }
+.hud-item strong.bump { animation: bump 0.28s ease; display: inline-block; }
+@keyframes bump { 40% { transform: scale(1.35); } }
+#time.danger { color: var(--danger); animation: blink 0.5s step-start infinite; }
+@keyframes blink { 50% { opacity: 0.4; } }
+
+.area {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  max-height: 480px;
+  margin: 0 auto;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  background:
+    radial-gradient(120% 90% at 50% 0%, #1c4a33 0%, #12243a 55%, #0d1524 100%);
+  touch-action: none;
+  user-select: none;
+  cursor: default;
+}
+/* 简易远景树 */
+.area::before {
+  content: "🌳  🌳";
+  position: absolute;
+  top: 14%;
+  left: 5%;
+  font-size: 40px;
+  letter-spacing: 22px;
+  opacity: 0.5;
+}
+
+.apple {
+  position: absolute;
+  top: -46px;
+  font-size: 34px;
+  will-change: transform;
+  z-index: 2;
+  user-select: none;
+  pointer-events: none;
+}
+.apple.caught { animation: applePop 0.32s ease forwards; }
+@keyframes applePop {
+  50% { transform: scale(1.6); opacity: 0.6; }
+  to { transform: scale(0); }
+}
+.apple.miss { animation: appleMiss 0.5s ease forwards; }
+@keyframes appleMiss {
+  to { transform: translateY(46px) rotate(30deg); opacity: 0.2; }
+}
+
+/* 篮子 */
+.basket {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  width: 104px;
+  height: 40px;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  transition: left 0.05s linear;
+  filter: drop-shadow(0 6px 8px rgba(0,0,0,0.4));
+  pointer-events: none;
+}
+.basket.catch { animation: basketBounce 0.25s ease; }
+@keyframes basketBounce {
+  40% { transform: translateX(-50%) scale(1.12); }
+}
+/* 篮子开口高亮区 */
+.basket::after {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 14px;
+  right: 14px;
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* 粒子 */
+.part {
+  position: absolute;
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 4;
+}
+/* 飘字 */
+.float {
+  position: absolute;
+  font-weight: 800;
+  font-size: 17px;
+  pointer-events: none;
+  z-index: 5;
+  animation: floatUp 0.8s ease-out forwards;
+  color: var(--accent-2);
+  text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+}
+.float.gold { color: #ffd166; }
+@keyframes floatUp { to { transform: translateY(-56px); opacity: 0; } }
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  font-weight: 800;
+  color: #fff;
+  text-shadow: 0 4px 18px rgba(0,0,0,0.7);
+  z-index: 6;
+  pointer-events: none;
+  background: rgba(10, 15, 26, 0.35);
+}
+.overlay.pop { animation: ovPop 0.4s ease; }
+@keyframes ovPop { 50% { transform: scale(1.15); } }
+.overlay:empty { display: none; }
+
+.hint { margin-top: 10px; }

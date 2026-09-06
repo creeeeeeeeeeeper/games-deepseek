@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>猜单词 · 小游戏大全</title>
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">🪢 猜单词</h1>
+      <p class="game-desc">猜字母拯救小人！猜错 6 次小人就……</p>
+    </div>
+
+    <div class="game-card">
+      <div class="hud">
+        <div class="hud-item">类别 <strong id="category">--</strong></div>
+        <div class="hud-item">剩余机会 <strong id="left">6</strong></div>
+        <div class="hud-item">连胜 <strong id="streak">0</strong></div>
+        <button class="btn secondary" id="newBtn" type="button">下一个单词</button>
+      </div>
+
+      <div class="play">
+        <svg id="gallows" viewBox="0 0 220 240" aria-label="绞刑架">
+          <line x1="30" y1="230" x2="190" y2="230" class="part" />
+          <line x1="50" y1="230" x2="50" y2="30" class="part" />
+          <line x1="50" y1="30" x2="140" y2="30" class="part" />
+          <line x1="140" y1="30" x2="140" y2="55" class="part" id="rope" />
+          <circle cx="140" cy="72" r="17" class="part" id="head" />
+          <line x1="140" y1="89" x2="140" y2="150" class="part" id="body" />
+          <line x1="140" y1="105" x2="112" y2="128" class="part" id="armL" />
+          <line x1="140" y1="105" x2="168" y2="128" class="part" id="armR" />
+          <line x1="140" y1="150" x2="118" y2="196" class="part" id="legL" />
+          <line x1="140" y1="150" x2="162" y2="196" class="part" id="legR" />
+        </svg>
+
+        <div class="word" id="word"></div>
+        <div class="guess-msg" id="guessMsg" aria-live="polite"></div>
+      </div>
+
+      <div class="keys" id="keys"></div>
+
+      <div class="hint">
+        用屏幕键盘或直接按物理键盘猜字母（A-Z）。每个单词只能用一次同一个字母。
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="endModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <h2 class="modal-title" id="endTitle">😵 小人被吊起来了！</h2>
+      <p class="modal-sub" id="endMsg"></p>
+      <button class="btn" id="againBtn" type="button">下一个单词</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+
+</body>
+</html>

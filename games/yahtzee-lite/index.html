@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>快艇骰子 · 小游戏大全</title>
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">🚤 快艇骰子</h1>
+      <p class="game-desc">掷五颗骰，选一个点数类别把这一轮记下；点数 x 数量计分，10 轮后总分定胜负。</p>
+    </div>
+
+    <div class="game-card center">
+      <div class="hud">
+        <div class="hud-item">回合 <strong id="round">1/10</strong></div>
+        <div class="hud-item">总分 <strong id="score">0</strong></div>
+        <div class="hud-item">最高 <strong id="best">0</strong></div>
+      </div>
+      <div class="board-wrap"><canvas id="game" width="480" height="200" aria-label="快艇骰子画面"></canvas></div>
+      <div class="cats" id="cats">
+        <button data-v="1">1 点</button><button data-v="2">2 点</button><button data-v="3">3 点</button>
+        <button data-v="4">4 点</button><button data-v="5">5 点</button><button data-v="6">6 点</button>
+      </div>
+      <button class="btn" id="rollBtn" type="button">🎲 掷骰</button>
+      <div class="msg" id="msg" aria-live="polite"></div>
+      <div class="hint">先掷骰，再点一个还没用过的点数类别入账（点数 x 出现次数）。按 <kbd>R</kbd> 重开。</div>
+    </div>
+  </div>
+
+  <div class="modal" id="endModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <h2 class="modal-title" id="endTitle">🚤 十轮打完！</h2>
+      <p class="modal-sub" id="endMsg"></p>
+      <button class="btn" id="againBtn" type="button">再来十轮</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

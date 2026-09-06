@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>🎮 俄罗斯方块 · 小游戏大全</title>
+<link rel="stylesheet" href="../../assets/game.css" />
+<link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+</head>
+<body>
+<div class="game-shell">
+  <header class="game-topbar">
+    <a class="back-btn" href="../../index.html">← 返回列表</a>
+    <h1 class="game-title">🎮 俄罗斯方块 · 小游戏大全</h1>
+    <span class="game-desc">经典下落消除 · 挑战最高分</span>
+  </header>
+
+  <div class="game-card">
+    <div class="hud">
+      <div class="hud-item"><span>得分</span><strong id="hud-score">0</strong></div>
+      <div class="hud-item"><span>等级</span><strong id="hud-level">1</strong></div>
+      <div class="hud-item"><span>行数</span><strong id="hud-lines">0</strong></div>
+      <div class="hud-item"><span>最高分</span><strong id="hud-best">0</strong></div>
+    </div>
+
+    <div class="tetris-area">
+      <section class="panel panel-hold" id="panel-hold">
+        <div class="panel-label">暂存<kbd>C</kbd></div>
+        <canvas id="cv-hold" width="120" height="120" aria-label="暂存方块"></canvas>
+      </section>
+
+      <section class="panel panel-board">
+        <canvas id="cv-board" width="300" height="600" aria-label="俄罗斯方块主棋盘"></canvas>
+      </section>
+
+      <section class="panel panel-next">
+        <div class="panel-label">下一个</div>
+        <canvas id="cv-next" width="120" height="120" aria-label="下一块预览"></canvas>
+      </section>
+    </div>
+
+    <div class="tool-row">
+      <button type="button" class="btn secondary" id="btn-pause">⏸ 暂停</button>
+      <button type="button" class="btn secondary" id="btn-restart">↻ 重新开始</button>
+    </div>
+
+    <div class="touch-pad" id="touch-pad">
+      <button type="button" class="pad-btn" data-act="left" aria-label="左移">◀ 左</button>
+      <button type="button" class="pad-btn" data-act="right" aria-label="右移">右 ▶</button>
+      <button type="button" class="pad-btn" data-act="rotate" aria-label="顺时针旋转">⟳ 旋转</button>
+      <button type="button" class="pad-btn" data-act="down" aria-label="软降">▼ 软降</button>
+      <button type="button" class="pad-btn" data-act="hard" aria-label="硬降">⤓ 硬降</button>
+      <button type="button" class="pad-btn" data-act="hold" aria-label="暂存">✋ 暂存</button>
+      <button type="button" class="pad-btn" data-act="pause" aria-label="暂停">⏸ 暂停</button>
+      <button type="button" class="pad-btn" data-act="restart" aria-label="重新开始">↻ 重开</button>
+    </div>
+
+    <p class="hint desk-hint">
+      移动 <kbd>←</kbd><kbd>→</kbd> · 旋转 <kbd>↑</kbd>/<kbd>X</kbd>（顺） <kbd>Z</kbd>（逆） · 软降 <kbd>↓</kbd> · 硬降 <kbd>空格</kbd> · 暂存 <kbd>C</kbd> · 暂停 <kbd>P</kbd> · 重开 <kbd>R</kbd>
+    </p>
+  </div>
+</div>
+
+<div class="modal" id="modal-pause">
+  <div class="modal-box">
+    <div class="modal-title">⏸ 已暂停</div>
+    <p class="modal-sub">按 <kbd>P</kbd> / <kbd>Enter</kbd> 或点击按钮继续</p>
+    <div class="modal-actions">
+      <button type="button" class="btn" id="btn-resume">继续</button>
+      <button type="button" class="btn secondary" id="btn-restart-pause">重新开始</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="modal-end">
+  <div class="modal-box">
+    <div class="modal-title">游戏结束</div>
+    <p class="msg lose">堆叠触顶，无法继续啦！</p>
+    <p class="new-record" id="new-record">🎉 新纪录！</p>
+    <div class="end-stats">
+      <span>本次得分</span><strong id="end-score">0</strong>
+      <span>消除行数</span><strong id="end-lines">0</strong>
+      <span>达到等级</span><strong id="end-level">1</strong>
+      <span>历史最高</span><strong id="end-best">0</strong>
+    </div>
+    <div class="modal-actions">
+      <button type="button" class="btn" id="btn-again">再来一局</button>
+      <a class="btn secondary" href="../../index.html">返回列表</a>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+
+
+</body>
+</html>

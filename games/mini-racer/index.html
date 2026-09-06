@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>极简赛车 · 小游戏大全</title>
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">🏎️ 极简赛车</h1>
+      <p class="game-desc">躲避车流极速前进，速度越来越快，能坚持多远？</p>
+    </div>
+
+    <div class="game-card">
+      <div class="hud">
+        <div class="hud-item">距离 <strong id="score">0m</strong></div>
+        <div class="hud-item">速度 <strong id="speed">0</strong></div>
+        <div class="hud-item">最高 <strong id="best">0m</strong></div>
+      </div>
+      <div class="board-wrap">
+        <canvas id="game" width="360" height="600" aria-label="极简赛车游戏画面"></canvas>
+      </div>
+      <div class="hint">
+        <kbd>←</kbd><kbd>→</kbd> / <kbd>A</kbd><kbd>D</kbd> 变道，或拖动 / 左右点击控制。
+        撞上其它车就结束。按 <kbd>R</kbd> 重新开始。
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="endModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <h2 class="modal-title" id="endTitle">💥 撞车了！</h2>
+      <p class="modal-sub" id="endMsg"></p>
+      <button class="btn" id="againBtn" type="button">再来一局</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+
+</body>
+</html>

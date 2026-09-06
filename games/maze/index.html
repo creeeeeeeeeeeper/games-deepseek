@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>迷宫 · 小游戏大全</title>
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">🌀 迷宫</h1>
+      <p class="game-desc">走出随机生成的迷宫！每一步都算数，越快越好。</p>
+    </div>
+
+    <div class="game-card">
+      <div class="hud">
+        <div class="hud-item">步数 <strong id="steps">0</strong></div>
+        <div class="hud-item">用时 <strong id="time">0:00</strong></div>
+        <div class="hud-item">最快 <strong id="best">--</strong></div>
+        <button class="btn secondary" id="showBtn" type="button">查看解法</button>
+        <button class="btn secondary" id="newBtn" type="button">新迷宫</button>
+      </div>
+
+      <div class="board-wrap">
+        <canvas id="game" width="600" height="600" aria-label="迷宫游戏画面"></canvas>
+      </div>
+
+      <div class="msg" id="msg" aria-live="polite"></div>
+
+      <div class="hint">
+        <kbd>↑</kbd><kbd>↓</kbd><kbd>←</kbd><kbd>→</kbd> 或 <kbd>WASD</kbd> 移动 ·
+        触屏点按相邻格子移动。按 <kbd>R</kbd> 换一个新迷宫。
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="endModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <h2 class="modal-title" id="endTitle">🏁 走出迷宫！</h2>
+      <p class="modal-sub" id="endMsg"></p>
+      <button class="btn" id="againBtn" type="button">再来一个</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+
+</body>
+</html>

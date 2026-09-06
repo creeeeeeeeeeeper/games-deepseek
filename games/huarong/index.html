@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>华容道 · 小游戏大全</title>
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">🚪 华容道</h1>
+    </div>
+
+    <div class="game-card center">
+      <div class="hud">
+        <div class="hud-item">步数 <strong id="steps">0</strong></div>
+        <div class="hud-item">最少 <strong id="best">—</strong></div>
+        <span class="msg" id="gameMsg">点击棋子选中，再用方向键 / 箭头按钮移动</span>
+        <button class="btn secondary" id="restart">重新开始</button>
+      </div>
+
+      <div class="board-wrap">
+        <!-- 棋盘：由 script.js 动态生成 4x5 的空格与棋子 -->
+        <div id="board-klotski" class="board-klotski"></div>
+      </div>
+
+      <!-- 屏幕方向键（触屏/鼠标均可用） -->
+      <div class="dpad" aria-label="方向控制">
+        <button class="btn dir" data-dir="up" aria-label="上">↑</button>
+        <button class="btn dir" data-dir="left" aria-label="左">←</button>
+        <button class="btn dir" data-dir="down" aria-label="下">↓</button>
+        <button class="btn dir" data-dir="right" aria-label="右">→</button>
+      </div>
+
+      <!-- 过关弹窗 -->
+      <div class="modal" id="winModal">
+        <div class="modal-box">
+          <div class="modal-title">🎉 过关！</div>
+          <div class="modal-sub" id="modalSteps"></div>
+          <button class="btn" id="modalRestart">再来一局</button>
+        </div>
+      </div>
+
+      <div class="hint">
+        这是经典的 <strong>4×5 华容道</strong>：把 <strong>2×2 的曹操</strong> 滑到棋盘
+        <strong>底部中间的出口</strong> 并移出即算过关。点击一个棋子选中它，再点击高亮的空格、
+        或使用 <kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd>（也可用 <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd>）
+        向该方向移动一格。棋子可滑向任一方向，只要目标是空格；受布局限制，
+        长条棋子通常只能沿其摆放方向位移，士兵块四个方向都能动。
+        步数越少越厉害，系统会记住你的最少过关步数。
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,18 @@
+/* 播棋专属样式 */
+.game-card.center { text-align: center; }
+.board { display: flex; flex-direction: column; gap: 8px; align-items: center; padding: 12px; border: 1px solid var(--border);
+  border-radius: 14px; background: radial-gradient(120% 100% at 50% 0%, #1b2433 0%, #0c1018 70%); margin: 4px auto 12px; }
+.rows { display: flex; flex-direction: column; gap: 12px; width: 100%; max-width: 340px; }
+.hole-row { display: flex; gap: 10px; justify-content: center; }
+.store { width: 48px; min-height: 150px; border-radius: 12px; background: #1a1a1a; border: 2px solid var(--border);
+  display: flex; align-items: center; justify-content: center; font-weight: 800; color: var(--text); }
+.store.mine { background: #33261a; border-color: var(--accent); }
+.store.ai { background: #1a2633; border-color: var(--accent-2); }
+.hole { width: 42px; height: 62px; border-radius: 50%; background: #2a2f3a; border: 2px solid #3a4150;
+  display: flex; align-items: center; justify-content: center; font-weight: 800; color: var(--text); cursor: pointer; user-select: none; }
+.hole.canplay { border-color: var(--accent); }
+.hole.canplay:hover { transform: translateY(-3px); }
+.hole.disabled { opacity: 0.5; cursor: not-allowed; }
+.msg { min-height: 22px; margin-top: 12px; font-weight: 700; }
+.msg.win { color: var(--accent-2); }
+.msg.lose { color: var(--danger); }

@@ -1,0 +1,14 @@
+/* 记忆对战专属样式 */
+.game-card.center { text-align: center; }
+.cards { display: grid; grid-template-columns: repeat(6, 54px); gap: 8px; justify-content: center; padding: 12px; border: 1px solid var(--border);
+  border-radius: 14px; background: radial-gradient(120% 100% at 50% 0%, #1b2433 0%, #0c1018 70%); margin: 4px auto 12px; }
+.mcard { width: 54px; height: 70px; border-radius: 8px; cursor: pointer; position: relative; perspective: 600px; }
+.mcard .inner { width: 100%; height: 100%; position: relative; transition: transform 0.3s; transform-style: preserve-3d; }
+.mcard.open .inner { transform: rotateY(180deg); }
+.mcard .face { position: absolute; inset: 0; backface-visibility: hidden; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 26px; }
+.mcard .back { background: linear-gradient(145deg, #e2c266, #b98a2f); }
+.mcard .front { background: #f4f6f8; transform: rotateY(180deg); }
+.mcard.matched { opacity: 0.2; pointer-events: none; }
+.msg { min-height: 22px; margin-top: 12px; font-weight: 700; }
+.msg.win { color: var(--accent-2); }
+.msg.lose { color: var(--danger); }

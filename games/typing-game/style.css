@@ -1,0 +1,94 @@
+/* 打字游戏专属样式（叠加 assets/game.css） */
+
+.game-card { max-width: 560px; margin: 0 auto; }
+.hud { display: flex; justify-content: center; flex-wrap: wrap; gap: 6px 22px; margin-bottom: 10px; }
+.hud-item strong { min-width: 30px; text-align: center; }
+.hud-item strong.bump { animation: bump 0.28s ease; display: inline-block; }
+@keyframes bump { 40% { transform: scale(1.4); } }
+#lives { color: var(--danger); letter-spacing: 2px; }
+
+.sky {
+  position: relative;
+  height: 420px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  background:
+    radial-gradient(120% 90% at 50% 0%, #16233c 0%, #0d1524 70%);
+  touch-action: none;
+  user-select: none;
+}
+.ground-line {
+  position: absolute;
+  left: 0; right: 0;
+  bottom: 44px;
+  height: 2px;
+  background: rgba(255, 93, 108, 0.55);
+  box-shadow: 0 0 12px rgba(255, 93, 108, 0.6);
+}
+/* 即将触底的字母预警：描红呼吸 */
+.letter.near {
+  color: #ff8a97;
+  text-shadow: 0 0 14px rgba(255, 93, 108, 0.9);
+  animation: nearBlink 0.35s step-start infinite;
+}
+@keyframes nearBlink { 50% { opacity: 0.55; } }
+
+.letter {
+  position: absolute;
+  top: -46px;
+  font-size: 34px;
+  font-weight: 800;
+  color: #fff;
+  text-shadow: 0 0 12px rgba(58, 160, 255, 0.7);
+  transition: color 0.15s;
+  will-change: transform;
+}
+.letter.hit { animation: letterPop 0.3s ease forwards; }
+@keyframes letterPop {
+  40% { transform: scale(1.6); }
+  to { transform: scale(0); opacity: 0; }
+}
+.letter.gone { display: none; }
+
+/* 命中特效字 */
+.fx {
+  position: absolute;
+  font-weight: 800;
+  font-size: 26px;
+  pointer-events: none;
+  animation: fxUp 0.5s ease-out forwards;
+  color: var(--accent-2);
+}
+@keyframes fxUp { to { transform: translateY(-34px); opacity: 0; } }
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 34px;
+  font-weight: 800;
+  color: #fff;
+  text-shadow: 0 4px 16px rgba(0,0,0,0.6);
+  background: rgba(10, 15, 26, 0.5);
+  z-index: 5;
+  text-align: center;
+}
+.overlay small { font-size: 15px; color: var(--muted); font-weight: 400; }
+.overlay.pop { animation: ovPop 0.4s ease; }
+@keyframes ovPop {
+  0% { transform: scale(0.5); opacity: 0; }
+  40% { transform: scale(1.1); }
+}
+
+.sky.bad { animation: badFlash 0.35s ease; }
+@keyframes badFlash {
+  0%,100% { box-shadow: 0 0 0 0 transparent; }
+  40% { box-shadow: inset 0 0 0 4px rgba(255,93,108,0.6); }
+}
+
+.hint { margin-top: 10px; }

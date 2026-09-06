@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>三张牌 · 小游戏大全</title>
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">🃏 三张牌</h1>
+      <p class="game-desc">经典 Three-Card Monte：三张牌里有一张"皇后"，荷官快速洗牌，你要盯紧皇后在哪。猜对了就赢。</p>
+    </div>
+
+    <div class="game-card center">
+      <div class="hud">
+        <div class="hud-item">局数 <strong id="rounds">0</strong></div>
+        <div class="hud-item">命中 <strong id="hits">0</strong></div>
+      </div>
+      <div class="board-wrap">
+        <div class="mat" id="mat"></div>
+      </div>
+      <div class="controls">
+        <button class="btn" id="shuffleBtn" type="button">🔀 洗牌</button>
+      </div>
+      <div class="msg" id="msg" aria-live="polite">看准"皇后"（⭐），点对应的牌。</div>
+      <div class="hint">洗牌会来回交换三张牌的顺序；速度越来越快。洗完后点你认为藏着"。皇后"的那张。</div>
+    </div>
+  </div>
+
+  <div class="modal" id="endModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <h2 class="modal-title" id="endTitle">🎉 你赢了！</h2>
+      <p class="modal-sub" id="endMsg"></p>
+      <button class="btn" id="againBtn" type="button">再来一局</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

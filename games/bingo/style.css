@@ -1,0 +1,15 @@
+/* 宾果专属样式 */
+.game-card.center { text-align: center; }
+.bingo-area { display: flex; justify-content: center; padding: 12px; border: 1px solid var(--border); border-radius: 14px;
+  background: radial-gradient(120% 100% at 50% 0%, #1b2433 0%, #0c1018 70%); margin: 4px auto 12px; }
+.bingo-card { display: grid; grid-template-columns: repeat(5, 54px); grid-template-rows: repeat(5, 54px); gap: 3px; }
+.cell { width: 54px; height: 54px; border-radius: 6px; background: #2a2f3a; color: var(--text); font-weight: 800; font-size: 18px;
+  display: flex; align-items: center; justify-content: center; cursor: pointer; border: 1px solid #3a4150; user-select: none; }
+.cell.free { background: #3a3326; border-color: var(--accent); color: var(--accent); }
+.cell.marked { background: var(--accent); color: #0c1018; }
+.cell.pending { border-color: var(--danger); }
+.cell:hover:not(.marked) { transform: scale(1.05); }
+.controls { display: flex; justify-content: center; }
+.msg { min-height: 22px; margin-top: 12px; font-weight: 700; }
+.msg.win { color: var(--accent-2); }
+.msg.lose { color: var(--danger); }

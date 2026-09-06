@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>寻宝探险 · 小游戏大全</title>
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">💎 寻宝探险</h1>
+      <p class="game-desc">翻开格子寻找 3 颗宝石，小心地雷！数字 = 相邻地雷数。</p>
+    </div>
+
+    <div class="game-card">
+      <div class="hud">
+        <div class="hud-item">宝石 <strong id="gems">0/3</strong></div>
+        <div class="hud-item">生命 <strong id="lives">❤❤❤</strong></div>
+        <div class="hud-item">得分 <strong id="score">0</strong></div>
+        <div class="hud-item">最高 <strong id="best">0</strong></div>
+        <button class="btn secondary" id="newBtn" type="button">新地图</button>
+      </div>
+
+      <div class="board" id="board"></div>
+
+      <div class="msg" id="msg" aria-live="polite"></div>
+
+      <div class="hint">
+        点击格子翻开：数字表示周围 8 格的地雷数，帮助你推理宝石位置。
+        挖到 💎 +1 并得分，踩到 💣 扣 1 条命。集齐 3 颗宝石即通关！
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="endModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <h2 class="modal-title" id="endTitle">🎉 满载而归！</h2>
+      <p class="modal-sub" id="endMsg"></p>
+      <button class="btn" id="againBtn" type="button">再来一局</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,83 @@
+/* 海战棋专属样式（叠加 assets/game.css） */
+
+.game-card { max-width: 720px; margin: 0 auto; }
+
+.mode-switch {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 4px;
+  margin-bottom: 10px;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+}
+.mode-btn {
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s;
+}
+.mode-btn:hover { color: var(--text); }
+.mode-btn.is-on { color: #fff; background: linear-gradient(140deg, var(--accent), #7a5cff); }
+
+.hud { justify-content: center; flex-wrap: wrap; gap: 6px 24px; margin-bottom: 12px; }
+.hud-item strong { min-width: 26px; text-align: center; }
+#status.fight { color: var(--warn); font-weight: 700; }
+
+.boards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 8px;
+}
+.side { text-align: center; }
+.side-title { font-size: 14px; font-weight: 800; color: var(--text-sub); margin-bottom: 6px; letter-spacing: 1px; }
+.side-title.now { color: var(--warn); animation: pulse 0.9s ease-in-out infinite alternate; }
+@keyframes pulse { to { text-shadow: 0 0 12px var(--warn); } }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 2px;
+  background: #1c4a7a;
+  padding: 4px;
+  border-radius: 8px;
+  aspect-ratio: 1;
+  border: 2px solid #12355c;
+}
+.cell {
+  border-radius: 3px;
+  background: #2c69a8;
+  display: grid;
+  place-items: center;
+  font-size: 15px;
+  cursor: default;
+  user-select: none;
+  position: relative;
+}
+#enemyGrid .cell:not(.revealed):not(.shot) { cursor: crosshair; }
+#enemyGrid .cell:not(.revealed):not(.shot):hover { background: #3f82c7; outline: 2px solid #9adcff; }
+.cell.ship { background: #3f6f5a; }
+.cell.hit { background: #c93a2e; }
+.cell.miss { background: #243c58; }
+.cell.sunkcell { background: #4a1015; }
+.cell::after { content: ""; }
+.cell.shot.hit::after { content: "💥"; font-size: 14px; }
+.cell.shot.miss::after { content: "✕"; font-size: 12px; color: #7d94ad; font-weight: 800; }
+.cell.ship.sunkcell::after { content: "💥"; font-size: 13px; }
+
+.msg { min-height: 22px; text-align: center; font-weight: 700; margin-top: 8px; }
+.msg.sunk { color: var(--danger); }
+.msg.win { color: var(--accent-2); }
+
+.hint { margin-top: 10px; }
+@media (max-width: 560px) {
+  .boards { grid-template-columns: 1fr; }
+  .game-card { padding: 12px; }
+}

@@ -1,0 +1,164 @@
+/* ============================================================
+   24 点 · 专属样式
+   深色主题沿用 assets/game.css 的变量（--bg/#0e1420 等），
+   这里只补充扑克牌、算式区、操作面板等游戏自有的视觉。
+   ============================================================ */
+
+/* 游戏主区域：纵向排布，窄屏自适应 */
+.game24 {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+  max-width: 600px;
+}
+
+/* ---------- 发牌区（4 张扑克牌） ---------- */
+.cards {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 6px 0 2px;
+}
+
+.card {
+  width: 86px;
+  height: 120px;
+  border-radius: 12px;
+  background: #f7f9fc;
+  border: 2px solid #d8e0ec;
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.35);
+  color: #1c2733;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-weight: 800;
+  user-select: none;
+  cursor: pointer;
+  transition: transform 0.12s, box-shadow 0.12s, border-color 0.12s, opacity 0.15s;
+}
+.card .card-num { font-size: 36px; line-height: 1; }
+.card .card-suit { font-size: 20px; line-height: 1; }
+
+/* 红/黑花色 */
+.card.red   { color: #e0475b; }
+.card.black { color: #212b36; }
+
+/* 悬停：上浮 + 发光描边 */
+.card:hover:not(:disabled) {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.45);
+  border-color: var(--accent);
+}
+/* 按下：轻微回弹 */
+.card:active:not(:disabled) { transform: translateY(-1px) scale(0.98); }
+
+/* 已用过 / 不可用：变灰 */
+.card.used,
+.card:disabled {
+  opacity: 0.32;
+  filter: grayscale(0.6);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+  border-color: #3a4a66;
+}
+
+/* 刚点过的牌高亮脉冲 */
+.card.pop { animation: cardPop 0.28s ease; }
+@keyframes cardPop {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.1); border-color: var(--accent); }
+  100% { transform: scale(1); }
+}
+
+/* ---------- 算式显示 ---------- */
+.expr {
+  min-height: 58px;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-align: center;
+  white-space: nowrap;
+  overflow-x: auto;
+}
+.expr-placeholder {
+  color: var(--muted);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+/* 实时预览值 */
+.preview {
+  min-height: 22px;
+  text-align: center;
+  font-size: 15px;
+  color: var(--muted);
+}
+.preview.ok  { color: var(--accent-2); font-weight: 700; }
+.preview.bad { color: var(--warn); }
+
+/* ---------- 运算符面板 ---------- */
+.op-pad {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+.op-btn {
+  width: 60px;
+  height: 54px;
+  border-radius: 10px;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 24px;
+  font-weight: 700;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.15s, border-color 0.15s, transform 0.1s, opacity 0.15s;
+}
+.op-btn:hover:not(:disabled) { border-color: var(--accent); background: #22304a; }
+.op-btn:active:not(:disabled) { transform: translateY(1px); }
+.op-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.op-btn.paren { color: var(--accent-2); }
+.op-btn.back  { color: var(--warn); }
+.op-btn.clear { width: auto; padding: 0 18px; color: var(--danger); }
+
+/* ---------- 主操作按钮 ---------- */
+.actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.actions .btn { padding: 11px 22px; }
+
+/* ---------- 消息区 ---------- */
+.msg {
+  text-align: center;
+  min-height: 20px;
+  font-size: 14px;
+}
+.msg.tips { color: var(--accent); }
+
+/* 弹窗内按钮间距 */
+.modal-box .actions { margin-top: 6px; }
+
+/* ---------- 窄屏自适应 ---------- */
+@media (max-width: 480px) {
+  .game24 { gap: 12px; }
+  .card { width: 66px; height: 92px; }
+  .card .card-num { font-size: 26px; }
+  .card .card-suit { font-size: 15px; }
+  .op-btn { width: 50px; height: 46px; font-size: 20px; }
+  .expr { font-size: 22px; padding: 10px 12px; }
+}

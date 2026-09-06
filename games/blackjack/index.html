@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>21点 · 小游戏大全</title>
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">🃏 21 点</h1>
+      <p class="game-desc">比点数更接近 21 且不超过 21 者获胜！</p>
+    </div>
+
+    <div class="game-card">
+      <div class="mode-switch" role="tablist" aria-label="游戏模式">
+        <button type="button" class="mode-btn is-on" data-mode="ai" aria-selected="true">🤖 单人 · 对战庄家</button>
+        <button type="button" class="mode-btn" data-mode="pvp" aria-selected="false">👥 双人 · 轮流对战庄家</button>
+      </div>
+
+      <div class="hud">
+        <div class="hud-item" id="status">等待开始…</div>
+        <button class="btn secondary" id="newBtn" type="button">重新发牌</button>
+      </div>
+
+      <section class="table">
+        <div class="zone dealer">
+          <div class="zone-title" id="dealerName">庄家</div>
+          <div class="cards" id="dealerCards"></div>
+          <div class="zone-score" id="dealerScore"></div>
+        </div>
+        <div class="zone players" id="playersZone"></div>
+      </section>
+
+      <div class="controls" id="controls" hidden>
+        <button class="btn" id="hitBtn" type="button">要牌</button>
+        <button class="btn danger" id="standBtn" type="button">停牌</button>
+      </div>
+
+      <div class="msg" id="msg" aria-live="polite"></div>
+
+      <div class="hint">
+        目标点数尽量接近 21 且不超过 21（A 记 1 或 11）。
+        <b>双人模式</b>：玩家 1 打完后轮到玩家 2，最后庄家与两位玩家分别比点。
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="endModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <h2 class="modal-title" id="endTitle">🃏 本局结束</h2>
+      <p class="modal-sub" id="endMsg"></p>
+      <button class="btn" id="againBtn" type="button">再来一局</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+
+</body>
+</html>

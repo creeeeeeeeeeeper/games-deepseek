@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>骨牌接龙 · 小游戏大全</title>
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">🁢 骨牌接龙</h1>
+      <p class="game-desc">牌桌上两端各有一个数字，你手里的牌只要有一头能对上就能接上去；接不上了就抽牌或弃牌。</p>
+    </div>
+
+    <div class="game-card center">
+      <div class="hud">
+        <div class="hud-item">桌面 <strong id="board">—</strong></div>
+        <div class="hud-item">手里 <strong id="hand">0</strong></div>
+        <div class="hud-item">牌堆 <strong id="deck">28</strong></div>
+        <div class="hud-item">已接 <strong id="placed">1</strong></div>
+      </div>
+      <div class="board-wrap" id="wrap"></div>
+      <div class="hand" id="handBox"></div>
+      <div class="controls">
+        <button class="btn secondary" id="drawBtn" type="button">🂠 抽一张</button>
+        <button class="btn secondary" id="dropBtn" type="button">弃一张</button>
+      </div>
+      <div class="msg" id="msg" aria-live="polite"></div>
+      <div class="hint">点击手里能对上桌面两端的牌即可接上。牌堆抽完且手牌都无法接上则失败；清空手牌即胜利。按 <kbd>R</kbd> 重开。</div>
+    </div>
+  </div>
+
+  <div class="modal" id="endModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <h2 class="modal-title" id="endTitle">🎉 接完啦！</h2>
+      <p class="modal-sub" id="endMsg"></p>
+      <button class="btn" id="againBtn" type="button">再来一局</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

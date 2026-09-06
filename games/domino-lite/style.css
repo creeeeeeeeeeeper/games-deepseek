@@ -1,0 +1,19 @@
+/* 骨牌接龙专属样式 */
+.game-card.center { text-align: center; }
+.board-wrap { min-height: 90px; display: flex; align-items: center; justify-content: center; gap: 10px;
+  border: 1px solid var(--border); border-radius: 14px; background: radial-gradient(120% 100% at 50% 0%, #1b2433 0%, #0c1018 70%);
+  padding: 12px; margin: 4px 0 12px; flex-wrap: wrap; }
+.dom { width: 30px; height: 46px; border-radius: 5px; background: #f4f6f8; color: #1a1a1a;
+  display: flex; flex-direction: column; align-items: center; justify-content: space-around; font-weight: 800; font-size: 14px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.35); }
+.dom .pit { width: 8px; height: 8px; border-radius: 50%; background: #2a2f3a; }
+.hand { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; min-height: 50px; }
+.hand .dom { cursor: pointer; transition: transform 0.12s, border-color 0.12s; border: 2px solid transparent; }
+.hand .dom:hover { transform: translateY(-3px); border-color: var(--accent); }
+.hand .dom.canplace { border-color: var(--accent-2); }
+.controls { display: flex; justify-content: center; gap: 12px; }
+.hud-item strong.bump { animation: bump 0.3s ease; display: inline-block; }
+@keyframes bump { 40% { transform: scale(1.4); } }
+.msg { min-height: 22px; margin-top: 12px; font-weight: 700; }
+.msg.win { color: var(--accent-2); }
+.msg.lose { color: var(--danger); }

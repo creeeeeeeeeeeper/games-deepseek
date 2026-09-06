@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>数字拼图 · 小游戏大全</title>
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">🔢 数字拼图</h1>
+    </div>
+
+    <div class="game-card center">
+      <!-- HUD：游戏状态 + 重新开始 -->
+      <div class="hud">
+        <div class="hud-item">步数 <strong id="moves">0</strong></div>
+        <div class="hud-item">用时 <strong id="time">0s</strong></div>
+        <div class="hud-item">难度 <strong id="difficulty">4×4</strong></div>
+        <button class="btn secondary" id="restart">重新开始</button>
+      </div>
+
+      <!-- 游戏主体：4x4 滑块拼图棋盘 -->
+      <div class="board-wrap">
+        <div id="board" class="board" aria-label="数字拼图棋盘"></div>
+      </div>
+
+      <!-- 状态提示（胜利时显示） -->
+      <p class="msg" id="status"></p>
+
+      <!-- 玩法说明 -->
+      <div class="hint">
+        点击与空格<b>同一行或同一列</b>的数字方块，即可把整串方块滑向空格；
+        也可用方向键 <kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd> 逐格移动空格。
+        把数字按 <strong>1-15</strong> 顺序归位、空格落到右下角即获胜。开局已打乱为<b>可解</b>状态。
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+
+</body>
+</html>

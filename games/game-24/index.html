@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>24 点 · 小游戏大全</title>
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">🃏 24 点</h1>
+    </div>
+
+    <div class="game-card">
+      <div class="hud">
+        <div class="hud-item">关卡 <strong id="round">1</strong></div>
+        <div class="hud-item">成功 <strong id="solved">0</strong></div>
+        <div class="hud-item">剩余数字 <strong id="left">4</strong></div>
+        <button class="btn secondary" id="restart">重新开始</button>
+      </div>
+
+      <div class="board-wrap">
+        <div class="game24">
+          <!-- 发牌区：点击扑克牌即可把该数字加入算式 -->
+          <div class="cards" id="cards"></div>
+
+          <!-- 算式显示 -->
+          <div class="expr" id="expr" aria-live="polite">
+            <span class="expr-placeholder">点击下方卡片与符号拼出算式</span>
+          </div>
+          <!-- 实时预览值 -->
+          <div class="preview" id="preview"></div>
+
+          <!-- 运算符 + 括号 + 退格 / 清除 -->
+          <div class="op-pad" id="opPad">
+            <button class="op-btn" data-op="+">+</button>
+            <button class="op-btn" data-op="-">−</button>
+            <button class="op-btn" data-op="*">×</button>
+            <button class="op-btn" data-op="/">÷</button>
+            <button class="op-btn paren" data-paren="(">(</button>
+            <button class="op-btn paren" data-paren=")">)</button>
+            <button class="op-btn back" id="back" title="退格">⌫</button>
+            <button class="op-btn clear" id="clear" title="清空算式">清除</button>
+          </div>
+
+          <!-- 主操作 -->
+          <div class="actions">
+            <button class="btn primary" id="check">计算 / 验证</button>
+            <button class="btn secondary" id="newRound">新牌局</button>
+            <button class="btn secondary" id="hint">提示</button>
+          </div>
+
+          <div id="msg" class="msg"></div>
+        </div>
+      </div>
+
+      <div class="hint">
+        用四张牌上的数字 1-13，配合
+        <kbd>+</kbd> <kbd>−</kbd> <kbd>×</kbd> <kbd>÷</kbd>
+        与括号凑出 <strong>24</strong>，每张牌恰好使用一次。
+        点击卡片与符号拼出算式，再点「计算 / 验证」。
+        <br />
+        快捷键：<kbd>1</kbd>-<kbd>9</kbd> 选数字、
+        <kbd>+</kbd> <kbd>-</kbd> <kbd>*</kbd> <kbd>/</kbd> 运算符、
+        <kbd>(</kbd> <kbd>)</kbd> 括号、<kbd>Enter</kbd> 验证、
+        <kbd>Backspace</kbd> 退格、<kbd>C</kbd> 清除、
+        <kbd>N</kbd> 新牌局、<kbd>H</kbd> 提示。
+        10-13 请直接点牌输入。
+      </div>
+    </div>
+  </div>
+
+  <!-- 胜利弹窗 -->
+  <div class="modal" id="winModal">
+    <div class="modal-box">
+      <h2 class="modal-title">🎉 凑出 24 啦！</h2>
+      <p class="modal-sub" id="winText"></p>
+      <div class="actions">
+        <button class="btn primary" id="winNext">下一关</button>
+        <button class="btn secondary" id="winClose">关闭</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+
+</body>
+</html>

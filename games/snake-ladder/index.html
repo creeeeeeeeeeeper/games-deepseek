@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>蛇梯棋 · 小游戏大全</title>
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">🎲 蛇梯棋</h1>
+      <p class="game-desc">掷骰前进，踩到梯子向上爬，碰到蛇头就要滑下去！</p>
+    </div>
+
+    <div class="game-card">
+      <div class="mode-switch" role="tablist" aria-label="游戏模式">
+        <button type="button" class="mode-btn is-on" data-mode="pvp" aria-selected="true">👥 双人 · 同屏</button>
+        <button type="button" class="mode-btn" data-mode="ai" aria-selected="false">🤖 单人 · 对战 AI</button>
+      </div>
+
+      <div class="hud">
+        <div class="hud-item" id="p1">玩家 1 <span class="pos" id="pos0">起点</span></div>
+        <div class="hud-item" id="p2">玩家 2 <span class="pos" id="pos1">起点</span></div>
+        <div class="hud-item">回合 <strong id="turn">玩家 1</strong></div>
+      </div>
+
+      <div class="stage">
+        <div class="board" id="board"></div>
+        <div class="panel">
+          <div class="dice" id="dice">🎲</div>
+          <button class="btn" id="rollBtn" type="button">掷骰子</button>
+          <div class="msg" id="msg" aria-live="polite"></div>
+        </div>
+      </div>
+
+      <div class="hint">
+        掷出骰子按点数前进：停在梯子底部则爬到顶部，碰到蛇头则滑到蛇尾。
+        恰好到达 100 即获胜（超出则保持原格）。按 <kbd>R</kbd> 重新开始。
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="endModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <h2 class="modal-title" id="endTitle">🎉 到达终点！</h2>
+      <p class="modal-sub" id="endMsg"></p>
+      <button class="btn" id="againBtn" type="button">再来一局</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+
+</body>
+</html>

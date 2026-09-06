@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>连连看 · 小游戏大全</title>
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">🔗 连连看</h1>
+    </div>
+
+    <div class="game-card">
+      <div class="hud">
+        <div class="hud-item">难度
+          <select id="difficulty" aria-label="选择难度">
+            <option value="easy">简单</option>
+            <option value="medium" selected>中等</option>
+            <option value="hard">困难</option>
+          </select>
+        </div>
+        <div class="hud-item">剩余 <strong id="pairs">0</strong></div>
+        <div class="hud-item">用时 <strong id="time">0s</strong></div>
+        <div class="hud-item">得分 <strong id="score">0</strong></div>
+        <div class="hud-item">错误 <strong id="errors">0</strong></div>
+        <span class="hud-actions">
+          <button class="btn secondary" id="restart">重新开始</button>
+          <button class="btn secondary" id="hintBtn">提示</button>
+          <button class="btn secondary" id="shuffleBtn">洗牌</button>
+        </span>
+      </div>
+
+      <div class="msg" id="msg"></div>
+
+      <div class="board-wrap" id="boardWrap">
+        <div id="board" class="ll-board" role="grid" aria-label="连连看棋盘"></div>
+      </div>
+
+      <div class="hint">
+        点击两个相同图案，若它们能用不多于 <strong>2 个拐点</strong> 的折线相连
+        （路径只经过空格，可绕出棋盘外边界），即可消除。配对错误或连线失败会计 1 次错误，
+        错误满 <strong>3</strong> 次失败；全部消除即获胜。
+        鼠标 / 触屏点击选块；也可用键盘 <kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd> 移动光标，
+        <kbd>Enter</kbd> / <kbd>Space</kbd> 选中方块。
+      </div>
+    </div>
+  </div>
+
+  <!-- 胜利 / 失败弹窗（复用共享样式） -->
+  <div class="modal" id="modal">
+    <div class="modal-box">
+      <p class="modal-title" id="modalTitle">🎉 胜利！</p>
+      <p class="modal-sub" id="modalSub"></p>
+      <div class="modal-actions">
+        <button class="btn secondary" id="modalRestart">再来一局</button>
+        <button class="btn" id="modalClose">关闭</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+
+</body>
+</html>

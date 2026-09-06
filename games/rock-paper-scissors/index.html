@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>石头剪刀布 · 小游戏大全</title>
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">🪨 石头剪刀布</h1>
+      <p class="game-desc">经典猜拳！可对战 AI 或与好友同屏对决，三局两胜。</p>
+    </div>
+
+    <div class="game-card">
+      <!-- 单双人模式切换 -->
+      <div class="mode-switch" role="tablist" aria-label="游戏模式">
+        <button type="button" class="mode-btn is-on" data-mode="ai" aria-selected="true">🤖 单人 · 对战 AI</button>
+        <button type="button" class="mode-btn" data-mode="pvp" aria-selected="false">👥 双人 · 同屏对决</button>
+      </div>
+
+      <div class="hud">
+        <div class="hud-item" id="sideALabel">你</div>
+        <div class="hud-item">得分 <strong id="scoreA">0</strong> : <strong id="scoreB">0</strong></div>
+        <div class="hud-item" id="sideBLabel">AI</div>
+      </div>
+
+      <div class="arena">
+        <div class="fighter">
+          <div class="gesture" id="gestureA">❔</div>
+          <div class="name" id="nameA">你</div>
+        </div>
+        <div class="vs">VS</div>
+        <div class="fighter">
+          <div class="gesture" id="gestureB">❔</div>
+          <div class="name" id="nameB">AI</div>
+        </div>
+      </div>
+
+      <div class="choices">
+        <button class="choice" data-g="0" type="button">🪨<span>石头</span></button>
+        <button class="choice" data-g="1" type="button">✂️<span>剪刀</span></button>
+        <button class="choice" data-g="2" type="button">📄<span>布</span></button>
+      </div>
+
+      <div class="msg" id="msg" aria-live="polite"></div>
+
+      <div class="hint">
+        <b>双人模式：</b>先由左侧玩家出招，随后自动进入右侧玩家出招（倒计时内按对应按钮），
+        两人都出完后判定回合。按 <kbd>R</kbd> 重新开始。
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+
+</body>
+</html>

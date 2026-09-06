@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>麻将消消 · 小游戏大全</title>
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">🀄 麻将消消</h1>
+      <p class="game-desc">从牌堆中找到一对相同的麻将（且牌面向上的"自由"牌）来消除；把所有牌都消完即通关。</p>
+    </div>
+
+    <div class="game-card center">
+      <div class="hud">
+        <div class="hud-item">剩余 <strong id="left">0</strong></div>
+        <div class="hud-item">匹配度 <strong id="match">0</strong></div>
+      </div>
+      <div class="board-wrap">
+        <div class="mahjong" id="mahjong"></div>
+      </div>
+      <div class="msg" id="msg" aria-live="polite">点两张相同的自由牌来配对消除。</div>
+      <div class="hint">只有左右边或上方没有阻挡的牌才是"自由"的；两张牌必须自由且相同才能消。</div>
+    </div>
+  </div>
+
+  <div class="modal" id="endModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <h2 class="modal-title" id="endTitle">🎉 完成！</h2>
+      <p class="modal-sub" id="endMsg"></p>
+      <button class="btn" id="againBtn" type="button">再来一局</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

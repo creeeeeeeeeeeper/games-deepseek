@@ -1,0 +1,84 @@
+/* Wordle 专属样式（叠加 assets/game.css） */
+
+.game-card { max-width: 560px; margin: 0 auto; }
+.hud { justify-content: center; flex-wrap: wrap; gap: 6px 24px; margin-bottom: 10px; }
+.hud-item strong { min-width: 24px; text-align: center; font-variant-numeric: tabular-nums; }
+.hud-item strong.bump { animation: bump 0.3s ease; display: inline-block; }
+@keyframes bump { 40% { transform: scale(1.4); } }
+
+.board {
+  display: grid;
+  gap: 6px;
+  justify-content: center;
+  margin: 4px 0 12px;
+}
+.row { display: flex; gap: 6px; }
+.tile {
+  width: clamp(40px, 11vw, 58px);
+  height: clamp(40px, 11vw, 58px);
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  font-size: clamp(22px, 6.4vw, 34px);
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--text);
+  transition: border-color 0.12s;
+}
+.tile.pop { animation: tilePop 0.12s ease; }
+@keyframes tilePop { 40% { transform: scale(1.15); } }
+.tile.reveal { animation: tileFlip 0.5s ease; }
+@keyframes tileFlip {
+  0% { transform: rotateX(0); }
+  50% { transform: rotateX(90deg); }
+  100% { transform: rotateX(0); }
+}
+.tile.correct { background: #4c9e5c; border-color: #4c9e5c; }
+.tile.present { background: #b59a2f; border-color: #b59a2f; }
+.tile.absent { background: #33404f; border-color: #33404f; }
+
+.msg { min-height: 24px; text-align: center; font-weight: 700; margin-bottom: 6px; }
+.msg.win { color: var(--accent-2); font-size: 17px; }
+
+.keys {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 520px;
+  margin: 0 auto 8px;
+}
+.krow { display: flex; justify-content: center; gap: 5px; }
+.keys .k {
+  flex: 0 0 auto;
+  width: clamp(26px, 7.2vw, 40px);
+  height: 44px;
+  border-radius: 6px;
+  border: none;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.12s, transform 0.08s;
+}
+.keys .k:hover { background: #22334e; transform: translateY(-2px); }
+.keys .k:active { transform: scale(0.93); }
+.keys .k.wide { width: clamp(38px, 10vw, 56px); font-size: 12px; }
+.keys .k.correct { background: #4c9e5c; border-color: #4c9e5c; color: #fff; }
+.keys .k.present { background: #b59a2f; border-color: #b59a2f; color: #fff; }
+.keys .k.absent { background: #33404f; border-color: #33404f; color: #78879a; }
+
+.legend { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; font-size: 12px; color: var(--muted); margin-bottom: 10px; }
+.legend .lg { display: inline-block; width: 14px; height: 14px; border-radius: 3px; vertical-align: -2px; margin-right: 3px; }
+.lg.g { background: #4c9e5c; }
+.lg.y { background: #b59a2f; }
+.lg.x { background: #33404f; }
+
+.hint { margin-top: 8px; }
+@media (max-width: 420px) {
+  .game-card { padding: 12px; }
+  .keys .k { height: 36px; font-size: 11px; }
+}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>海战棋 · 小游戏大全</title>
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">⚓ 海战棋</h1>
+      <p class="game-desc">布阵击沉对手舰队！舰艇尺寸：5/4/3/3/2</p>
+    </div>
+
+    <div class="game-card">
+      <div class="mode-switch" role="tablist" aria-label="游戏模式">
+        <button type="button" class="mode-btn is-on" data-mode="ai" aria-selected="true">🤖 单人 · 对战 AI</button>
+        <button type="button" class="mode-btn" data-mode="pvp" aria-selected="false">👥 双人 · 传屏对战</button>
+      </div>
+
+      <div class="hud">
+        <div class="hud-item">状态 <strong id="status">准备中</strong></div>
+        <div class="hud-item"><span id="labelAtk">你</span> 击沉 <strong id="sunk0">0</strong>/5</div>
+        <div class="hud-item"><span id="labelDef">AI</span> 击沉 <strong id="sunk1">0</strong>/5</div>
+        <button class="btn secondary" id="newBtn" type="button">重新开局</button>
+      </div>
+
+      <div class="boards">
+        <div class="side">
+          <div class="side-title" id="titleEnemy">敌方海域</div>
+          <div class="grid" id="enemyGrid"></div>
+        </div>
+        <div class="side">
+          <div class="side-title" id="titleMine">我方海域</div>
+          <div class="grid" id="myGrid"></div>
+        </div>
+      </div>
+
+      <div class="msg" id="msg" aria-live="polite"></div>
+
+      <div class="hint">
+        点击<b>敌方海域</b>开炮：✕ 未中 · 💥 命中。击沉对方全部 5 艘舰船即获胜。
+        <b>双人模式</b>会提示你把设备交给对方。
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="passModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <h2 class="modal-title" id="passTitle">请把设备交给 玩家 2</h2>
+      <p class="modal-sub">在“敌方海域”上点击开炮，击沉对方全部舰船！</p>
+      <button class="btn" id="passBtn" type="button">我准备好了，开打</button>
+    </div>
+  </div>
+
+  <div class="modal" id="endModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <h2 class="modal-title" id="endTitle">🏆 胜利！</h2>
+      <p class="modal-sub" id="endMsg"></p>
+      <button class="btn" id="againBtn" type="button">再来一局</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+
+</body>
+</html>

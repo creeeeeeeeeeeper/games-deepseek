@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>播棋 · 小游戏大全</title>
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">🪨 播棋</h1>
+      <p class="game-desc">古老的取子博弈：每回合挑自己一侧的一个洞，把里面的石子依次播种。收进自家仓库越多越好，最后石子多者胜。</p>
+    </div>
+
+    <div class="game-card center">
+      <div class="hud">
+        <div class="hud-item">你仓库 <strong id="myStore">0</strong></div>
+        <div class="hud-item">回合 <strong id="turn">你</strong></div>
+        <div class="hud-item">AI 仓库 <strong id="aiStore">0</strong></div>
+      </div>
+      <div class="board-wrap">
+        <div class="board" id="board"></div>
+      </div>
+      <div class="msg" id="msg" aria-live="polite">点击你一侧的洞（下方一排）来播种。</div>
+      <div class="hint">播种到自家仓库可再走一次；最后一粒落在你这边空洞且对面有子，可把对面与这一粒都收入仓库。</div>
+    </div>
+  </div>
+
+  <div class="modal" id="endModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <h2 class="modal-title" id="endTitle"></h2>
+      <p class="modal-sub" id="endMsg"></p>
+      <button class="btn" id="againBtn" type="button">再来一局</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

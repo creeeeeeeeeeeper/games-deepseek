@@ -1,0 +1,15 @@
+/* 点饼干专属样式 */
+.game-card.center { text-align: center; }
+.board-wrap { display: flex; justify-content: center; padding: 8px 0; }
+.cookie { font-size: 110px; cursor: pointer; user-select: none; transition: transform 0.08s; line-height: 1; }
+.cookie:hover { transform: scale(1.06); }
+.cookie:active { transform: scale(0.92); }
+.shop { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-top: 12px; max-width: 620px; margin-left: auto; margin-right: auto; }
+.upg { background: #1b2433; border: 1px solid var(--border); border-radius: 10px; padding: 10px; cursor: pointer; text-align: left; }
+.upg:hover { border-color: var(--accent); }
+.upg.cant { opacity: 0.45; cursor: not-allowed; }
+.upg .nm { font-weight: 800; }
+.upg .ds { font-size: 12px; color: var(--muted); margin: 3px 0; }
+.upg .pr { color: var(--accent-2); font-weight: 700; }
+.msg { min-height: 22px; margin-top: 10px; font-weight: 700; }
+.msg.win { color: var(--accent-2); }

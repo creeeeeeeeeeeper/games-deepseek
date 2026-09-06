@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>纸牌战争 · 小游戏大全</title>
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">🂡 纸牌战争</h1>
+      <p class="game-desc">翻一张牌，点数大获胜；平局就各自再翻一张比和，先到 10 分赢！</p>
+    </div>
+
+    <div class="game-card center">
+      <div class="hud">
+        <div class="hud-item">你 <strong id="you">0</strong></div>
+        <div class="hud-item">本局 <strong id="hs">你 0 : 0 AI</strong></div>
+        <div class="hud-item">AI <strong id="ai">0</strong></div>
+      </div>
+      <div class="board-wrap"><canvas id="game" width="480" height="300" aria-label="纸牌战争画面"></canvas></div>
+      <button class="btn" id="flipBtn" type="button">🂠 翻牌</button>
+      <div class="msg" id="msg" aria-live="polite"></div>
+      <div class="hint">平局时进入「战争」，双方连翻两张，点数大者通吃。按 <kbd>R</kbd> 重开。</div>
+    </div>
+  </div>
+
+  <div class="modal" id="endModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <h2 class="modal-title" id="endTitle">🏆 你赢了！</h2>
+      <p class="modal-sub" id="endMsg"></p>
+      <button class="btn" id="againBtn" type="button">再来一场</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

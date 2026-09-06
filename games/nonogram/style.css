@@ -1,0 +1,12 @@
+/* 数织专属样式 */
+.game-card.center { text-align: center; }
+.nono-wrap { display: flex; justify-content: center; padding: 12px; border: 1px solid var(--border); border-radius: 14px;
+  background: radial-gradient(120% 100% at 50% 0%, #1b2433 0%, #0c1018 70%); margin: 4px auto 12px; }
+.nono { display: grid; gap: 2px; }
+.clue { display: flex; align-items: center; justify-content: center; font-weight: 700; color: var(--muted); font-size: 12px; white-space: pre-line; text-align: center; }
+.ncell { width: 30px; height: 30px; border: 1px solid #3a4150; cursor: pointer; user-select: none; background: #1a1f2a; }
+.ncell.filled { background: #e2c266; }
+.ncell.x-mark::before { content: "✕"; color: var(--danger); font-weight: 800; display: flex; align-items: center; justify-content: center; height: 100%; }
+.ncell:hover { outline: 1px solid var(--accent); }
+.msg { min-height: 22px; margin-top: 12px; font-weight: 700; }
+.msg.win { color: var(--accent-2); }

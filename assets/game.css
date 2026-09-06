@@ -1,0 +1,248 @@
+/* ============================================================
+   共享游戏页样式（每个游戏页引用本文件 + 自身 style.css）
+   v3 · 街机印刷海报·深色车间版
+   ------------------------------------------------------------
+   保持既有类名与 CSS 变量契约不变（--bg/--panel/--accent 等），
+   各游戏专属 style.css 可继续叠加定制。
+   ============================================================ */
+:root {
+  --bg: #171209;
+  --panel: #221a0f;
+  --panel-2: #1a1309;
+  --border: #56452b;
+  --text: #ece0c8;
+  --muted: #a2947c;
+  --accent: #e96a2e;     /* 铁锈橙 */
+  --accent-2: #a5c95b;   /* 荧光绿（胜利/正确） */
+  --danger: #d6453a;     /* 品红替代（错误/负向） */
+  --warn: #e7c14e;       /* 套印黄 */
+  --ink: #14100a;
+  --noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0.30'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.8'/%3E%3C/svg%3E");
+  --font-disp: "Times New Roman", "Songti SC", "SimSun", serif;
+  --font-body: "PingFang SC", "Microsoft YaHei", "Segoe UI", system-ui, sans-serif;
+  --snap: cubic-bezier(0.9, 0, 0.1, 1);
+  --spring: cubic-bezier(0.3, 1.8, 0.4, 1);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(90% 45% at 6% -2%, rgba(233, 106, 46, 0.13), transparent 60%),
+    radial-gradient(70% 38% at 104% 8%, rgba(58, 168, 173, 0.1), transparent 55%),
+    linear-gradient(180deg, #1c150d 0%, var(--bg) 60%);
+  color: var(--text);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+/* 印刷颗粒罩层 */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9;
+  pointer-events: none;
+  background-image: var(--noise);
+  background-size: 150px 150px;
+  opacity: 0.45;
+  mix-blend-mode: overlay;
+}
+
+.game-shell {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px 20px 46px;
+}
+
+/* ---------- 顶部：返回 + 标题（错位贴纸式，不居中） ---------- */
+.game-topbar {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin: 4px 2px 24px;
+  flex-wrap: wrap;
+}
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  border: 1px solid var(--border);
+  background: var(--panel-2);
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  position: relative;
+  transform: rotate(-1deg);
+  transition: transform 0.14s var(--spring), color 0.12s var(--snap), border-color 0.12s var(--snap);
+}
+.back-btn:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  transform: rotate(0deg) translateY(-2px);
+}
+.game-title {
+  font-family: var(--font-disp);
+  font-size: clamp(22px, 4vw, 30px);
+  font-weight: 900;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text);
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.55);
+}
+.game-desc {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.8;
+  margin: 2px 0 0;
+  max-width: 60em;
+}
+
+/* ---------- 游戏卡片容器（打印页签样式） ---------- */
+.game-card {
+  position: relative;
+  background:
+    var(--noise),
+    linear-gradient(165deg, rgba(236, 224, 200, 0.04), transparent 60%),
+    var(--panel);
+  border: 1px solid var(--border);
+  box-shadow: 6px 7px 0 rgba(0, 0, 0, 0.45);
+  border-radius: 2px;
+  padding: 22px;
+  min-height: 300px;
+}
+
+/* ---------- 按钮（墨块+硬阴影，回弹过冲） ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 22px;
+  border: 1px solid var(--accent);
+  border-radius: 2px;
+  background: var(--accent);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.5);
+  transition: transform 0.12s var(--spring), box-shadow 0.12s var(--snap), background 0.12s var(--snap);
+}
+.btn:hover { transform: translate(-1px, -2px); box-shadow: 5px 6px 0 rgba(0, 0, 0, 0.55); }
+.btn:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5); }
+.btn.secondary {
+  background: var(--panel-2);
+  border-color: var(--border);
+  color: var(--text);
+}
+.btn.secondary:hover { border-color: var(--accent); color: var(--accent); }
+.btn.danger { background: var(--danger); border-color: var(--danger); color: #fff; }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+/* ---------- HUD（标签条） ---------- */
+.hud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  align-items: center;
+  margin-bottom: 16px;
+  font-size: 13px;
+}
+.hud-item {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  color: var(--muted);
+  padding: 4px 0;
+  border-bottom: 1px dashed var(--border);
+}
+.hud-item strong { color: var(--text); font-size: 17px; font-weight: 800; }
+
+/* ---------- 消息提示 ---------- */
+.msg { font-size: 13px; min-height: 18px; color: var(--muted); }
+.msg.win { color: var(--accent-2); }
+.msg.lose { color: var(--danger); }
+
+/* ---------- 居中画布（保留布局，但给纸面边缘） ---------- */
+.board-wrap {
+  display: flex;
+  justify-content: center;
+  margin: 4px 0;
+}
+canvas {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  max-width: 100%;
+  height: auto;
+}
+
+/* ---------- 通用说明 ---------- */
+.hint {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.9;
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--border);
+}
+kbd {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-bottom-width: 3px;
+  border-radius: 3px;
+  padding: 1px 7px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--text);
+}
+
+/* ---------- 模态框（印刷贴纸式） ---------- */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(12, 9, 5, 0.72);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 60;
+}
+.modal.show { display: flex; }
+.modal-box {
+  background:
+    var(--noise),
+    linear-gradient(160deg, rgba(231, 193, 78, 0.07), transparent 70%),
+    var(--panel);
+  border: 1px solid var(--line, #6b5a3e);
+  border-radius: 2px;
+  padding: 30px 34px 26px;
+  text-align: center;
+  max-width: 92%;
+  position: relative;
+  box-shadow: 8px 9px 0 rgba(0, 0, 0, 0.6);
+  outline: 1px solid rgba(236, 224, 200, 0.05);
+}
+.modal-title {
+  font-family: var(--font-disp);
+  font-size: 26px;
+  font-weight: 900;
+  margin: 0 0 10px;
+  letter-spacing: 1px;
+}
+.modal-sub { color: var(--muted); margin: 0 0 20px; line-height: 1.9; }
+.modal-box .msg { margin-bottom: 14px; font-weight: 700; }
+
+/* 尊重“减少动效”偏好 */
+@media (prefers-reduced-motion: reduce) {
+  .back-btn, .btn { transition-duration: 0.01ms; }
+}

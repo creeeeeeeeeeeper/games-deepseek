@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>跳棋 · 小游戏大全</title>
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">🔴 跳棋</h1>
+      <p class="game-desc">简化国际跳棋：斜向前进，跳过对方棋子即可吃掉它。</p>
+    </div>
+
+    <div class="game-card">
+      <div class="mode-switch" role="tablist" aria-label="游戏模式">
+        <button type="button" class="mode-btn is-on" data-mode="ai" aria-selected="true">🤖 单人 · 对战 AI</button>
+        <button type="button" class="mode-btn" data-mode="pvp" aria-selected="false">👥 双人 · 同屏轮流</button>
+      </div>
+
+      <div class="hud">
+        <div class="hud-item">回合 <strong id="turn">你</strong></div>
+        <div class="hud-item"><span id="lblA">你</span> 剩余 <strong id="countA">12</strong></div>
+        <div class="hud-item"><span id="lblB">AI</span> 剩余 <strong id="countB">12</strong></div>
+        <button class="btn secondary" id="restart" type="button">重新开始</button>
+      </div>
+
+      <div class="board-wrap">
+        <div class="board" id="board" aria-label="跳棋棋盘"></div>
+      </div>
+
+      <div class="msg" id="msg" aria-live="polite"></div>
+
+      <div class="hint">
+        点击己方棋子选中（可行落点会高亮），再点目标格移动 / 跳吃。
+        兵只能斜向前进一格，跳吃可越过相邻敌子；到达底线升王后可双向移动。
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="endModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <h2 class="modal-title" id="endTitle">🎉 获胜！</h2>
+      <p class="modal-sub" id="endMsg"></p>
+      <button class="btn" id="againBtn" type="button">再来一局</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>🎮 乒乓球 · 小游戏大全</title>
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="game-shell">
+    <header class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">🎮 乒乓球 · 小游戏大全</h1>
+      <p class="game-desc">经典街机乒乓：先得 5 分获胜，单人挑战 AI 或双人同屏对战！</p>
+    </header>
+
+    <main class="game-card">
+      <!-- 顶部：分段式模式切换（切换即重置本局） -->
+      <div class="mode-bar">
+        <div class="mode-switch" role="tablist" aria-label="游戏模式">
+          <button type="button" class="mode-btn is-active" data-mode="ai" role="tab" aria-selected="true">🤖 单人·对战AI</button>
+          <button type="button" class="mode-btn" data-mode="pvp" role="tab" aria-selected="false">👥 双人·同屏</button>
+        </div>
+        <button type="button" class="btn danger reset-btn" id="resetBtn">↺ 重开</button>
+      </div>
+
+      <!-- HUD -->
+      <div class="hud">
+        <div class="hud-item"><span>得分</span><strong class="score-main" id="scoreText">0 : 0</strong></div>
+        <div class="hud-item"><span>模式</span><strong id="modeLabel">🤖 单人·对战AI</strong></div>
+        <div class="hud-item"><span>最高连胜</span><strong id="bestStreak">0 局</strong></div>
+      </div>
+
+      <!-- 棋盘 -->
+      <div class="board-wrap">
+        <canvas id="pong" width="640" height="420"></canvas>
+        <span class="board-tag left" id="tagLeft">你</span>
+        <span class="board-tag right" id="tagRight">AI</span>
+        <div class="board-overlay" id="banner" aria-hidden="true"></div>
+        <div class="board-overlay" id="countdown" aria-hidden="true">
+          <span id="cdNum">3</span>
+          <small id="cdHint">开局准备…</small>
+        </div>
+      </div>
+
+      <p class="hint" id="hint"></p>
+    </main>
+  </div>
+
+  <!-- 结算模态框 -->
+  <div class="modal" id="resultModal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-box">
+      <h2 class="modal-title" id="modalTitle">🎉 比赛结束</h2>
+      <p class="modal-sub" id="modalSub"></p>
+      <div class="modal-actions">
+        <button type="button" class="btn" id="againBtn">再来一局</button>
+        <a class="btn secondary" href="../../index.html">返回列表</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+
+</body>
+</html>

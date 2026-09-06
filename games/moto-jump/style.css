@@ -1,0 +1,7 @@
+/* 摩托飞跃专属样式 */
+.game-card.center { text-align: center; }
+.board-wrap { display: flex; justify-content: center; }
+canvas { background: linear-gradient(180deg, #3a5666 0%, #22303a 60%, #1a2229 100%); border-radius: 14px; border: 1px solid var(--border); }
+.msg { min-height: 22px; margin-top: 12px; font-weight: 700; }
+.msg.win { color: var(--accent-2); }
+.msg.lose { color: var(--danger); }

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>农夫过河 · 小游戏大全</title>
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">🚣 农夫过河</h1>
+    </div>
+
+    <div class="game-card">
+      <div class="hud">
+        <div class="hud-item">步数 <strong id="moves">0</strong></div>
+        <div class="hud-item">目标 <strong>狼·羊·菜 全过河</strong></div>
+        <button class="btn secondary" id="restart">重新开始</button>
+      </div>
+
+      <div class="board-wrap">
+        <div id="board" class="river-board">
+          <div class="bank bank-left">
+            <div class="bank-label">起点</div>
+            <div id="leftItems" class="bank-items"></div>
+          </div>
+
+          <div class="river">
+            <div id="boat" class="boat">
+              <div class="boat-label">🚣 小船</div>
+              <div id="boatItems" class="boat-items"></div>
+            </div>
+            <button class="btn secondary sail-btn" id="sail">⛵ 开往对岸</button>
+            <div class="boat-status" id="boatStatus"></div>
+          </div>
+
+          <div class="bank bank-right">
+            <div class="bank-label">对岸</div>
+            <div id="rightItems" class="bank-items"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="msg" id="msg"></div>
+
+      <div class="hint">
+        点击 <kbd>棋子</kbd> 装载/卸载，<kbd>点击船</kbd>或 <kbd>Enter</kbd> 开船。
+        船一次只能载 <strong>农夫 + 最多 1 件物品</strong>，农夫必须在船上才能开船。<br />
+        农夫一旦离开，若 <strong>狼和羊</strong> 或 <strong>羊和菜</strong> 单独留在同一岸，任务立即失败。
+        快捷操作：<kbd>1</kbd>狼 <kbd>2</kbd>羊 <kbd>3</kbd>菜 <kbd>4</kbd>农夫 <kbd>空格</kbd>开船。
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal">
+    <div class="modal-box">
+      <div class="modal-title" id="modalTitle"></div>
+      <p class="modal-sub" id="modalText"></p>
+      <button class="btn secondary" id="modalRestart">再来一局</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+
+</body>
+</html>

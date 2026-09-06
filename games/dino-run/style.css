@@ -1,0 +1,126 @@
+/* ===== 恐龙跑酷 专属样式 ===== */
+
+.dino-board {
+  position: relative;
+}
+
+.dino-board canvas {
+  display: block;
+  width: 100%;
+  height: auto; /* 仅等比缩放，保持 800×300 比例 */
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+  touch-action: none;      /* 触屏手势不滚动页面 */
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 里程碑闪现提示 */
+.milestone-toast {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%) scale(0.4);
+  padding: 6px 18px;
+  border-radius: 999px;
+  background: rgba(16, 22, 42, 0.85);
+  color: var(--accent-2);
+  border: 1px solid var(--accent-2);
+  font-weight: 700;
+  letter-spacing: 2px;
+  font-size: 14px;
+  opacity: 0;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.milestone-toast.show {
+  animation: toast-pop 1.4s ease forwards;
+}
+
+@keyframes toast-pop {
+  0%   { opacity: 0; transform: translateX(-50%) scale(0.4); }
+  15%  { opacity: 1; transform: translateX(-50%) scale(1.18); }
+  30%  { transform: translateX(-50%) scale(1); }
+  75%  { opacity: 1; transform: translateX(-50%) scale(1); }
+  100% { opacity: 0; transform: translateX(-50%) translateY(-16px) scale(1); }
+}
+
+/* HUD 得分脉冲（每 100 分） */
+.hud-item strong.pulse {
+  display: inline-block;
+  animation: hud-pulse 0.9s ease;
+}
+
+@keyframes hud-pulse {
+  0%   { transform: scale(1); }
+  30%  { transform: scale(1.7); color: var(--accent-2); text-shadow: 0 0 12px var(--accent-2); }
+  100% { transform: scale(1); }
+}
+
+/* 触屏 / 鼠标按钮 */
+.touch-controls {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.touch-controls .btn {
+  user-select: none;
+  touch-action: none;
+  min-width: 110px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.touch-controls .btn:active {
+  transform: translateY(2px);
+}
+
+/* 结算模态框内容 */
+.modal-box {
+  text-align: center;
+}
+
+.result-score {
+  font-size: 46px;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1.1;
+  margin: 6px 0 2px;
+}
+
+.result-score small {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--muted);
+  margin-left: 4px;
+}
+
+.record-badge {
+  display: none;
+  margin: 8px auto 2px;
+  width: max-content;
+  padding: 3px 14px;
+  border-radius: 999px;
+  background: rgba(52, 211, 153, 0.12);
+  border: 1px solid var(--accent-2);
+  color: var(--accent-2);
+  font-weight: 700;
+  animation: badge-blink 1s ease infinite;
+}
+
+.record-badge.show {
+  display: block;
+}
+
+@keyframes badge-blink {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.4; }
+}
+
+#againBtn {
+  margin-top: 14px;
+}

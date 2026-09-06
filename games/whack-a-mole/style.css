@@ -1,0 +1,550 @@
+/* ===== 🎮 打地鼠 · 专属样式 ===== */
+
+/* ---------- 布局 ---------- */
+.whack-wrap {
+  position: relative;
+  width: min(92vw, 440px);
+  margin: 14px auto 4px;
+}
+
+.whack-board {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(8px, 2.6vw, 14px);
+  padding: clamp(10px, 3vw, 18px);
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  background:
+    radial-gradient(circle at 50% -10%, rgba(120, 220, 160, 0.10), transparent 55%),
+    linear-gradient(180deg, #2c5b42 0%, #22462f 55%, #1a3627 100%);
+  box-shadow: inset 0 2px 14px rgba(0, 0, 0, 0.45), 0 8px 26px rgba(0, 0, 0, 0.35);
+  cursor: none;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.whack-board,
+.whack-board * {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 最后 10 秒：场地红色警戒呼吸 */
+.whack-board.urgent::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  pointer-events: none;
+  z-index: 4;
+  box-shadow: inset 0 0 28px rgba(255, 93, 108, 0.30);
+  animation: urgent-pulse 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes urgent-pulse {
+  from { opacity: 0.3; }
+  to { opacity: 1; }
+}
+
+/* ---------- 洞口（椭圆洞 + 遮挡遮罩） ---------- */
+.whack-board .hole {
+  position: relative;
+  aspect-ratio: 1 / 0.92;
+  min-height: 84px;
+}
+
+/* 洞内阴影（后层） */
+.whack-board .pit {
+  position: absolute;
+  left: 5%;
+  right: 5%;
+  bottom: 4%;
+  height: 30%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at 50% 32%, #0c0704 0%, #1b100a 55%, #271810 100%);
+  box-shadow: inset 0 5px 9px rgba(0, 0, 0, 0.85);
+  z-index: 1;
+}
+
+/* 遮罩：地鼠从中冒出（overflow hidden 裁剪） */
+.whack-board .hole-mask {
+  position: absolute;
+  left: 13%;
+  right: 13%;
+  bottom: 19%;
+  height: 64%;
+  overflow: hidden;
+  z-index: 2;
+}
+
+/* 洞口前沿（泥土唇，前层遮挡） */
+.whack-board .rim {
+  position: absolute;
+  left: 5%;
+  right: 5%;
+  bottom: 4%;
+  height: 15%;
+  border-radius: 0 0 50% 50% / 0 0 100% 100%;
+  background: linear-gradient(180deg, #7a5535 0%, #4a3018 70%, #33200e 100%);
+  box-shadow: inset 0 2px 3px rgba(255, 255, 255, 0.14), inset 0 -4px 6px rgba(0, 0, 0, 0.45);
+  z-index: 3;
+}
+
+/* ---------- 地鼠（纯 CSS 造型） ---------- */
+.whack-board .mole {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  transform: translateY(103%);
+  transition: transform 0.16s cubic-bezier(0.55, 0, 0.8, 0.4);
+  will-change: transform;
+  background: radial-gradient(circle at 50% 26%, #c89d6e 0%, #a97a4c 45%, #7c5230 78%, #5f3d21 100%);
+  border-radius: 46% 46% 40% 40% / 58% 58% 34% 34%;
+  box-shadow:
+    inset -4px -6px 10px rgba(0, 0, 0, 0.35),
+    inset 3px 4px 8px rgba(255, 255, 255, 0.18);
+}
+
+/* 冒头：弹性弹出 */
+.whack-board .mole.up {
+  transform: translateY(3%);
+  transition: transform 0.26s cubic-bezier(0.2, 1.5, 0.4, 1);
+}
+
+/* 缩回：加速钻回洞里 */
+.whack-board .mole.down {
+  transform: translateY(103%);
+  transition: transform 0.17s cubic-bezier(0.55, 0, 0.8, 0.4);
+}
+
+/* 被击中：压扁 + 晃动 */
+.whack-board .mole.hit {
+  animation: mole-squash 0.3s cubic-bezier(0.3, 1.4, 0.5, 1);
+}
+
+@keyframes mole-squash {
+  0% { transform: translateY(3%) scale(1.25, 0.72); }
+  45% { transform: translateY(8%) scale(0.8, 1.18) rotate(-5deg); }
+  100% { transform: translateY(3%) scale(1, 1); }
+}
+
+/* 耳朵 */
+.whack-board .ear {
+  position: absolute;
+  top: 6%;
+  width: 25%;
+  aspect-ratio: 1;
+  background: #8a5f39;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 3px #6b4526;
+}
+.whack-board .ear-l { left: 7%; }
+.whack-board .ear-r { right: 7%; }
+
+/* 眼睛 */
+.whack-board .eye {
+  position: absolute;
+  top: 31%;
+  width: 12%;
+  aspect-ratio: 1;
+  background: #2a1a10;
+  border-radius: 50%;
+}
+.whack-board .eye::after {
+  content: "";
+  position: absolute;
+  top: 18%;
+  left: 22%;
+  width: 38%;
+  height: 38%;
+  background: #fff;
+  border-radius: 50%;
+  opacity: 0.9;
+}
+.whack-board .eye-l { left: 25%; }
+.whack-board .eye-r { right: 25%; }
+
+/* 吻部：鼻子 + 嘴 */
+.whack-board .snout {
+  position: absolute;
+  top: 46%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 38%;
+  height: 28%;
+  background: #d9b58d;
+  border-radius: 50%;
+  box-shadow: inset 0 -3px 5px rgba(0, 0, 0, 0.18);
+}
+.whack-board .nose {
+  position: absolute;
+  top: 14%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 32%;
+  height: 26%;
+  background: #e58a9a;
+  border-radius: 50% 50% 40% 40%;
+}
+.whack-board .mouth {
+  position: absolute;
+  top: 52%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 42%;
+  height: 26%;
+  border: 2px solid #5f3d21;
+  border-top: none;
+  border-radius: 0 0 45% 45%;
+}
+
+/* 爪子 */
+.whack-board .paw {
+  position: absolute;
+  bottom: 9%;
+  width: 22%;
+  height: 15%;
+  background: #93663d;
+  border-radius: 50%;
+  box-shadow: inset 0 2px 3px rgba(255, 255, 255, 0.2);
+}
+.whack-board .paw-l { left: 5%; }
+.whack-board .paw-r { right: 5%; }
+
+/* 眩晕表情（被击中时替换正常表情） */
+.whack-board .dizzy {
+  position: absolute;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(24px, 7vmin, 40px);
+  line-height: 1;
+  filter: drop-shadow(0 0 6px rgba(255, 210, 80, 0.6));
+}
+.whack-board .mole.hit .dizzy { display: flex; animation: dizzy-spin 0.45s ease; }
+.whack-board .mole.hit .eye,
+.whack-board .mole.hit .snout,
+.whack-board .mole.hit .paw { visibility: hidden; }
+
+@keyframes dizzy-spin {
+  0% { transform: rotate(-14deg) scale(0.8); }
+  50% { transform: rotate(10deg) scale(1.12); }
+  100% { transform: rotate(0deg) scale(1); }
+}
+
+/* ---------- 击中特效 ---------- */
+.whack-board [data-fx] { pointer-events: none; }
+
+/* 「+N」飘字 */
+.whack-board .fx-score {
+  position: absolute;
+  left: 50%;
+  top: 16%;
+  z-index: 6;
+  font-weight: 800;
+  font-size: clamp(18px, 4.6vmin, 26px);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+  animation: fx-rise 0.8s ease-out forwards;
+}
+.whack-board .fx-score.g1 { color: var(--accent-2); }
+.whack-board .fx-score.g2 { color: var(--warn); }
+.whack-board .fx-score.g3 { color: var(--danger); }
+
+@keyframes fx-rise {
+  0% { opacity: 0; transform: translate(-50%, 10px) scale(0.6); }
+  15% { opacity: 1; transform: translate(-50%, 0) scale(1.18); }
+  32% { transform: translate(-50%, -6px) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -46px) scale(1); }
+}
+
+/* 星星迸发 */
+.whack-board .fx-star {
+  position: absolute;
+  left: 50%;
+  top: 34%;
+  z-index: 6;
+  color: #ffd23e;
+  font-size: clamp(13px, 3.4vmin, 19px);
+  text-shadow: 0 0 8px rgba(255, 200, 60, 0.85);
+  animation: fx-star 0.6s ease-out forwards;
+}
+
+@keyframes fx-star {
+  0% { opacity: 0; transform: translate(-50%, -50%) rotate(0deg) scale(0.4); }
+  20% { opacity: 1; }
+  100% { opacity: 0; transform: translate(calc(-50% + var(--dx, 0px)), calc(-50% + var(--dy, -40px))) rotate(var(--rot, 180deg)) scale(1.15); }
+}
+
+/* 冲击光环 */
+.whack-board .fx-ring {
+  position: absolute;
+  left: 50%;
+  bottom: 22%;
+  width: 42%;
+  aspect-ratio: 1;
+  z-index: 5;
+  border: 3px solid rgba(255, 210, 62, 0.85);
+  border-radius: 50%;
+  animation: fx-ring 0.45s ease-out forwards;
+}
+
+@keyframes fx-ring {
+  0% { opacity: 0.9; transform: translateX(-50%) scale(0.3); }
+  100% { opacity: 0; transform: translateX(-50%) scale(1.6); }
+}
+
+/* 落空提示 */
+.whack-board .fx-miss {
+  position: absolute;
+  z-index: 6;
+  color: #94a3b8;
+  font-weight: 700;
+  font-size: clamp(12px, 3vmin, 16px);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
+  animation: fx-miss 0.5s ease-out forwards;
+}
+
+@keyframes fx-miss {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(0.7); }
+  20% { opacity: 1; transform: translate(-50%, -65%) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -150%) scale(1); }
+}
+
+/* ---------- 开局遮罩 / 3-2-1 倒计时 ---------- */
+.whack-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 18px;
+  background: rgba(8, 14, 10, 0.66);
+  pointer-events: none;
+}
+.whack-overlay.idle { pointer-events: auto; cursor: pointer; }
+.whack-overlay.hidden { display: none; }
+
+.whack-overlay .ov-mole {
+  font-size: clamp(42px, 12vmin, 64px);
+  line-height: 1;
+  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.5));
+  animation: ov-bob 1.6s ease-in-out infinite;
+}
+.whack-overlay:not(.idle) .ov-mole { display: none; }
+
+@keyframes ov-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+.whack-overlay .ov-text {
+  color: var(--muted);
+  font-size: clamp(14px, 3.6vmin, 17px);
+  text-align: center;
+  line-height: 1;
+}
+.whack-overlay .ov-text.count {
+  font-size: clamp(64px, 20vmin, 108px);
+  font-weight: 800;
+  color: var(--accent);
+  text-shadow: 0 6px 26px rgba(58, 160, 255, 0.45);
+  animation: count-pop 0.55s cubic-bezier(0.2, 1.4, 0.4, 1);
+}
+.whack-overlay .ov-text.count.go {
+  color: var(--accent-2);
+  font-size: clamp(52px, 16vmin, 88px);
+  text-shadow: 0 6px 26px rgba(52, 211, 153, 0.5);
+}
+
+@keyframes count-pop {
+  0% { transform: scale(2.2); opacity: 0; }
+  35% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.95; }
+}
+
+/* ---------- HUD ---------- */
+.hud-item strong {
+  display: inline-block;
+  min-width: 2ch;
+}
+#hud-time { min-width: 3.4ch; text-align: center; }
+
+/* 计时最后 10 秒：红色闪烁 */
+.hud-item.danger strong {
+  color: var(--danger);
+  animation: time-flash 0.45s ease-in-out infinite;
+}
+
+@keyframes time-flash {
+  0%, 100% { color: var(--danger); text-shadow: 0 0 10px rgba(255, 93, 108, 0.65); transform: scale(1); }
+  50% { color: #fff; text-shadow: 0 0 16px rgba(255, 93, 108, 0.95); transform: scale(1.14); }
+}
+
+/* 得分 / 连击数字动画 */
+.hud-item strong.pop { animation: stat-pop 0.3s cubic-bezier(0.2, 1.6, 0.4, 1); }
+@keyframes stat-pop {
+  0% { transform: scale(1.55); }
+  100% { transform: scale(1); }
+}
+
+/* 连击被打破：红色抖动 */
+.hud-item strong.break { animation: stat-break 0.35s ease; }
+@keyframes stat-break {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-3px); color: var(--danger); }
+  50% { transform: translateX(3px); color: var(--danger); }
+  75% { transform: translateX(-2px); }
+}
+
+/* 连击倍率徽章 */
+.hud-mult {
+  display: inline-block;
+  margin-left: 5px;
+  padding: 1px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid var(--border);
+  vertical-align: middle;
+  transition: color 0.2s, background 0.2s, border-color 0.2s;
+}
+.hud-mult.x2 { color: var(--warn); border-color: rgba(255, 178, 62, 0.5); background: rgba(255, 178, 62, 0.12); }
+.hud-mult.x3 { color: var(--danger); border-color: rgba(255, 93, 108, 0.55); background: rgba(255, 93, 108, 0.14); }
+
+/* 实时刷新最高分：金色呼吸 */
+.hud-item strong.best-new {
+  color: var(--warn);
+  animation: best-glow 0.6s ease infinite alternate;
+}
+@keyframes best-glow {
+  from { text-shadow: 0 0 4px rgba(255, 178, 62, 0.35); }
+  to { text-shadow: 0 0 16px rgba(255, 178, 62, 0.9); }
+}
+
+/* ---------- 控制与提示 ---------- */
+.whack-controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+
+.toast {
+  margin: 12px auto 0;
+  width: max-content;
+  max-width: 100%;
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--accent-2);
+  background: rgba(52, 211, 153, 0.12);
+  border: 1px solid rgba(52, 211, 153, 0.45);
+  opacity: 0;
+  pointer-events: none;
+}
+.toast.show { animation: toast-in 1.7s ease forwards; }
+
+@keyframes toast-in {
+  0% { opacity: 0; transform: translateY(8px); }
+  12% { opacity: 1; transform: translateY(0); }
+  78% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* ---------- 结算模态框 ---------- */
+.modal.show .modal-box { animation: modal-pop 0.35s cubic-bezier(0.2, 1.4, 0.4, 1); }
+
+@keyframes modal-pop {
+  0% { transform: scale(0.72); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.result-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 16px 0 18px;
+}
+.result-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 12px 6px;
+  border-radius: 12px;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+}
+.result-item span { font-size: 12px; color: var(--muted); }
+.result-item strong { font-size: clamp(22px, 6vw, 30px); line-height: 1.1; color: var(--accent); }
+.result-item.is-new strong { color: var(--warn); }
+.result-item.is-new span::after { content: " 🎉新纪录"; color: var(--warn); }
+
+.modal-actions { display: flex; justify-content: center; }
+.modal-actions .btn { min-width: 160px; }
+
+/* ---------- 跟随指针的小锤 ---------- */
+.hammer {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.18s ease;
+  will-change: transform;
+}
+.hammer.show { opacity: 1; }
+
+.hammer-inner {
+  position: relative;
+  width: 64px;
+  height: 78px;
+  transform: rotate(34deg);
+  transform-origin: 10px 74px;
+}
+.hammer-handle {
+  position: absolute;
+  left: 5px;
+  bottom: 2px;
+  width: 10px;
+  height: 56px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #b57c4f, #825434 55%, #5e3c22);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45), inset 2px 0 2px rgba(255, 255, 255, 0.28);
+}
+.hammer-head {
+  position: absolute;
+  left: -10px;
+  top: 6px;
+  width: 44px;
+  height: 22px;
+  border-radius: 7px;
+  background: linear-gradient(180deg, #dbe2ec, #9aa6b5 55%, #76828f);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5), inset 0 2px 2px rgba(255, 255, 255, 0.55);
+}
+
+/* 敲击旋转动画 */
+.hammer-inner.swing { animation: hammer-swing 0.22s cubic-bezier(0.3, 0, 0.4, 1); }
+
+@keyframes hammer-swing {
+  0% { transform: rotate(34deg); }
+  45% { transform: rotate(-56deg); }
+  100% { transform: rotate(34deg); }
+}
+
+/* 纯触屏设备：恢复默认光标（无鼠标指针可隐藏） */
+@media (hover: none) {
+  .whack-board { cursor: default; }
+}

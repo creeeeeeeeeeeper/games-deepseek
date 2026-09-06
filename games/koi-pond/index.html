@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>锦鲤池 · 小游戏大全</title>
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">🐟 锦鲤池</h1>
+      <p class="game-desc">往水池里撒鱼食，看锦鲤游过来吃；吃饱游回池底。连续喂食能让它们聚成一群，越热闹越好。</p>
+    </div>
+
+    <div class="game-card center">
+      <div class="hud">
+        <div class="hud-item">在场锦鲤 <strong id="koi">0</strong></div>
+        <div class="hud-item">和谐分 <strong id="score">0</strong></div>
+      </div>
+      <div class="board-wrap">
+        <canvas id="canvas" width="400" height="300"></canvas>
+      </div>
+      <div class="controls">
+        <button class="btn" id="feedBtn" type="button">🐟 撒鱼食</button>
+      </div>
+      <div class="msg" id="msg" aria-live="polite">点"撒鱼食"引来锦鲤。</div>
+      <div class="hint">锦鲤会游向你撒食的位置；聚得越多、吃得越久，和谐分越高。</div>
+    </div>
+  </div>
+
+  <div class="modal" id="endModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <h2 class="modal-title" id="endTitle">🪷 完美一池</h2>
+      <p class="modal-sub" id="endMsg"></p>
+      <button class="btn" id="againBtn" type="button">再来一局</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

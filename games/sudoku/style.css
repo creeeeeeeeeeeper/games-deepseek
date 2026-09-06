@@ -1,0 +1,121 @@
+/* ============================================================
+   数独专属样式（依赖上方 assets/game.css 的主题变量）
+   ============================================================ */
+
+/* 9x9 棋盘：CSS Grid，格子尺寸用 clamp 实现响应式 */
+.sudoku-board {
+  --cell: clamp(26px, 4.6vw, 44px);
+  display: grid;
+  grid-template-columns: repeat(9, var(--cell));
+  grid-template-rows: repeat(9, var(--cell));
+  background: var(--panel-2);
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.28);
+}
+
+/* 单个格子 */
+.cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(var(--cell) * 0.52);
+  font-weight: 600;
+  color: var(--text);
+  background: var(--panel-2);
+  border-style: solid;
+  border-color: var(--border);
+  border-left-width: 1px;
+  border-top-width: 1px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.12s, color 0.12s, box-shadow 0.12s;
+}
+.cell:hover { background: #22334e; }
+
+/* 已给出的题目格（固定，高亮） */
+.cell.given {
+  color: #f2f5fa;
+  font-weight: 800;
+  background: #233350;
+}
+/* 玩家正确填写的数字 */
+.cell.user { color: var(--accent-2); font-weight: 700; }
+
+/* 玩家填错的数字：红底白字 */
+.cell.wrong {
+  color: #fff;
+  background: var(--danger);
+  font-weight: 700;
+}
+
+/* 当前选中的格子 */
+.cell.selected {
+  background: #1e3a5c;
+  box-shadow: inset 0 0 0 2px var(--accent);
+}
+
+/* 与选中格子相同数字的格子（辅助高亮） */
+.cell.same { background: #26374f; }
+
+/* 填错时的抖动动画 */
+.cell.shake { animation: shake 0.32s; }
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-3px); }
+  75% { transform: translateX(3px); }
+}
+
+/* 数字键盘 */
+.num-pad {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 16px;
+}
+.pad-num {
+  min-width: 44px;
+  height: 44px;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 0 10px;
+  color: var(--text);
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: border-color 0.12s, background 0.12s, transform 0.08s;
+}
+.pad-num:hover { border-color: var(--accent); background: #22334e; }
+.pad-num:active { transform: translateY(1px); }
+.pad-clear { min-width: 64px; color: var(--warn); }
+
+/* 难度下拉框 */
+.hud select {
+  background: var(--panel-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 14px;
+  font-family: inherit;
+  cursor: pointer;
+}
+.hud select:focus { outline: none; border-color: var(--accent); }
+.hud select option { background: var(--panel); }
+
+/* 结束时的提示消息 */
+.msg {
+  margin-top: 12px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* 小屏适配：稍微收窄卡片内边距 */
+@media (max-width: 480px) {
+  .game-card { padding: 14px; }
+  .hud { gap: 10px; }
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>骰子21点 · 小游戏大全</title>
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">🎲 骰子21点</h1>
+      <p class="game-desc">掷骰子凑点数，尽量接近 21 又不超过；庄家也掷，谁更近谁赢。</p>
+    </div>
+
+    <div class="game-card center">
+      <div class="hud">
+        <div class="hud-item">你的点数 <strong id="you">0</strong></div>
+        <div class="hud-item">庄家 <strong id="dealer">0</strong></div>
+        <div class="hud-item">状态 <strong id="status">等待开局</strong></div>
+      </div>
+      <div class="board-wrap"><canvas id="game" width="480" height="200" aria-label="骰子21点画面"></canvas></div>
+      <div class="controls">
+        <button class="btn" id="hitBtn" type="button">🎲 要骰</button>
+        <button class="btn secondary" id="standBtn" type="button">停手</button>
+        <button class="btn secondary" id="newBtn" type="button">新一局</button>
+      </div>
+      <div class="msg" id="msg" aria-live="polite"></div>
+      <div class="hint">掷骰累加，超过 21 即爆。按 <kbd>R</kbd> 开新局。</div>
+    </div>
+  </div>
+
+  <div class="modal" id="endModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <h2 class="modal-title" id="endTitle">🎲 本局结束</h2>
+      <p class="modal-sub" id="endMsg"></p>
+      <button class="btn" id="againBtn" type="button">再来一局</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

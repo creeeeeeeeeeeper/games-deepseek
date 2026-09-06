@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>找单词 · 小游戏大全</title>
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">🔍 找单词</h1>
+    </div>
+
+    <div class="game-card">
+      <div class="hud">
+        <div class="hud-item">难度
+          <select id="level" aria-label="选择难度">
+            <option value="easy" selected>简单</option>
+            <option value="medium">中等</option>
+            <option value="hard">困难</option>
+          </select>
+        </div>
+        <div class="hud-item">主题 <strong id="topic">动物</strong></div>
+        <div class="hud-item">已找到 <strong id="found">0/0</strong></div>
+        <div class="hud-item">得分 <strong id="score">0</strong></div>
+        <button class="btn secondary" id="restart">重新开始</button>
+        <button class="btn" id="newPuzzle">新谜题</button>
+      </div>
+
+      <div class="word-search-layout">
+        <div class="board-wrap">
+          <canvas id="board"></canvas>
+        </div>
+
+        <aside class="word-side">
+          <div class="word-side-title">目标单词</div>
+          <div class="word-list" id="wordList"></div>
+        </aside>
+      </div>
+
+      <div class="msg" id="msg"></div>
+
+      <div class="hint">
+        按住鼠标（或手指）从单词的<strong>首字母拖到末字母</strong>连成一条线，
+        横、竖、斜以及<strong>正反方向</strong>都可以。找到右侧列表里的全部单词即可获胜。
+        按 <kbd>R</kbd> 重新开始，按 <kbd>N</kbd> 生成新谜题。
+      </div>
+    </div>
+  </div>
+
+  <!-- 胜利弹窗 -->
+  <div class="modal" id="winModal">
+    <div class="modal-box">
+      <h2 class="modal-title">🎉 恭喜通关！</h2>
+      <p class="modal-sub" id="modalSub"></p>
+      <button class="btn" id="playAgain">再来一局</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+
+</body>
+</html>

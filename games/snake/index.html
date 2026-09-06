@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🐍 贪吃蛇 · 小游戏大全</title>
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <div class="game-title">🐍 贪吃蛇 · 小游戏大全</div>
+    </div>
+
+    <p class="game-desc">控制小蛇吃掉金色食物来增长身体与得分，撞墙或咬到自己即失败。每吃 5 个食物提速一档，冲击本机最高分！</p>
+
+    <div class="game-card">
+      <div class="hud">
+        <div class="hud-item"><strong id="hudScore">0</strong><span>得分</span></div>
+        <div class="hud-item"><strong id="hudBest">0</strong><span>最高</span></div>
+        <div class="hud-item"><strong id="hudLen">3</strong><span>长度</span></div>
+        <div class="hud-item"><strong id="hudTier">1</strong><span>速度档</span></div>
+      </div>
+
+      <div class="board-wrap" id="boardWrap">
+        <canvas id="board" width="480" height="480" aria-label="贪吃蛇游戏棋盘"></canvas>
+      </div>
+
+      <div class="controls">
+        <button type="button" class="btn" id="restartBtn">🔄 重新开始</button>
+        <button type="button" class="btn secondary" id="pauseBtn" disabled>⏸ 暂停</button>
+      </div>
+
+      <p class="hint snake-hint">
+        <kbd>↑</kbd><kbd>↓</kbd><kbd>←</kbd><kbd>→</kbd> / <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> 移动 ·
+        <kbd>Space</kbd> / <kbd>P</kbd> 暂停 · <kbd>R</kbd> 重新开始 · 触屏在棋盘上滑动即可转向
+      </p>
+    </div>
+  </div>
+
+  <div class="modal" id="resultModal" aria-hidden="true">
+    <div class="modal-box">
+      <div class="modal-title" id="modalTitle">游戏结束</div>
+      <div class="modal-sub" id="modalSub"></div>
+      <div class="msg" id="modalMsg"></div>
+      <div class="modal-actions">
+        <button type="button" class="btn" id="againBtn">🔄 再来一局</button>
+        <a class="btn secondary" href="../../index.html">返回列表</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+
+</body>
+</html>

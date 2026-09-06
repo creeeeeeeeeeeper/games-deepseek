@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>小游戏大全 · 100 款手搓 HTML 小游戏</title>
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/index.css" />
+</head>
+<body>
+  <h1 class="sr-only">小游戏大全</h1>
+
+  <!-- ================= 报头（印刷海报式，故意不居中） ================= -->
+  <header class="masthead">
+    <p class="mast-line">
+      <span>印刷车间 · 第 002 期</span>
+      <span>手搓 HTML / CSS / JS · 零框架 · 深色特刊</span>
+    </p>
+
+    <div class="mast-row">
+      <div class="head-block">
+        <h2 class="mast-title" aria-label="小游戏大全">小游戏大全</h2>
+        <p class="mast-sub">
+          七类共 <strong>100</strong> 款、在浏览器里就能跑的玩意儿。
+          每一款都是手写的 HTML + CSS + JS 三张图纸——没有框架进场，
+          没有后端加班，错了就 Ctrl+Z，对了就偷偷乐一下。
+        </p>
+      </div>
+
+      <dl class="press-num">
+        <div class="pn"><dt>收录</dt><dd id="statTotal">0</dd></div>
+        <div class="pn"><dt>即点即玩</dt><dd id="statReady">0</dd></div>
+        <div class="pn"><dt>模式</dt><dd>AI / 双人</dd></div>
+        <div class="pn"><dt>依赖</dt><dd>0 个库</dd></div>
+      </dl>
+    </div>
+
+    <div class="toolrow">
+      <label class="find" for="searchInput">
+        <img class="fi" src="assets/icons/search.svg" alt="放大镜图标" aria-hidden="true" />
+        <span class="find-tag">检索台</span>
+        <input id="searchInput" class="search-input" type="text"
+               placeholder="输个名字或玩法：2048、贪吃蛇、wordle…" autocomplete="off" />
+        <button class="find-clear" id="clearBtn" type="button" title="清空检索">
+          <img src="assets/icons/x.svg" alt="清空" />
+        </button>
+      </label>
+      <p class="find-hint">能搜名字，也能搜"怎么玩"。搜不出来，说明它还没被造出来。</p>
+    </div>
+  </header>
+
+  <!-- ================= 吸顶分类菜单（常驻） ================= -->
+  <div class="menubar" id="menubar">
+    <nav id="categoryNav" class="chapters" aria-label="分类目录"></nav>
+  </div>
+
+  <!-- ================= 版面主体（左目录边条 + 右侧藏品架） ================= -->
+  <div class="sheet">
+    <aside class="rail" aria-label="说明与附录">
+      <section class="sticker sticker-a">
+        <h3 class="rail-h">这期清单</h3>
+        <p>益智 16 · 街机 18 · 休闲 14 · 桌牌 14 · 桌游 16 · 整活 8<br />竞速 14（外加楼下那台收银机）</p>
+        <p class="note">凑数的没有——凑数的都被丢回回收站了。</p>
+      </section>
+
+      <section class="sticker sticker-b">
+        <h3 class="rail-h">维修手记</h3>
+        <ul class="log">
+          <li>给井字棋加了"单人 / 双人"闸刀，AI 输急了会发呆 0.36 秒。</li>
+          <li>海战棋双人靠传屏，抢对方手机也算玩法的一部分。</li>
+          <li>老虎机里没有猫，只有概率和你的手气。</li>
+        </ul>
+      </section>
+
+      <section class="sticker sticker-c">
+        <h3 class="rail-h">打印说明</h3>
+        <p>字迹如有偏移，是套印故意错开的，<br />不是打印机坏了——是想让你多看一眼。</p>
+      </section>
+    </aside>
+
+    <main class="shelf">
+      <div id="categoryContainer" class="content"></div>
+
+      <p id="emptyTip" class="empty-tip" hidden>
+        翻遍了藏品架也没找到。换个词试试——
+        <button type="button"><img src="assets/icons/refresh.svg" alt="清空并重试" /> 清空检索</button>
+      </p>
+
+      <!-- ================= 计算彩蛋（桌游之后 500px · 默认只是层灰） ================= -->
+      <div class="calc-egg" id="calcEgg">
+        <div class="calc-blurb">
+          <h3 class="rail-h">车间收款机</h3>
+          <p>不联网、不记账、不偷拍。<br />只干一件事：算你刚才那局的比分。</p>
+          <p class="note">先打一把贪吃蛇，再回来按 <b>=</b>，<br />看看它给你算出了什么。</p>
+        </div>
+        <div class="calc" role="group" aria-label="结尾的计算彩蛋，一个可用计算器">
+          <div class="calc-readout" id="calcRead">0</div>
+          <div class="calc-keys" id="calcKeys">
+            <button type="button" data-k="C"  class="wide2">C</button>
+            <button type="button" data-k="⌫">⌫</button>
+            <button type="button" data-k="÷">÷</button>
+            <button type="button" data-k="7">7</button>
+            <button type="button" data-k="8">8</button>
+            <button type="button" data-k="9">9</button>
+            <button type="button" data-k="×">×</button>
+            <button type="button" data-k="4">4</button>
+            <button type="button" data-k="5">5</button>
+            <button type="button" data-k="6">6</button>
+            <button type="button" data-k="−">−</button>
+            <button type="button" data-k="1">1</button>
+            <button type="button" data-k="2">2</button>
+            <button type="button" data-k="3">3</button>
+            <button type="button" data-k="+">+</button>
+            <button type="button" data-k="0" class="wide2">0</button>
+            <button type="button" data-k=".">.</button>
+            <button type="button" data-k="=" class="eq">=</button>
+          </div>
+        </div>
+        <p class="egg-whisper">（这层灰下面，像是有东西——悬停或点一下试试）</p>
+      </div>
+    </main>
+  </div>
+
+  <footer class="colophon">
+    <p>小游戏大全 · 100 款独立页面 · 每款 = index.html + style.css + script.js 三张图纸</p>
+    <p class="dim">所有存档都留在你自己的浏览器 localStorage 里——我们不偷看，也偷看不了。</p>
+  </footer>
+
+  <script src="assets/index.js"></script>
+</body>
+</html>

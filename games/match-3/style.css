@@ -1,0 +1,20 @@
+/* 宝石消消乐专属样式 */
+.game-card.center { text-align: center; }
+.gem-board { display: grid; grid-template-columns: repeat(8, 46px); grid-template-rows: repeat(8, 46px); gap: 3px;
+  margin: 4px auto 12px; width: max-content; }
+.gem { width: 46px; height: 46px; border-radius: 9px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  font-size: 22px; font-weight: 800; color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+  transition: transform 0.14s; box-shadow: inset 0 -3px 6px rgba(0,0,0,0.35), 0 2px 4px rgba(0,0,0,0.3); }
+.gem:hover { transform: scale(1.07); }
+.gem.sel { outline: 3px solid var(--accent); outline-offset: 1px; transform: scale(1.1); }
+.gem.c0 { background: linear-gradient(145deg, #ff7a6b, #d94b3a); }
+.gem.c1 { background: linear-gradient(145deg, #ffd76b, #f0a32a); }
+.gem.c2 { background: linear-gradient(145deg, #6fd98a, #2f9e4f); }
+.gem.c3 { background: linear-gradient(145deg, #6bc7ff, #2f93d9); }
+.gem.c4 { background: linear-gradient(145deg, #c99cff, #8a4fd9); }
+.gem.pop { animation: pop 0.28s ease forwards; }
+@keyframes pop { 0% { transform: scale(1); } 50% { transform: scale(1.25); } 100% { transform: scale(0); opacity: 0; } }
+.gem.fall { transition: transform 0.22s cubic-bezier(0.3, 0.7, 0.4, 1); }
+.msg { min-height: 22px; margin-top: 12px; font-weight: 700; }
+.msg.win { color: var(--accent-2); }
+.msg.lose { color: var(--danger); }

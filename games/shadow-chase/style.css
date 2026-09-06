@@ -1,0 +1,17 @@
+/* 追光人专属样式 */
+.game-card.center { text-align: center; }
+.board-wrap canvas {
+  display: block;
+  width: min(100%, 480px);
+  margin: 0 auto;
+  background: radial-gradient(120% 100% at 50% 0%, #1a1b2a 0%, #0b0c14 70%);
+  border-radius: 12px;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: crosshair;
+}
+.board-wrap { border: 1px solid var(--border); border-radius: 14px; overflow: hidden; box-shadow: 0 14px 34px rgba(0,0,0,0.45); }
+.hud-item strong.bump { animation: bump 0.3s ease; display: inline-block; }
+@keyframes bump { 40% { transform: scale(1.4); } }
+.hint { margin-top: 10px; }

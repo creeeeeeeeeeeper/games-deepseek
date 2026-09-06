@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>种花 · 小游戏大全</title>
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">🌻 种花</h1>
+      <p class="game-desc">在一片 5×4 的花园里种花：浇水让花长大，成熟了收获换金币，再用金币买更多花种。</p>
+    </div>
+
+    <div class="game-card center">
+      <div class="hud">
+        <div class="hud-item">金币 <strong id="coins">20</strong></div>
+        <div class="hud-item">成熟 <strong id="ripe">0</strong></div>
+      </div>
+      <div class="board-wrap">
+        <div class="garden" id="garden"></div>
+      </div>
+      <div class="controls">
+        <button class="btn" id="seedBtn" type="button">🌱 买种子(10)</button>
+        <button class="btn secondary" id="waterBtn" type="button">💧 给选的浇水</button>
+      </div>
+      <div class="msg" id="msg" aria-live="polite">点一个空格种花，点已有花再浇水。</div>
+      <div class="hint">每块地可种一株；浇水让花+1 阶（种子→芽→花→成熟），成熟后收获得金币。</div>
+    </div>
+  </div>
+
+  <div class="modal" id="endModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <h2 class="modal-title" id="endTitle">🌼 花园满了</h2>
+      <p class="modal-sub" id="endMsg"></p>
+      <button class="btn" id="againBtn" type="button">再来一局</button>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

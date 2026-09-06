@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>磁吸星辰 · 小游戏大全</title>
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">🧲 磁吸星辰</h1>
+      <p class="game-desc">按住屏幕开启磁力场，把漂移的星辰吸进采集槽！金色星辰 +5，黑洞可别吸进来。</p>
+    </div>
+
+    <div class="game-card center">
+      <div class="hud">
+        <div class="hud-item">得分 <strong id="score">0</strong></div>
+        <div class="hud-item">连击 <strong id="combo">0</strong></div>
+        <div class="hud-item">时间 <strong id="time">30</strong></div>
+        <div class="hud-item">最高 <strong id="best">0</strong></div>
+      </div>
+
+      <div class="board-wrap">
+        <canvas id="game" width="480" height="520" aria-label="磁吸星辰游戏画面"></canvas>
+      </div>
+
+      <div class="hint">
+        按住（鼠标 / 手指）任意位置开启磁力场，星辰会被吸向你的光标；
+        让它们在<b>下方采集槽</b>里落网即可得分。别让黑洞进去！按 <kbd>R</kbd> 重新开始。
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="endModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <h2 class="modal-title" id="endTitle">⏰ 时间到！</h2>
+      <p class="modal-sub" id="endMsg"></p>
+      <button class="btn" id="againBtn" type="button">再来一局</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

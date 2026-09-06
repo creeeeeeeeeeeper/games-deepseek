@@ -1,0 +1,13 @@
+/* 抢10专属样式 */
+.game-card.center { text-align: center; }
+.board { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; max-width: 340px; margin: 14px auto; }
+.board button { padding: 22px 0; font-size: 30px; font-weight: 800; border-radius: 12px;
+  border: 1px solid var(--border); background: var(--panel-2); color: var(--text); cursor: pointer;
+  transition: transform 0.14s var(--motion-spring), border-color 0.14s; }
+.board button:hover:not(.used) { transform: translateY(-3px); border-color: var(--accent); }
+.board button.used { opacity: 0.3; cursor: default; }
+.board button.mine { background: #1f3a2e; border-color: var(--accent-2); }
+.board button.aiv { background: #3a2520; border-color: var(--danger); }
+.hud-item strong { min-width: 90px; }
+.msg { min-height: 24px; margin-top: 12px; font-weight: 700; }
+.msg.win { color: var(--accent-2); }

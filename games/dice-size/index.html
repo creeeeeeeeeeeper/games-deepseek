@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>猜大小 · 小游戏大全</title>
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">🎰 猜大小</h1>
+      <p class="game-desc">三颗骰子即将掷出：总和 ≥11 算「大」，≤10 算「小」。猜对得分，连猜有加成！</p>
+    </div>
+
+    <div class="game-card center">
+      <div class="hud">
+        <div class="hud-item">局 <strong id="round">1/10</strong></div>
+        <div class="hud-item">得分 <strong id="score">0</strong></div>
+        <div class="hud-item">连中 <strong id="streak">0</strong></div>
+        <div class="hud-item">最高 <strong id="best">0</strong></div>
+        <div class="hud-item">总和 <strong id="sum">—</strong></div>
+      </div>
+      <div class="board-wrap"><canvas id="game" width="480" height="220" aria-label="猜大小画面"></canvas></div>
+      <div class="choices">
+        <button class="btn" id="bigBtn" type="button">🟢 猜大（≥11）</button>
+        <button class="btn secondary" id="smallBtn" type="button">🔴 猜小（≤10）</button>
+        <button class="btn secondary" id="rollBtn" type="button">🎲 免费重掷（本轮一次）</button>
+      </div>
+      <div class="msg" id="msg" aria-live="polite"></div>
+      <div class="hint">先下单再掷骰；每局可免费重掷一次 3 颗骰。按 <kbd>R</kbd> 重开。</div>
+    </div>
+  </div>
+
+  <div class="modal" id="endModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <h2 class="modal-title" id="endTitle">🎰 十局打完！</h2>
+      <p class="modal-sub" id="endMsg"></p>
+      <button class="btn" id="againBtn" type="button">再来十局</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🎮 打地鼠 · 小游戏大全</title>
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="game-shell">
+    <header class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">🎮 打地鼠</h1>
+      <p class="game-desc">限时 30 秒！快速敲击冒头的地鼠，连击越高加分越多，小心别敲空哦。</p>
+    </header>
+
+    <main class="game-card">
+      <div class="hud">
+        <div class="hud-item">得分 <strong id="hud-score">0</strong></div>
+        <div class="hud-item">连击 <strong id="hud-combo">0</strong><span class="hud-mult" id="hud-mult">×1</span></div>
+        <div class="hud-item">最高分 <strong id="hud-best">0</strong></div>
+        <div class="hud-item" id="hud-time-wrap">时间 <strong id="hud-time">30.0</strong>s</div>
+      </div>
+
+      <div class="board-wrap whack-wrap">
+        <div class="whack-board" id="board" role="application" aria-label="打地鼠游戏区"></div>
+        <div class="whack-overlay idle" id="overlay">
+          <div class="ov-mole">🐹</div>
+          <div class="ov-text" id="overlay-text">点击任意处开始</div>
+        </div>
+      </div>
+
+      <div class="whack-controls">
+        <button class="btn" id="btn-start">开始游戏</button>
+        <button class="btn secondary" id="btn-restart">重开一局</button>
+      </div>
+
+      <div class="toast" id="toast"></div>
+
+      <p class="hint">鼠标点击 / 触屏点按敲地鼠 · 连击 ≥5 得分 ×2、≥10 得分 ×3 · 敲空连击清零 · 按 <kbd>R</kbd> 重开</p>
+    </main>
+
+    <div class="modal" id="modal">
+      <div class="modal-box">
+        <div class="modal-title" id="modal-title">⏱ 时间到！</div>
+        <div class="modal-sub" id="modal-sub"></div>
+        <div class="result-grid">
+          <div class="result-item"><span>本局得分</span><strong id="r-score">0</strong></div>
+          <div class="result-item" id="r-best-item"><span>最高分</span><strong id="r-best">0</strong></div>
+          <div class="result-item"><span>最高连击</span><strong id="r-combo">0</strong></div>
+        </div>
+        <div class="modal-actions">
+          <button class="btn" id="btn-again">再来一局</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hammer" id="hammer">
+    <div class="hammer-inner" id="hammer-inner">
+      <div class="hammer-head"></div>
+      <div class="hammer-handle"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+
+</body>
+</html>

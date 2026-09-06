@@ -1,0 +1,162 @@
+/* ============================================================
+   猜数字 专属样式
+   主题沿用 game.css 的深色配色（#0e1420 家族 / #1a2334 / #2b3850）
+   此处只做游戏的个性化布局与视觉细节。
+   ============================================================ */
+
+/* 主体面板：居中、限制宽度 */
+.guess-panel {
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* 提示文字 */
+.prompt {
+  font-size: 15px;
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* 输入行 */
+.input-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* 数字输入框 */
+.guess-input {
+  flex: 1 1 160px;
+  min-width: 0;
+  padding: 12px 14px;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.guess-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(58, 160, 255, 0.18);
+}
+.guess-input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+/* 去掉数字输入框自带的上下箭头，保持简洁 */
+.guess-input::-webkit-outer-spin-button,
+.guess-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.guess-input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+/* 反馈消息 */
+.feedback {
+  min-height: 22px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted);
+  transition: color 0.15s;
+}
+.feedback.hot { color: var(--warn); }      /* 很接近 */
+.feedback.cold { color: var(--accent-2); } /* 偏小 */
+.feedback.warm { color: var(--accent); }   /* 偏大 */
+.feedback.win { color: var(--accent-2); }
+.feedback.warn { color: var(--danger); }
+
+/* ---- 范围刻度条 ---- */
+.range-track {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.range-mark {
+  min-width: 32px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--muted);
+}
+.range-bar {
+  flex: 1;
+  height: 12px;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
+}
+.range-fill {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  border-radius: 999px;
+  transition: left 0.25s ease, width 0.25s ease;
+}
+
+/* ---- 历史记录 ---- */
+.history {
+  border-top: 1px dashed var(--border);
+  padding-top: 12px;
+}
+.history-title {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+.history-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.history-empty {
+  color: var(--muted);
+  font-size: 13px;
+  opacity: 0.7;
+}
+.history-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+.history-chip .num { font-weight: 800; }
+.history-chip.dir-low { border-color: var(--accent-2); color: var(--accent-2); }
+.history-chip.dir-high { border-color: var(--accent); color: var(--accent); }
+.history-chip.dir-hit { border-color: var(--accent-2); color: var(--accent-2); }
+
+/* 结果大标题 */
+.msg {
+  font-size: 15px;
+  font-weight: 700;
+  text-align: center;
+  min-height: 22px;
+}
+
+/* 窄屏适配 */
+@media (max-width: 480px) {
+  .guess-input { font-size: 18px; padding: 10px 12px; }
+  .input-row .btn { flex: 1 1 120px; }
+  .range-mark { min-width: 24px; font-size: 12px; }
+}

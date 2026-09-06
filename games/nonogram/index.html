@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>数织 · 小游戏大全</title>
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">🧩 数织</h1>
+      <p class="game-desc">根据行列的数字提示，把对应的格子涂黑，拼出一幅像素画。行/列数字表示该行/列连续涂黑格子的分段长度。</p>
+    </div>
+
+    <div class="game-card center">
+      <div class="hud">
+        <div class="hud-item">涂色 <strong id="filled">0</strong></div>
+        <div class="hud-item">正确 <strong id="correct">0</strong></div>
+      </div>
+      <div class="board-wrap">
+        <div class="nono-wrap"><div class="nono" id="nono"></div></div>
+      </div>
+      <div class="msg" id="msg" aria-live="polite">点击格子涂黑，再点清除；长按标叉便于推理。</div>
+      <div class="hint">数字是"分段"的提示：比如 2 3 表示这一行先有连续 2 个黑格，隔至少一格，再有连续 3 个黑格。</div>
+    </div>
+  </div>
+
+  <div class="modal" id="endModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <h2 class="modal-title" id="endTitle">🎉 完成！</h2>
+      <p class="modal-sub" id="endMsg"></p>
+      <button class="btn" id="againBtn" type="button">再来一局</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

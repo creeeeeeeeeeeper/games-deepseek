@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🎮 钢琴块 · 小游戏大全</title>
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="game-shell">
+    <header class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">🎮 钢琴块 · 小游戏大全</h1>
+      <p class="game-desc">四条轨道的黑色琴键块急速下落 —— 在它落入底部判定区的瞬间，按 A/S/D/F 或点按对应轨道将其消除。点空、点错或让黑块溜走，挑战立刻结束！</p>
+    </header>
+
+    <main class="game-card">
+      <div class="hud">
+        <div class="hud-item"><span>得分</span><strong id="hudScore">0</strong></div>
+        <div class="hud-item"><span>最高分</span><strong id="hudBest">0</strong></div>
+        <div class="hud-item"><span>连击</span><strong id="hudCombo">0</strong></div>
+        <div class="hud-item"><span>最大连击</span><strong id="hudMaxCombo">0</strong></div>
+      </div>
+
+      <div class="pt-speed">
+        <span class="pt-speed-label">速度<strong id="hudSpeed">Lv.1</strong></span>
+        <div class="pt-speedbar"><div class="pt-speedbar-fill" id="speedFill"></div></div>
+      </div>
+
+      <div class="pt-board-outer" id="boardOuter">
+        <div class="pt-board-scaler" id="scaler">
+          <div class="pt-board" id="board">
+            <div class="pt-col" data-col="0"></div>
+            <div class="pt-col" data-col="1"></div>
+            <div class="pt-col" data-col="2"></div>
+            <div class="pt-col" data-col="3"></div>
+            <div class="pt-hitzone"><span class="pt-zone-label">判 定 区</span></div>
+            <div class="pt-track" id="track"></div>
+            <div class="pt-frontboard">
+              <div class="pt-keyhint" data-col="0">A</div>
+              <div class="pt-keyhint" data-col="1">S</div>
+              <div class="pt-keyhint" data-col="2">D</div>
+              <div class="pt-keyhint" data-col="3">F</div>
+            </div>
+            <div class="pt-fx" id="fx"></div>
+            <div class="pt-milestone" id="milestone">10 连击 · 奖励 +5 分！</div>
+            <div class="pt-countdown" id="countdown"><span class="pt-cd-num" id="cdNum">3</span></div>
+            <div class="pt-overlay on" id="overlay">
+              <div class="pt-eq"><i></i><i></i><i></i><i></i></div>
+              <h2 class="pt-overlay-title">🎹 钢琴块</h2>
+              <p class="pt-overlay-text">黑色琴键块沿轨道下落，在它落入底部<b>判定区</b>的瞬间，<br />按下对应轨道的按键或点按屏幕即可消除得分。<br />点空、点错列，或让黑块滑出底部，挑战立即结束。</p>
+              <button class="btn pt-start-btn" id="startBtn" type="button">▶ 开始游戏</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-keys">
+        <button class="pt-key" data-col="0" type="button">A</button>
+        <button class="pt-key" data-col="1" type="button">S</button>
+        <button class="pt-key" data-col="2" type="button">D</button>
+        <button class="pt-key" data-col="3" type="button">F</button>
+      </div>
+      <div class="pt-actions">
+        <button class="btn secondary" id="muteBtn" type="button">🔊 音效开</button>
+        <button class="btn secondary" id="restartBtn" type="button">↻ 重新开始</button>
+      </div>
+
+      <p class="hint">键盘 <kbd>A</kbd><kbd>S</kbd><kbd>D</kbd><kbd>F</kbd> · 鼠标点击 / 手指点按对应轨道 · <kbd>R</kbd> 重新开始 · <kbd>M</kbd> 静音 · 消除判定区内的黑块即可得分</p>
+      <div class="msg" id="msg">点击「开始游戏」，接住落进判定区的黑块！</div>
+    </main>
+
+    <div class="modal" id="overModal">
+      <div class="modal-box">
+        <h3 class="modal-title" id="overTitle">游戏结束</h3>
+        <p class="modal-sub" id="overSub">再试一次吧！</p>
+        <div class="pt-stats">
+          <div class="pt-stat"><strong id="statScore">0</strong><span>得分</span></div>
+          <div class="pt-stat"><strong id="statBest">0</strong><span>最高分</span></div>
+          <div class="pt-stat"><strong id="statCombo">0</strong><span>最大连击</span></div>
+          <div class="pt-stat"><strong id="statSpeed">Lv.1</strong><span>速度</span></div>
+        </div>
+        <div class="pt-modal-actions">
+          <button class="btn" id="againBtn" type="button">🔁 再来一局</button>
+          <a class="btn secondary" href="../../index.html">← 返回列表</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+
+
+</body>
+</html>

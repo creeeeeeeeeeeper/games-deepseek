@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>别让它落地 · 小游戏大全</title>
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">🏀 别让它落地</h1>
+      <p class="game-desc">点按把球往上顶，别让球落地，也别被头顶下压的尖刺扎到！</p>
+    </div>
+
+    <div class="game-card center">
+      <div class="hud">
+        <div class="hud-item">存活 <strong id="score">0s</strong></div>
+        <div class="hud-item">生命 <strong id="lives">❤❤❤</strong></div>
+        <div class="hud-item">最高 <strong id="best">0s</strong></div>
+      </div>
+
+      <div class="board-wrap">
+        <canvas id="game" width="480" height="520" aria-label="别让它落地游戏画面"></canvas>
+      </div>
+
+      <div class="hint">
+        点按 / 空格向上顶球；球落地或被尖刺碰到就扣 1 命。命用完前尽可能撑久。
+        按 <kbd>R</kbd> 重开。
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="endModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <h2 class="modal-title" id="endTitle">🏀 落下了…</h2>
+      <p class="modal-sub" id="endMsg"></p>
+      <button class="btn" id="againBtn" type="button">再来一球</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

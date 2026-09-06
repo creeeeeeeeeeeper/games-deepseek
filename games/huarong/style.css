@@ -1,0 +1,137 @@
+/* ============================================================
+   华容道专属样式
+   依赖公共外壳 assets/game.css（game-shell / game-card / hud /
+   btn / board-wrap / modal / msg 等），此处仅做本游戏定制。
+   ============================================================ */
+.game-card.center { text-align: center; }
+
+/* ---------- 棋盘容器 ---------- */
+.board-klotski {
+  --cell: clamp(52px, 18vw, 88px);   /* 单元格尺寸，窄屏自适应 */
+  --gap: 6px;                         /* 单元格间距 */
+  position: relative;                 /* 供绝对定位棋子使用 */
+  display: grid;
+  grid-template-columns: repeat(4, var(--cell));
+  grid-template-rows: repeat(5, var(--cell));
+  gap: var(--gap);
+  padding: var(--gap);
+  margin: 0 auto;
+  width: max-content;
+  background: #0a0f18;                /* 棋盘凹槽底色 */
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* ---------- 空格（可移动目标） ---------- */
+.cell {
+  background: #131b29;
+  border-radius: 6px;
+  position: relative;
+}
+/* 底部出口：中间两格，可移入 */
+.cell.exit {
+  background: #17223a;
+  box-shadow: inset 0 0 0 1px rgba(58, 160, 255, 0.35);
+}
+.cell.exit::after {
+  content: "▼ 出口";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #3aa0ff;
+  font-size: clamp(9px, 2.6vw, 12px);
+  letter-spacing: 1px;
+  opacity: 0.8;
+  pointer-events: none;
+}
+/* 选中棋子的可移动空格：高亮提示 */
+.cell.move-to {
+  background: #22334f;
+  box-shadow: inset 0 0 0 2px var(--accent);
+  cursor: pointer;
+  animation: pulse 0.9s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { box-shadow: inset 0 0 0 2px rgba(58, 160, 255, 0.9); }
+  50%      { box-shadow: inset 0 0 0 2px rgba(58, 160, 255, 0.35); }
+}
+
+/* ---------- 棋子 ---------- */
+.piece {
+  position: absolute;                 /* 绝对定位，left/top 过渡平滑滑动 */
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: 800;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
+  touch-action: none;                 /* 拖动时抑制页面滚动 */
+  transition:
+    left 0.1s cubic-bezier(0.3, 1.2, 0.4, 1),
+    top 0.1s cubic-bezier(0.3, 1.2, 0.4, 1),
+    filter 0.12s, transform 0.12s, box-shadow 0.12s;
+}
+.piece.dragging {
+  z-index: 6;
+  box-shadow: 0 0 0 3px #fff, 0 0 20px rgba(58, 160, 255, 0.8);
+}
+.piece:hover { filter: brightness(1.12); }
+.piece:active { filter: brightness(0.95); }
+
+/* 选中高亮 */
+.piece.selected {
+  z-index: 2;
+  box-shadow: 0 0 0 3px #fff, 0 0 16px rgba(58, 160, 255, 0.75);
+  transform: scale(1.04);
+}
+
+/* 按角色配色：曹操(cao) / 将军(general) / 士兵(soldier) */
+.piece.cao {
+  background: linear-gradient(145deg, #ff7a5c, #e04a3a);
+  font-size: clamp(18px, 6vw, 28px);
+  letter-spacing: 1px;
+}
+.piece.general {
+  background: linear-gradient(145deg, #4fb3ff, #2f7fd6);
+  font-size: clamp(15px, 5vw, 22px);
+}
+.piece.soldier {
+  background: linear-gradient(145deg, #5b6d88, #3c4c66);
+  font-size: clamp(14px, 4.5vw, 20px);
+}
+
+/* ---------- 屏幕方向键 ---------- */
+.dpad {
+  display: grid;
+  grid-template-columns: repeat(3, 52px);
+  grid-template-rows: repeat(2, 52px);
+  gap: 8px;
+  justify-content: center;
+  margin: 18px auto 0;
+}
+.dpad .btn.dir {
+  padding: 0;
+  font-size: 22px;
+  line-height: 1;
+  height: 52px;
+}
+.dpad [data-dir="up"]    { grid-area: 1 / 2; }
+.dpad [data-dir="left"]  { grid-area: 2 / 1; }
+.dpad [data-dir="down"]  { grid-area: 2 / 2; }
+.dpad [data-dir="right"] { grid-area: 2 / 3; }
+.dpad .btn.dir:disabled { opacity: 0.4; }
+
+/* 底部说明里的强调 */
+.hint strong { color: var(--text); }

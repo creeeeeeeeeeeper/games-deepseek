@@ -1,0 +1,138 @@
+/* ============================================================
+   珠玑猜色（Mastermind）专属样式
+   依赖上方 assets/game.css 的主题变量：--panel/--border/--text ...
+   ============================================================ */
+
+/* 10 行猜测网格：纵向排列，窄屏限宽居中 */
+.mm-board {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 460px;
+  margin: 0 auto;
+}
+
+/* 单行猜测 */
+.mm-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 9px 12px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+/* 当前正在输入的行：高亮描边 */
+.mm-row.current {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent);
+}
+.mm-row.done { opacity: 0.94; }
+
+/* 猜测槽位：4 个圆形 */
+.guess-cell {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px dashed var(--border);
+  background: transparent;
+  cursor: pointer;
+  flex: 0 0 auto;
+  transition: transform 0.1s, border-color 0.1s, box-shadow 0.1s;
+}
+.mm-row.current .guess-cell:hover {
+  border-color: var(--accent);
+  transform: scale(1.06);
+}
+.mm-row:not(.current) .guess-cell { cursor: default; }
+
+/* 已涂色的槽位：实际颜色由 JS 以内联背景写入 */
+.guess-cell.filled {
+  border-style: solid;
+  cursor: pointer;
+}
+.guess-cell.filled:hover {
+  transform: scale(1.06);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
+}
+
+/* 反馈钉：2x2 排列 */
+.pegs {
+  display: grid;
+  grid-template-columns: repeat(2, 14px);
+  grid-auto-rows: 14px;
+  gap: 5px;
+  margin-left: auto;
+  padding-left: 10px;
+}
+.peg { width: 14px; height: 14px; border-radius: 50%; }
+/* 黑钉=颜色与位置都对 */
+.peg.black { background: #0f131c; border: 2px solid #6b7688; }
+/* 白钉=颜色对但位置不对 */
+.peg.white { background: #f5f7fa; border: 2px solid #b9c2d0; }
+/* 空位：尚未给出反馈 */
+.peg.empty { border: 2px solid var(--border); background: transparent; }
+
+/* 调色盘 */
+.palette {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 18px;
+}
+.palette-swatch {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  cursor: pointer;
+  transition: transform 0.12s, box-shadow 0.12s, border-color 0.12s;
+}
+.palette-swatch:hover { transform: scale(1.1); }
+.palette-swatch.active {
+  border-color: #fff;
+  box-shadow: 0 0 0 3px var(--accent), 0 0 14px rgba(58, 160, 255, 0.4);
+}
+
+/* 操作按钮行 */
+.mm-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 18px;
+}
+
+/* 状态消息 */
+.msg {
+  margin-top: 14px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 600;
+  min-height: 18px;
+}
+
+/* 弹窗内的答案色块 */
+.modal-answer {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+.answer-swatch {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+}
+
+/* 小屏适配：缩小棋子与内边距 */
+@media (max-width: 480px) {
+  .game-card { padding: 14px; }
+  .hud { gap: 10px; }
+  .guess-cell { width: 34px; height: 34px; }
+  .mm-row { gap: 8px; padding: 8px; }
+  .palette-swatch { width: 40px; height: 40px; }
+}

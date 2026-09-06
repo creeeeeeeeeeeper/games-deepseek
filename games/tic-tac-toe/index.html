@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>井字棋 · 小游戏大全</title>
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">⭕ 井字棋</h1>
+    </div>
+
+    <div class="game-card">
+      <!-- 单双人模式切换：单人=对战 AI，双人=同屏轮流 -->
+      <div class="mode-switch" role="tablist" aria-label="游戏模式">
+        <button type="button" class="mode-btn is-on" data-mode="ai" aria-selected="true">🤖 单人 · 对战 AI</button>
+        <button type="button" class="mode-btn" data-mode="pvp" aria-selected="false">👥 双人 · 同屏轮流</button>
+      </div>
+
+      <div class="hud">
+        <div class="hud-item">回合 <strong id="turn" class="turn x">X</strong></div>
+        <div class="hud-item score-item">🔵 X（<span id="labelX">你</span>）胜 <strong id="scoreX">0</strong></div>
+        <div class="hud-item score-item">🟢 O（<span id="labelO">AI</span>）胜 <strong id="scoreO">0</strong></div>
+        <button class="btn secondary" id="restart">重新开始</button>
+      </div>
+
+      <div class="board-wrap">
+        <div id="board" class="board" aria-label="井字棋棋盘"></div>
+      </div>
+
+      <div class="msg" id="msg" aria-live="polite"></div>
+
+      <div class="hint">
+        点击空格落子，先连成三子（横 / 竖 / 斜）者获胜，棋盘下满则为平局。
+        <span id="hintMode">AI 模式下你执 X。</span>
+        按 <kbd>1</kbd>–<kbd>9</kbd> 可快速落子（左上到右下），按 <kbd>R</kbd> 重新开始。
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+
+</body>
+</html>

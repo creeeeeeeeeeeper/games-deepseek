@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>🎮 打砖块 · 小游戏大全</title>
+<link rel="stylesheet" href="../../assets/game.css" />
+<link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+</head>
+<body>
+<div class="game-shell">
+  <div class="game-topbar">
+    <a class="back-btn" href="../../index.html">← 返回列表</a>
+    <h1 class="game-title">🎮 打砖块 · 小游戏大全</h1>
+  </div>
+  <p class="game-desc">移动挡板反弹小球，击碎全部砖块即可过关；小球漏底损失一条生命，共 3 条命。砖块自上而下分值 50 / 40 / 30 / 20 / 10，每过一关球速提升、排列随机变化。</p>
+
+  <div class="game-card">
+    <div class="hud">
+      <div class="hud-item"><span>得分</span><strong id="hudScore">0</strong></div>
+      <div class="hud-item"><span>关卡</span><strong id="hudLevel">1</strong></div>
+      <div class="hud-item"><span>生命</span><strong id="hudLives">3</strong></div>
+      <div class="hud-item"><span>最高分</span><strong id="hudBest">0</strong></div>
+    </div>
+
+    <div class="board-wrap">
+      <canvas id="game" width="720" height="520" aria-label="打砖块游戏画布"></canvas>
+      <div class="touch-btns">
+        <button class="tbtn" id="btnL" type="button" aria-label="向左移动">◀</button>
+        <button class="tbtn" id="btnR" type="button" aria-label="向右移动">▶</button>
+      </div>
+    </div>
+
+    <p class="hint">移动：<kbd>←</kbd><kbd>→</kbd> / <kbd>A</kbd><kbd>D</kbd> 或拖动鼠标 / 手指　发射：<kbd>空格</kbd> 或点按画布　重开：<kbd>R</kbd></p>
+  </div>
+</div>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-title" id="modalTitle"></div>
+    <div class="modal-sub" id="modalSub"></div>
+    <div class="modal-actions">
+      <button class="btn" id="btnA" type="button"></button>
+      <button class="btn secondary" id="btnB" type="button"></button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+
+
+</body>
+</html>

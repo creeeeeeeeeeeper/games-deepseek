@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>方格连线 · 小游戏大全</title>
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">✏️ 方格连线</h1>
+      <p class="game-desc">经典 Dots & Boxes：轮流在相邻点之间画线，围成一个完整方格即可占有它。谁围的方格多谁赢（可选 AI 或双人）。</p>
+    </div>
+
+    <div class="game-card center">
+      <div class="hud">
+        <div class="hud-item">你 <strong id="you">0</strong></div>
+        <div class="hud-item">回合 <strong id="turn">你</strong></div>
+        <div class="hud-item">AI <strong id="ai">0</strong></div>
+      </div>
+      <div class="board-wrap">
+        <canvas id="canvas" width="380" height="380"></canvas>
+      </div>
+      <div class="msg" id="msg" aria-live="polite">点击两相邻点之间画线。</div>
+      <div class="hint">围住方格的最后一条线归谁，谁就多得一格，并再画一次。点击任意两相邻点尝试画线。</div>
+    </div>
+  </div>
+
+  <div class="modal" id="endModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <h2 class="modal-title" id="endTitle"></h2>
+      <p class="modal-sub" id="endMsg"></p>
+      <button class="btn" id="againBtn" type="button">再来一局</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

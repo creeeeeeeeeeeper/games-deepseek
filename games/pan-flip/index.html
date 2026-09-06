@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>翻煎饼 · 小游戏大全</title>
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">🥞 翻煎饼</h1>
+      <p class="game-desc">按住蓄力，松手把煎饼甩上天；它落回锅里时要「金黄面朝上」才算成功！</p>
+    </div>
+
+    <div class="game-card center">
+      <div class="hud">
+        <div class="hud-item">得分 <strong id="score">0</strong></div>
+        <div class="hud-item">连击 <strong id="combo">0</strong></div>
+        <div class="hud-item">机会 <strong id="lives">❤❤❤</strong></div>
+        <div class="hud-item">最高 <strong id="best">0</strong></div>
+      </div>
+
+      <div class="board-wrap">
+        <canvas id="game" width="480" height="520" aria-label="翻煎饼游戏画面"></canvas>
+      </div>
+
+      <div class="hint">
+        按住（鼠标 / 手指 / <kbd>空格</kbd>）蓄力，松手把它甩起；
+        蓄力越久飞得越高、转得越快。落地时<b>金黄面朝上</b>即成功，连着成功有连击分。
+        摔糊三次就收工。按 <kbd>R</kbd> 重开。
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="endModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <h2 class="modal-title" id="endTitle">🍳 收工</h2>
+      <p class="modal-sub" id="endMsg"></p>
+      <button class="btn" id="againBtn" type="button">再来一锅</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

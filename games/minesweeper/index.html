@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>扫雷 · 小游戏大全</title>
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">💣 扫雷</h1>
+    </div>
+
+    <div class="game-card center">
+      <div class="hud">
+        <div class="hud-item">💣 地雷 <strong id="mines">10</strong></div>
+        <div class="hud-item">⏱ 时间 <strong id="timer">0</strong></div>
+        <div class="hud-item">
+          <span class="difficulty" id="difficulty">
+            <button class="btn mini diff active" data-level="easy">初级</button>
+            <button class="btn mini diff" data-level="medium">中级</button>
+            <button class="btn mini diff" data-level="hard">高级</button>
+          </span>
+        </div>
+        <button class="btn secondary" id="flagMode">📍 插旗模式</button>
+        <button class="btn secondary" id="restart">💫 重新开始</button>
+      </div>
+
+      <div class="board-wrap">
+        <div id="board" class="board"></div>
+      </div>
+
+      <div id="msg" class="msg"></div>
+
+      <div class="hint">
+        左键<strong>翻开</strong>格子，右键（或插旗模式）<strong>标记旗帜</strong>。数字表示周围八格的地雷数量，
+        遇到 <kbd>0</kbd> 会自动展开相邻区域。翻开所有非雷格子即获胜，踩到地雷则失败。
+        首次点击必定安全（会把地雷移开）。支持 <kbd>R</kbd> 键重新开始、<kbd>F</kbd> 键切换插旗模式。
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+
+</body>
+</html>

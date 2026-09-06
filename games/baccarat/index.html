@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>百家乐 · 小游戏大全</title>
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">🎴 百家乐</h1>
+      <p class="game-desc">押注你、庄家或平局，发牌比点数：总点数个位数高者胜。看看你的运气。</p>
+    </div>
+
+    <div class="game-card center">
+      <div class="hud">
+        <div class="hud-item">筹码 <strong id="chips">100</strong></div>
+        <div class="hud-item">本局结果 <strong id="result">—</strong></div>
+      </div>
+      <div class="board-wrap">
+        <div class="table" id="table"></div>
+      </div>
+      <div class="controls">
+        <button class="btn" id="betPlayer" type="button">押 你</button>
+        <button class="btn" id="betBanker" type="button">押 庄</button>
+        <button class="btn" id="betTie" type="button">押 平</button>
+      </div>
+      <div class="msg" id="msg" aria-live="polite">选择一个下注对象，然后自动发牌比点。</div>
+      <div class="hint">您和庄家各摸两张牌，按点数个位比大小；平局算押平。押中赔 1:1（平局 8:1）。筹码归零则结束。</div>
+    </div>
+  </div>
+
+  <div class="modal" id="endModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <h2 class="modal-title" id="endTitle">💸 筹码输光了</h2>
+      <p class="modal-sub" id="endMsg"></p>
+      <button class="btn" id="againBtn" type="button">再来一局</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

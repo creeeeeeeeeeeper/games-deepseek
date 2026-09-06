@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>猪骰子 · 小游戏大全</title>
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">🐷 猪骰子</h1>
+      <p class="game-desc">轮流掷骰攒分；一掷出 1 本回合全部清零。谁先攒到 100 谁赢——看谁敢多掷一轮！</p>
+    </div>
+
+    <div class="game-card center">
+      <div class="hud">
+        <div class="hud-item">你 <strong id="you">0</strong></div>
+        <div class="hud-item">AI <strong id="ai">0</strong></div>
+        <div class="hud-item">回合 <strong id="turn">你</strong></div>
+        <div class="hud-item">本回合 <strong id="turnScore">0</strong></div>
+      </div>
+      <div class="board-wrap"><canvas id="game" width="480" height="200" aria-label="猪骰子画面"></canvas></div>
+      <div class="controls">
+        <button class="btn" id="rollBtn" type="button">🎲 掷骰</button>
+        <button class="btn secondary" id="bankBtn" type="button">💰 结算</button>
+      </div>
+      <div class="msg" id="msg" aria-live="polite"></div>
+      <div class="hint">掷出 1 就把本回合清零并换对手；非 1 则累加，随时可「结算」入袋。目标 100。按 <kbd>R</kbd> 重开。</div>
+    </div>
+  </div>
+
+  <div class="modal" id="endModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <h2 class="modal-title" id="endTitle">🏆 你赢了！</h2>
+      <p class="modal-sub" id="endMsg"></p>
+      <button class="btn" id="againBtn" type="button">再来一局</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+/* 时钟接龙专属样式 */
+.game-card.center { text-align: center; }
+.clock { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; padding: 12px; border: 1px solid var(--border); border-radius: 14px;
+  background: radial-gradient(120% 100% at 50% 0%, #1b2433 0%, #0c1018 70%); margin: 4px auto 12px; max-width: 460px; }
+.pile { width: 52px; height: 66px; border-radius: 6px; background: #2a2f3a; border: 1px solid #3a4150; box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 20px; font-weight: 800; cursor: pointer; position: relative; }
+.pile .label { position: absolute; top: 2px; right: 5px; font-size: 10px; color: var(--muted); }
+.pile.has { background: linear-gradient(145deg, #f4f6f8, #d0d6d8); color: #1a1a1a; }
+.pile.center { background: linear-gradient(145deg, #e2c266, #b98a2f); border-color: var(--accent); }
+.pile.k4 { box-shadow: 0 0 14px rgba(217,75,58,0.7); }
+.pile:hover { transform: translateY(-2px); }
+.card-inner { display: flex; flex-direction: column; align-items: center; }
+.card-inner .rank { font-size: 20px; }
+.card-inner .suit { font-size: 13px; }
+.msg { min-height: 22px; margin-top: 12px; font-weight: 700; }
+.msg.win { color: var(--accent-2); }
+.msg.lose { color: var(--danger); }

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>汉诺塔 · 小游戏大全</title>
+  <link rel="stylesheet" href="../../assets/game.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="../../assets/icon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="game-shell">
+    <div class="game-topbar">
+      <a class="back-btn" href="../../index.html">← 返回列表</a>
+      <h1 class="game-title">🗼 汉诺塔</h1>
+    </div>
+
+    <div class="game-card">
+      <div class="hud">
+        <div class="hud-item">步数 <strong id="moves">0</strong></div>
+        <div class="hud-item">最少步数 <strong id="minMoves">7</strong></div>
+        <div class="hud-item">
+          <label for="level">圆盘数</label>
+          <select id="level" aria-label="选择圆盘数量">
+            <option value="3">3 盘</option>
+            <option value="4" selected>4 盘</option>
+            <option value="5">5 盘</option>
+          </select>
+        </div>
+        <button class="btn secondary" id="restart">重新开始</button>
+      </div>
+
+      <div class="board-wrap">
+        <canvas id="board" width="640" height="420" aria-label="汉诺塔棋盘"></canvas>
+      </div>
+
+      <div class="msg" id="msg"></div>
+
+      <div class="hint">
+        点击一根柱子选中它的<strong>最上层圆盘</strong>，再点击另一根柱子进行移动。
+        每次只能移动<strong>一个</strong>圆盘，且只能放在<strong>更大的圆盘上方</strong>或空柱上。
+        把所有圆盘从第一根柱子移到最右边那根即获胜。
+        <kbd>右键</kbd> 或再次点击已选中的柱子可取消选择。
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+
+</body>
+</html>
